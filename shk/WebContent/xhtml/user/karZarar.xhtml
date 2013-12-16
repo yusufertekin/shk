@@ -1,0 +1,775 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['karZarar.pageHeader']}">
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{karZararBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{karZararBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{karZararBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change"  update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{karZararBean.sorgula()}" update="@form"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<p:panelGrid style="height:400px !important" styleClass="panel-grid">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">
+								<h:outputText value="#{msg['karZarar.panelHeader']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader1']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZarar1" value="#{karZararBean.instance.disHatHasilat + karZararBean.instance.icHatHasilat}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar2" value="#{karZararBean.instance.icHatHasilat}" required="true" requiredMessage="#{msg['karZarar.2']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar2,karZarar1,karZararToplam1,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar3" value="#{karZararBean.instance.disHatHasilat}" required="true" requiredMessage="#{msg['karZarar.3']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar3,karZarar1,karZararToplam1,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZarar4" value="#{karZararBean.instance.kargoUcaklariKargoGelir + karZararBean.instance.bellyKargoGelir}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar5" value="#{karZararBean.instance.bellyKargoGelir}" required="true" requiredMessage="#{msg['karZarar.5']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar5,karZarar4,karZararToplam1,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar6" value="#{karZararBean.instance.kargoUcaklariKargoGelir}" required="true" requiredMessage="#{msg['karZarar.6']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar6,karZarar4,karZararToplam1,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZarar7" value="#{karZararBean.instance.yurticiCharter + karZararBean.instance.yurtdisiCharter}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar8" value="#{karZararBean.instance.yurticiCharter}" required="true" requiredMessage="#{msg['karZarar.8']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar8,karZarar7,karZararToplam1,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.9']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar9" value="#{karZararBean.instance.yurtdisiCharter}" required="true" requiredMessage="#{msg['karZarar.9']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar9,karZarar7,karZararToplam1,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.10']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar10" value="#{karZararBean.instance.wetleaseGelir}" required="true" requiredMessage="#{msg['karZarar.10']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar10,karZararToplam1,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.11']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar11" value="#{karZararBean.instance.digerGelirlerHasilat}" required="true" requiredMessage="#{msg['karZarar.11']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar11,karZararToplam1,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['karZarar.toplam1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="karZararToplam1" styleClass="toplam-text" value="#{karZararBean.instance.disHatHasilat + karZararBean.instance.icHatHasilat + karZararBean.instance.kargoUcaklariKargoGelir + karZararBean.instance.bellyKargoGelir +karZararBean.instance.yurticiCharter + karZararBean.instance.yurtdisiCharter + karZararBean.instance.wetleaseGelir + karZararBean.instance.digerGelirlerHasilat}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanel2" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZararBigHeader2" value="#{karZararBean.instance.akaryakitGider + karZararBean.instance.ustgecisGider + karZararBean.instance.ikramGider}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.12']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar12" value="#{karZararBean.instance.akaryakitGider}" required="true" requiredMessage="#{msg['karZarar.12']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar12,karZararBigHeader2,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.13']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar13" value="#{karZararBean.instance.ustgecisGider}" required="true" requiredMessage="#{msg['karZarar.13']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar13,karZararBigHeader2,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.14']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar14" value="#{karZararBean.instance.ikramGider}" required="true" requiredMessage="#{msg['karZarar.14']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar14,karZararBigHeader2,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanel3" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZararBigHeader3" value="#{karZararBean.instance.havaalaniVergiGuvenlik + karZararBean.instance.konmaYerIstasyonGider}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.15']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar15" value="#{karZararBean.instance.konmaYerIstasyonGider}" required="true" requiredMessage="#{msg['karZarar.15']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar15,karZararBigHeader3,karZararToplam2" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.16']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar16" value="#{karZararBean.instance.havaalaniVergiGuvenlik}" required="true" requiredMessage="#{msg['karZarar.16']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar16,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader3" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanel4" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZararBigHeader4" value="#{karZararBean.instance.maliMesuliyetSigortaGider + karZararBean.instance.kokpitEkipGider + karZararBean.instance.kabinEkipGider + karZararBean.instance.kokpitEkipEgitimGider}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.17']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar17" value="#{karZararBean.instance.kokpitEkipGider}" required="true" requiredMessage="#{msg['karZarar.17']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar17,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.18']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar18" value="#{karZararBean.instance.kabinEkipGider}" required="true" requiredMessage="#{msg['karZarar.18']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar18,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.19']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar19" value="#{karZararBean.instance.kokpitEkipEgitimGider}" required="true" requiredMessage="#{msg['karZarar.19']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar19,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.20']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar20" value="#{karZararBean.instance.maliMesuliyetSigortaGider}" required="true" requiredMessage="#{msg['karZarar.20']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar20,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanel5" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZararBigHeader5" value="#{karZararBean.instance.ucusEkipmanAmortismanGider + karZararBean.instance.ucusEkipmanDegerDusukGider + karZararBean.instance.ucusEkipmanBakimGider + karZararBean.instance.aktiflesenBakimGider + karZararBean.instance.ucusEkipmanKiraGider + karZararBean.instance.ucakKiraGider + karZararBean.instance.koltukKiraGider + karZararBean.instance.ucusEkipmanSigortaGider}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.21']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar21" value="#{karZararBean.instance.ucusEkipmanAmortismanGider}" required="true" requiredMessage="#{msg['karZarar.21']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar21,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.22']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar22" value="#{karZararBean.instance.ucusEkipmanDegerDusukGider}" required="true" requiredMessage="#{msg['karZarar.22']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar22,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.23']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar23" value="#{karZararBean.instance.ucusEkipmanBakimGider}" required="true" requiredMessage="#{msg['karZarar.23']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar23,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.24']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar24" value="#{karZararBean.instance.aktiflesenBakimGider}" required="true" requiredMessage="#{msg['karZarar.24']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar24,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.25']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar25" value="#{karZararBean.instance.ucusEkipmanKiraGider}" required="true" requiredMessage="#{msg['karZarar.25']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar25,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.26']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar26" value="#{karZararBean.instance.ucakKiraGider}" required="true" requiredMessage="#{msg['karZarar.26']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar26,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.27']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar27" value="#{karZararBean.instance.koltukKiraGider}" required="true" requiredMessage="#{msg['karZarar.27']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar27,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.28']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar28" value="#{karZararBean.instance.ucusEkipmanSigortaGider}" required="true" requiredMessage="#{msg['karZarar.28']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar28,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanel6" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZararBigHeader6" value="#{karZararBean.instance.reklamGider + karZararBean.instance.personelGider + karZararBean.instance.digerSatisReklamGider}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.header1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZararHeader1" value="#{karZararBean.instance.yolcuKomisyon + karZararBean.instance.kargoKomisyon}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.29']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar29" value="#{karZararBean.instance.yolcuKomisyon}" required="true" requiredMessage="#{msg['karZarar.29']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar29,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararHeader1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.30']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar30" value="#{karZararBean.instance.kargoKomisyon}" required="true" requiredMessage="#{msg['karZarar.30']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar30,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararHeader1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.31']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar31" value="#{karZararBean.instance.reklamGider}" required="true" requiredMessage="#{msg['karZarar.31']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar31,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader6" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.32']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar32" value="#{karZararBean.instance.personelGider}" required="true" requiredMessage="#{msg['karZarar.32']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar32,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader6" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.33']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar33" value="#{karZararBean.instance.digerSatisReklamGider}" required="true" requiredMessage="#{msg['karZarar.33']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar33,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader6" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanel7" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZararBigHeader7" value="#{karZararBean.instance.yerEkipmanAmortismanGider + karZararBean.instance.yerEkipmanDegerDusukGider + karZararBean.instance.ucusIsletmeGider + karZararBean.instance.digerGenelIdariGider}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.34']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar34" value="#{karZararBean.instance.yerEkipmanAmortismanGider}" required="true" requiredMessage="#{msg['karZarar.34']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar34,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader7" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.35']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar35" value="#{karZararBean.instance.yerEkipmanDegerDusukGider}" required="true" requiredMessage="#{msg['karZarar.35']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar35,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader7" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.36']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar36" value="#{karZararBean.instance.ucusIsletmeGider}" required="true" requiredMessage="#{msg['karZarar.36']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar36,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader7" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.37']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar37" value="#{karZararBean.instance.digerGenelIdariGider}" required="true" requiredMessage="#{msg['karZarar.37']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar37,karZararToplam2,karZararBigHeader8,karZararBigHeader9,karZararBigHeader10,karZararBigHeader7" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['karZarar.toplam2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="karZararToplam2" styleClass="toplam-text" value="#{karZararBean.instance.yerEkipmanAmortismanGider + karZararBean.instance.yerEkipmanDegerDusukGider + karZararBean.instance.ucusIsletmeGider + karZararBean.instance.digerGenelIdariGider + karZararBean.instance.yolcuKomisyon + karZararBean.instance.kargoKomisyon + karZararBean.instance.reklamGider + karZararBean.instance.personelGider + karZararBean.instance.digerSatisReklamGider + karZararBean.instance.ucusEkipmanAmortismanGider + karZararBean.instance.ucusEkipmanDegerDusukGider + karZararBean.instance.ucusEkipmanBakimGider + karZararBean.instance.aktiflesenBakimGider + karZararBean.instance.ucusEkipmanKiraGider + karZararBean.instance.ucakKiraGider + karZararBean.instance.koltukKiraGider + karZararBean.instance.ucusEkipmanSigortaGider + karZararBean.instance.maliMesuliyetSigortaGider + karZararBean.instance.kokpitEkipGider + karZararBean.instance.kabinEkipGider + karZararBean.instance.kokpitEkipEgitimGider + karZararBean.instance.havaalaniVergiGuvenlik + karZararBean.instance.konmaYerIstasyonGider + karZararBean.instance.akaryakitGider + karZararBean.instance.ustgecisGider + karZararBean.instance.ikramGider}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanel8" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZararBigHeader8" value="#{karZararBean.instance.yerEkipmanAmortismanGider + karZararBean.instance.yerEkipmanDegerDusukGider + karZararBean.instance.ucusIsletmeGider + karZararBean.instance.digerGenelIdariGider + karZararBean.instance.yolcuKomisyon + karZararBean.instance.kargoKomisyon + karZararBean.instance.reklamGider + karZararBean.instance.personelGider + karZararBean.instance.digerSatisReklamGider + karZararBean.instance.ucusEkipmanAmortismanGider + karZararBean.instance.ucusEkipmanDegerDusukGider + karZararBean.instance.ucusEkipmanBakimGider + karZararBean.instance.aktiflesenBakimGider + karZararBean.instance.ucusEkipmanKiraGider + karZararBean.instance.ucakKiraGider + karZararBean.instance.koltukKiraGider + karZararBean.instance.ucusEkipmanSigortaGider + karZararBean.instance.maliMesuliyetSigortaGider + karZararBean.instance.kokpitEkipGider + karZararBean.instance.kabinEkipGider + karZararBean.instance.kokpitEkipEgitimGider + karZararBean.instance.havaalaniVergiGuvenlik + karZararBean.instance.konmaYerIstasyonGider + karZararBean.instance.akaryakitGider + karZararBean.instance.ustgecisGider + karZararBean.instance.ikramGider + karZararBean.instance.disHatHasilat + karZararBean.instance.icHatHasilat + karZararBean.instance.kargoUcaklariKargoGelir + karZararBean.instance.bellyKargoGelir +karZararBean.instance.yurticiCharter + karZararBean.instance.yurtdisiCharter + karZararBean.instance.wetleaseGelir + karZararBean.instance.digerGelirlerHasilat}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanel9" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.38']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar38" value="#{karZararBean.instance.sabitKiymetSatisKarZarar}" required="true" requiredMessage="#{msg['karZarar.38']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar38,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.39']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar39" value="#{karZararBean.instance.supheliAlacakKarsilikGider}" required="true" requiredMessage="#{msg['karZarar.39']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar39,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.40']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar40" value="#{karZararBean.instance.digerGiderler}" required="true" requiredMessage="#{msg['karZarar.40']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar40,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.41']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar41" value="#{karZararBean.instance.digerGelirler}" required="true" requiredMessage="#{msg['karZarar.41']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar41,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.42']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar42" value="#{karZararBean.instance.ozkaynakYontemiyleKarZarar}" required="true" requiredMessage="#{msg['karZarar.42']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar42,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.43']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar43" value="#{karZararBean.instance.finansalKiralamaFaizGider}" required="true" requiredMessage="#{msg['karZarar.43']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar43,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.44']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar44" value="#{karZararBean.instance.finansalGelir}" required="true" requiredMessage="#{msg['karZarar.44']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar44,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.45']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar45" value="#{karZararBean.instance.finansalGider}" required="true" requiredMessage="#{msg['karZarar.45']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar45,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.46']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar46" value="#{karZararBean.instance.kurFarkiKarZarar}" required="true" requiredMessage="#{msg['karZarar.46']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar46,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.47']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar47" value="#{karZararBean.instance.turevFinansalAracKarZarar}" required="true" requiredMessage="#{msg['karZarar.47']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar47,karZararBigHeader9,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanel10" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader9']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZararBigHeader9" value="#{karZararBean.instance.turevFinansalAracKarZarar + karZararBean.instance.kurFarkiKarZarar + karZararBean.instance.finansalGider + karZararBean.instance.finansalGelir + karZararBean.instance.finansalKiralamaFaizGider + karZararBean.instance.ozkaynakYontemiyleKarZarar + karZararBean.instance.digerGelirler + karZararBean.instance.digerGiderler + karZararBean.instance.supheliAlacakKarsilikGider + karZararBean.instance.sabitKiymetSatisKarZarar + karZararBean.instance.yerEkipmanAmortismanGider + karZararBean.instance.yerEkipmanDegerDusukGider + karZararBean.instance.ucusIsletmeGider + karZararBean.instance.digerGenelIdariGider + karZararBean.instance.yolcuKomisyon + karZararBean.instance.kargoKomisyon + karZararBean.instance.reklamGider + karZararBean.instance.personelGider + karZararBean.instance.digerSatisReklamGider + karZararBean.instance.ucusEkipmanAmortismanGider + karZararBean.instance.ucusEkipmanDegerDusukGider + karZararBean.instance.ucusEkipmanBakimGider + karZararBean.instance.aktiflesenBakimGider + karZararBean.instance.ucusEkipmanKiraGider + karZararBean.instance.ucakKiraGider + karZararBean.instance.koltukKiraGider + karZararBean.instance.ucusEkipmanSigortaGider + karZararBean.instance.maliMesuliyetSigortaGider + karZararBean.instance.kokpitEkipGider + karZararBean.instance.kabinEkipGider + karZararBean.instance.kokpitEkipEgitimGider + karZararBean.instance.havaalaniVergiGuvenlik + karZararBean.instance.konmaYerIstasyonGider + karZararBean.instance.akaryakitGider + karZararBean.instance.ustgecisGider + karZararBean.instance.ikramGider + karZararBean.instance.disHatHasilat + karZararBean.instance.icHatHasilat + karZararBean.instance.kargoUcaklariKargoGelir + karZararBean.instance.bellyKargoGelir +karZararBean.instance.yurticiCharter + karZararBean.instance.yurtdisiCharter + karZararBean.instance.wetleaseGelir + karZararBean.instance.digerGelirlerHasilat}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.48']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar48" value="#{karZararBean.instance.vergiGiderGelir}" required="true" requiredMessage="#{msg['karZarar.48']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar48,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karZarar.49']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZarar49" value="#{karZararBean.instance.ertelenmisVergiGiderGelir}" required="true" requiredMessage="#{msg['karZarar.49']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZarar49,karZararBigHeader10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanel11" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader10']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="karZararBigHeader10" value="#{karZararBean.instance.vergiGiderGelir + karZararBean.instance.ertelenmisVergiGiderGelir + karZararBean.instance.turevFinansalAracKarZarar + karZararBean.instance.kurFarkiKarZarar + karZararBean.instance.finansalGider + karZararBean.instance.finansalGelir + karZararBean.instance.finansalKiralamaFaizGider + karZararBean.instance.ozkaynakYontemiyleKarZarar + karZararBean.instance.digerGelirler + karZararBean.instance.digerGiderler + karZararBean.instance.supheliAlacakKarsilikGider + karZararBean.instance.sabitKiymetSatisKarZarar + karZararBean.instance.yerEkipmanAmortismanGider + karZararBean.instance.yerEkipmanDegerDusukGider + karZararBean.instance.ucusIsletmeGider + karZararBean.instance.digerGenelIdariGider + karZararBean.instance.yolcuKomisyon + karZararBean.instance.kargoKomisyon + karZararBean.instance.reklamGider + karZararBean.instance.personelGider + karZararBean.instance.digerSatisReklamGider + karZararBean.instance.ucusEkipmanAmortismanGider + karZararBean.instance.ucusEkipmanDegerDusukGider + karZararBean.instance.ucusEkipmanBakimGider + karZararBean.instance.aktiflesenBakimGider + karZararBean.instance.ucusEkipmanKiraGider + karZararBean.instance.ucakKiraGider + karZararBean.instance.koltukKiraGider + karZararBean.instance.ucusEkipmanSigortaGider + karZararBean.instance.maliMesuliyetSigortaGider + karZararBean.instance.kokpitEkipGider + karZararBean.instance.kabinEkipGider + karZararBean.instance.kokpitEkipEgitimGider + karZararBean.instance.havaalaniVergiGuvenlik + karZararBean.instance.konmaYerIstasyonGider + karZararBean.instance.akaryakitGider + karZararBean.instance.ustgecisGider + karZararBean.instance.ikramGider + karZararBean.instance.disHatHasilat + karZararBean.instance.icHatHasilat + karZararBean.instance.kargoUcaklariKargoGelir + karZararBean.instance.bellyKargoGelir +karZararBean.instance.yurticiCharter + karZararBean.instance.yurtdisiCharter + karZararBean.instance.wetleaseGelir + karZararBean.instance.digerGelirlerHasilat}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="karZararPanelDagilim" styleClass="panel-grid">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['karZarar.bigHeader11']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['karZarar.bigHeader12']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZararDagilim1" value="#{karZararBean.instance.anaOrtaklikNetKar}" required="true" requiredMessage="#{msg['karZarar.bigHeader12']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZararDagilim1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['karZarar.bigHeader13']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{karZararBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="karZararDagilim2" value="#{karZararBean.instance.kontrolGucuOlmayanNetKar}" required="true" requiredMessage="#{msg['karZarar.bigHeader13']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="karZararDagilim2" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{karZararBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{karZararBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{karZararBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{karZararBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{karZararBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

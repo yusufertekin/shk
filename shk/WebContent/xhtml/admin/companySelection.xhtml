@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			<h:panelGrid columns="3">
+				<h:outputText value="#{msg['user.company']}"/>
+				<p:selectOneMenu id="sirketAnaCombo"  value="#{companyBean.instance}">
+	        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+        			<f:converter converterId="entityConverter"/>
+	        	</p:selectOneMenu>
+	        	<p:commandButton value="#{msg['common.select']}" update="cur" action="#{companyBean.selectCompany()}"/>
+        	</h:panelGrid>
+        	<p:commandButton value="#{msg['user.makeAdmin']}" update="cur" action="#{companyBean.makeAdmin()}"/>
+        	<h:outputText value="#{currentUser.company.name}" id="cur" />
+		</h:form>
+	</ui:define>
+</ui:composition>

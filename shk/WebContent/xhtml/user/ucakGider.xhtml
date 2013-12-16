@@ -1,0 +1,568 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['ucakGider.pageHeader']}">
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{ucakGiderBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{ucakGiderBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{ucakGiderBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change" update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{ucakGiderBean.sorgula()}" update="genelPanel"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<h:panelGrid id="genelPanel" columns="3">
+					<p:panelGrid style="position:relative;top:18px;width:300px !important;height:700px !important;" styleClass="panel-grid" id="ucakGiderPanel1">
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text"  value="#{msg['ucakGider.panelHeader']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.ucakKodu']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text" value="#{msg['ucakGider.toplam1']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.1']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.2']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.3']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.4']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text" value="#{msg['ucakGider.toplam2']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.5']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.6']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text" value="#{msg['ucakGider.toplam3']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.7']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.8']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.9']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.10']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text" value="#{msg['ucakGider.toplam4']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.11']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.12']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.13']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.14']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.15']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.16']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.17']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text" value="#{msg['ucakGider.toplam5']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.18']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.19']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.20']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{msg['ucakGider.21']}" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+					<p:panelGrid style="position:relative;top:0px;width:150px !important;height:736px !important;" styleClass="panel-grid" id="ucakGiderPanel3">
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text"  value="#{msg['ucakGider.yatToplam']}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text"  value="#{ucakGiderBean.toplamGenel}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="       " />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text" value="#{ucakGiderBean.toplamBig1}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam1}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam2}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam3}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam4}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text" value="#{ucakGiderBean.toplamBig2}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam5}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam6}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text" value="#{ucakGiderBean.toplamBig3}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam7}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam8}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam9}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam10}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText styleClass="toplam-text" value="#{ucakGiderBean.toplamBig4}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam11}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam12}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam13}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam14}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam15}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam16}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam17}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="      " />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam18}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam19}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam20}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column style="height:22px !important" styleClass="column-definition">
+								<h:outputText value="#{ucakGiderBean.toplam21}" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+					<p:carousel numVisible="2" value="#{ucakGiderBean.ucakList}" var="ucak">
+						<p:panelGrid style="width:300px !important;height:700px !important;" styleClass="panel-grid" id="ucakGiderPanel2">
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<h:outputText styleClass="input-text" id="ucakGiderUcakTipi" value="#{ucak.ucakTipi}">
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<h:outputText styleClass="toplam-output" id="ucakGiderToplamGenel" value="#{ucak.ucusEkipmanAmortismanGider + ucak.ucusEkipmanDegerDusuklugu + ucak.ucusEkipmanTeknikBakimGider + ucak.ucusEkipmanKiraGider + ucak.ucakKiraGider + ucak.koltukKiraGider + ucak.ucusEkipmanSigortaGider + ucak.ikramGiderler + ucak.ustgecisGiderler + ucak.havaEmniyetGiderler + ucak.akaryakitGiderler + ucak.konmaYerHizmetleriIstasyon + ucak.havaalaniVergiGuvenlikUcret + ucak.kokpitUcretDigerMenfaat + ucak.kabinUcretDigerMenfaat + ucak.pilotEgitimGiderler + ucak.maliMesuliyetSigartasiGider}">
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGiderUcakKodu" value="#{ucak.ucakKodu}">
+										<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGiderUcakKodu" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<h:outputText styleClass="toplam-output" id="ucakGiderToplam1" value="#{ucak.ikramGiderler + ucak.ustgecisGiderler + ucak.havaEmniyetGiderler + ucak.akaryakitGiderler}">
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider1" value="#{ucak.akaryakitGiderler}" >
+										<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider1,ucakGiderToplam1,ucakGiderToplamGenel,ucakGiderPanel2" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider2" value="#{ucak.havaEmniyetGiderler}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider2,ucakGiderToplam1,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider3" value="#{ucak.ustgecisGiderler}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider3,ucakGiderToplam1,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider4" value="#{ucak.ikramGiderler}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider4,ucakGiderToplam1,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<h:outputText styleClass="toplam-output" id="ucakGiderToplam2" value="#{ucak.konmaYerHizmetleriIstasyon + ucak.havaalaniVergiGuvenlikUcret}">
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider5" value="#{ucak.konmaYerHizmetleriIstasyon}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider5,ucakGiderToplam2,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider6" value="#{ucak.havaalaniVergiGuvenlikUcret}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider6,ucakGiderToplam2,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<h:outputText styleClass="toplam-output" id="ucakGiderToplam3" value="#{ucak.kokpitUcretDigerMenfaat + ucak.kabinUcretDigerMenfaat + ucak.pilotEgitimGiderler + ucak.maliMesuliyetSigartasiGider}">
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider7" value="#{ucak.kokpitUcretDigerMenfaat}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider7,ucakGiderToplam3,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider8" value="#{ucak.kabinUcretDigerMenfaat}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider8,ucakGiderToplam3,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider9" value="#{ucak.pilotEgitimGiderler}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider9,ucakGiderToplam3,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider10" value="#{ucak.maliMesuliyetSigartasiGider}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider10,ucakGiderToplam3,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<h:outputText styleClass="toplam-output" id="ucakGiderToplam4" value="#{ucak.ucusEkipmanAmortismanGider + ucak.ucusEkipmanDegerDusuklugu + ucak.ucusEkipmanTeknikBakimGider + ucak.ucusEkipmanKiraGider + ucak.ucakKiraGider + ucak.koltukKiraGider + ucak.ucusEkipmanSigortaGider}">
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider11" value="#{ucak.ucusEkipmanAmortismanGider}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider11,ucakGiderToplam4,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider12" value="#{ucak.ucusEkipmanDegerDusuklugu}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider12,ucakGiderToplam4,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider13" value="#{ucak.ucusEkipmanTeknikBakimGider}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider13,ucakGiderToplam4,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider14" value="#{ucak.ucusEkipmanKiraGider}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider14,ucakGiderToplam4,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider15" value="#{ucak.ucakKiraGider}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider15,ucakGiderToplam4,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider16" value="#{ucak.koltukKiraGider}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider16,ucakGiderToplam4,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider17" value="#{ucak.ucusEkipmanSigortaGider}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider17,ucakGiderToplam4,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<h:outputText styleClass="toplam-output" id="ucakGiderToplam5" value="">
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+									</h:outputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider18" value="#{ucak.ucakOrtalamaYas}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider18,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider19" value="#{ucak.toplamUculanSaat}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider19,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider20" value="#{ucak.hizmettekiGunSayisi}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider20,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider21" value="#{ucak.harcananYakitYaglar}" >
+										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+										<p:ajax event="blur" update="ucakGider21,ucakGiderToplamGenel" />
+									</p:inputText>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column style="height:22px !important" styleClass="column-input">
+									<p:commandLink styleClass="bold-header" value="#{msg['common.remove']}" action="#{ucakGiderBean.remove(ucak)}" immediate="true" process="@this" async="true" update="@form"/>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:carousel>
+				</h:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{ucakGiderBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ucakGiderBean.save()}" update="genelPanel"/>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

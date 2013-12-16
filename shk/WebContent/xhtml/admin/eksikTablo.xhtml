@@ -1,0 +1,77 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			<p:panel style="width:1321px" header="#{msg['eksikTablo.pageHeader']}">
+				<p:panelGrid columns="2">
+					<h:outputText value="#{msg['common.donem']}" />
+					<p:selectOneMenu value="#{eksikTabloBean.donem}" id="donemCombo">
+	   					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{eksikTabloBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+	   					<f:converter converterId="entityConverter"/>
+	   				</p:selectOneMenu>
+	        		<p:commandButton value="#{msg['common.sorgula']}" action="#{eksikTabloBean.sorgula()}" update="@form"/>
+				</p:panelGrid>
+				<br />
+					<p:separator />
+				<br />
+				<p:dataTable id="eksikTabloList" styleClass="data-table" value="#{eksikTabloBean.list}" var="eks">
+					<p:column headerText="#{msg['company.name']}">
+						<h:outputText value="#{eks[15]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.0']}">
+						<h:outputText value="#{eks[0]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.1']}">
+						<h:outputText value="#{eks[1]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.2']}">
+						<h:outputText value="#{eks[2]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.3']}">
+						<h:outputText value="#{eks[3]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.4']}">
+						<h:outputText value="#{eks[4]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.5']}">
+						<h:outputText value="#{eks[5]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.6']}">
+						<h:outputText value="#{eks[6]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.7']}">
+						<h:outputText value="#{eks[7]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.8']}">
+						<h:outputText value="#{eks[8]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.9']}">
+						<h:outputText value="#{eks[9]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.10']}">
+						<h:outputText value="#{eks[10]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.11']}">
+						<h:outputText value="#{eks[11]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.12']}">
+						<h:outputText value="#{eks[12]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.13']}">
+						<h:outputText value="#{eks[13]}" />
+					</p:column>
+					<p:column headerText="#{msg['eksikTablo.14']}">
+						<h:outputText value="#{eks[14]}" />
+					</p:column>
+				</p:dataTable>		
+		 	</p:panel>	
+		</h:form>
+	</ui:define>
+</ui:composition>

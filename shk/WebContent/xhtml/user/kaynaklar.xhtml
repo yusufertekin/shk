@@ -1,0 +1,495 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['kaynaklar.pageHeader']}">
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{kaynakBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{kaynakBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{kaynakBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change"  update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{kaynakBean.sorgula()}" update="kaynakPanel1,kaynakPanel2,kaynakPanel3,kaynakPanelToplam"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<p:panelGrid styleClass="panel-grid" id="kaynakPanel1">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">
+								<h:outputText value="#{msg['kaynaklar.panelHeader']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['kaynaklar.bigHeader1']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar1" value="#{kaynakBean.instance.finansalBorclar}" required="true" requiredMessage="#{msg['kaynaklar.1']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar1,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar2" value="#{kaynakBean.instance.uzunVadeliKrediKisaKisim}" required="true" requiredMessage="#{msg['kaynaklar.2']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar2,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar3" value="#{kaynakBean.instance.finansalKiralama}" required="true" requiredMessage="#{msg['kaynaklar.3']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar3,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar4" value="#{kaynakBean.instance.ticariBorc}" required="true" requiredMessage="#{msg['kaynaklar.4']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar4,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar5" value="#{kaynakBean.instance.donemKariVergi}" required="true" requiredMessage="#{msg['kaynaklar.5']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar5,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar6" value="#{kaynakBean.instance.yolcuUcusYukumluluk}" required="true" requiredMessage="#{msg['kaynaklar.6']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar6,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar7" value="#{kaynakBean.instance.faaliyetTipiKiralananUcakBG}" required="true" requiredMessage="#{msg['kaynaklar.7']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar7,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar8" value="#{kaynakBean.instance.odenecekPersonelUcreti}" required="true" requiredMessage="#{msg['kaynaklar.8']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar8,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.9']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar9" value="#{kaynakBean.instance.calisanlaraSaglananDigerF}" required="true" requiredMessage="#{msg['kaynaklar.9']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar9,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.10']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar10" value="#{kaynakBean.instance.odenecekVergiFonlar}" required="true" requiredMessage="#{msg['kaynaklar.10']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar10,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.11']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar11" value="#{kaynakBean.instance.turevFinansalAraclar}" required="true" requiredMessage="#{msg['kaynaklar.11']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar11,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.12']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar12" value="#{kaynakBean.instance.iliskiliTaraflaraBorclar}" required="true" requiredMessage="#{msg['kaynaklar.12']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar12,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.13']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar13" value="#{kaynakBean.instance.borcKarsiliklari}" required="true" requiredMessage="#{msg['kaynaklar.13']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar13,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.14']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar14" value="#{kaynakBean.instance.digerKisaVadeliYukumluluk}" required="true" requiredMessage="#{msg['kaynaklar.14']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar14,kaynaklarToplam1,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.toplam1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="kaynaklarToplam1" styleClass="toplam-text" value="#{kaynakBean.instance.finansalBorclar + kaynakBean.instance.uzunVadeliKrediKisaKisim + kaynakBean.instance.finansalKiralama + kaynakBean.instance.ticariBorc + kaynakBean.instance.donemKariVergi + kaynakBean.instance.yolcuUcusYukumluluk +kaynakBean.instance.faaliyetTipiKiralananUcakBG + kaynakBean.instance.odenecekPersonelUcreti + kaynakBean.instance.calisanlaraSaglananDigerF + kaynakBean.instance.odenecekVergiFonlar + kaynakBean.instance.turevFinansalAraclar + kaynakBean.instance.iliskiliTaraflaraBorclar + kaynakBean.instance.borcKarsiliklari + kaynakBean.instance.digerKisaVadeliYukumluluk}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="kaynakPanel2" styleClass="panel-grid">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['kaynaklar.bigHeader2']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.15']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar15" value="#{kaynakBean.instance.finansalBorcUzun}" required="true" requiredMessage="#{msg['kaynaklar.15']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar15,kaynaklarToplam2,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.16']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar16" value="#{kaynakBean.instance.finansalKiralamaUzun}" required="true" requiredMessage="#{msg['kaynaklar.16']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar16,kaynaklarToplam2,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.17']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar17" value="#{kaynakBean.instance.ticariBorcUzun}" required="true" requiredMessage="#{msg['kaynaklar.17']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar17,kaynaklarToplam2,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.18']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar18" value="#{kaynakBean.instance.iliskiliTaraflaraBorclarUzun}" required="true" requiredMessage="#{msg['kaynaklar.18']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar18,kaynaklarToplam2,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.19']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar19" value="#{kaynakBean.instance.calisanlaraSaglananDigerFUzun}" required="true" requiredMessage="#{msg['kaynaklar.19']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar19,kaynaklarToplam2,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.20']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar20" value="#{kaynakBean.instance.ertelenmisVergiYukumluluk}" required="true" requiredMessage="#{msg['kaynaklar.20']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar20,kaynaklarToplam2,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.21']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar21" value="#{kaynakBean.instance.digerUzunVadeliYukumluluk}" required="true" requiredMessage="#{msg['kaynaklar.21']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar21,kaynaklarToplam2,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.22']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar22" value="#{kaynakBean.instance.turevFinansalAraclarUzun}" required="true" requiredMessage="#{msg['kaynaklar.22']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar22,kaynaklarToplam2,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.toplam2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="kaynaklarToplam2" styleClass="toplam-text" value="#{kaynakBean.instance.finansalBorcUzun + kaynakBean.instance.finansalKiralamaUzun + kaynakBean.instance.ticariBorcUzun + kaynakBean.instance.iliskiliTaraflaraBorclarUzun + kaynakBean.instance.calisanlaraSaglananDigerFUzun + kaynakBean.instance.ertelenmisVergiYukumluluk + kaynakBean.instance.digerUzunVadeliYukumluluk + kaynakBean.instance.turevFinansalAraclarUzun}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="kaynakPanel3" styleClass="panel-grid">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['kaynaklar.bigHeader3']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText value="#{msg['kaynaklar.header1']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.23']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar23" value="#{kaynakBean.instance.sermaye}" required="true" requiredMessage="#{msg['kaynaklar.23']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar23,kaynaklarToplam3,kaynaklarToplamGenel,toplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.24']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar24" value="#{kaynakBean.instance.sermayeDuzeltmeFark}" required="true" requiredMessage="#{msg['kaynaklar.24']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar24,kaynaklarToplam3,kaynaklarToplamGenel,toplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.25']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar25" value="#{kaynakBean.instance.hisseSenediIhracPrim}" required="true" requiredMessage="#{msg['kaynaklar.25']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar25,kaynaklarToplam3,kaynaklarToplamGenel,toplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.26']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar26" value="#{kaynakBean.instance.kardanAyrilanKisitYedek}" required="true" requiredMessage="#{msg['kaynaklar.26']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar26,kaynaklarToplam3,kaynaklarToplamGenel,toplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.27']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar27" value="#{kaynakBean.instance.yabanciParaCevrimFarki}" required="true" requiredMessage="#{msg['kaynaklar.27']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar27,kaynaklarToplam3,kaynaklarToplamGenel,toplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.28']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar28" value="#{kaynakBean.instance.finansalRisktenKorunmaFon}" required="true" requiredMessage="#{msg['kaynaklar.28']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar28,kaynaklarToplam3,kaynaklarToplamGenel,toplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.29']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar29" value="#{kaynakBean.instance.duranVarlikDegerFonu}" required="true" requiredMessage="#{msg['kaynaklar.29']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar29,kaynaklarToplam3,kaynaklarToplamGenel,toplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.30']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar30" value="#{kaynakBean.instance.finansalVarlikDegerFonu}" required="true" requiredMessage="#{msg['kaynaklar.30']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar30,kaynaklarToplam3,kaynaklarToplamGenel,toplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.31']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar31" value="#{kaynakBean.instance.gecmisYillarKarZarar}" required="true" requiredMessage="#{msg['kaynaklar.31']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar31,kaynaklarToplam3,kaynaklarToplamGenel,toplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.32']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="input-text" id="kaynaklar32" value="#{kaynakBean.donemNetKarZarar}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['kaynaklar.toplam4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="toplam4" value="#{kaynakBean.donemNetKarZarar + kaynakBean.instance.sermaye + kaynakBean.instance.sermayeDuzeltmeFark + kaynakBean.instance.hisseSenediIhracPrim + kaynakBean.instance.kardanAyrilanKisitYedek + kaynakBean.instance.yabanciParaCevrimFarki + kaynakBean.instance.finansalRisktenKorunmaFon + kaynakBean.instance.duranVarlikDegerFonu  +kaynakBean.instance.finansalVarlikDegerFonu + kaynakBean.instance.gecmisYillarKarZarar}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['kaynaklar.33']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{kaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="kaynaklar33" value="#{kaynakBean.instance.kontrolGucuOlmayan}" required="true" requiredMessage="#{msg['kaynaklar.33']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="kaynaklar33,kaynaklarToplam3,kaynaklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['kaynaklar.toplam3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="kaynaklarToplam3" styleClass="toplam-output" value="#{kaynakBean.instance.kontrolGucuOlmayan + kaynakBean.donemNetKarZarar + kaynakBean.instance.sermaye + kaynakBean.instance.sermayeDuzeltmeFark + kaynakBean.instance.hisseSenediIhracPrim + kaynakBean.instance.kardanAyrilanKisitYedek + kaynakBean.instance.yabanciParaCevrimFarki + kaynakBean.instance.finansalRisktenKorunmaFon + kaynakBean.instance.duranVarlikDegerFonu  +kaynakBean.instance.finansalVarlikDegerFonu + kaynakBean.instance.gecmisYillarKarZarar}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="kaynakPanelToplam" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['kaynaklar.toplamGenel']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="kaynaklarToplamGenel" styleClass="toplam-output" value="#{kaynakBean.instance.kontrolGucuOlmayan + kaynakBean.donemNetKarZarar + kaynakBean.instance.sermaye + kaynakBean.instance.sermayeDuzeltmeFark + kaynakBean.instance.hisseSenediIhracPrim + kaynakBean.instance.kardanAyrilanKisitYedek + kaynakBean.instance.yabanciParaCevrimFarki + kaynakBean.instance.finansalRisktenKorunmaFon + kaynakBean.instance.duranVarlikDegerFonu  +kaynakBean.instance.finansalVarlikDegerFonu + kaynakBean.instance.gecmisYillarKarZarar + kaynakBean.instance.donemKariVergi + kaynakBean.instance.finansalBorcUzun + kaynakBean.instance.finansalKiralamaUzun + kaynakBean.instance.ticariBorcUzun + kaynakBean.instance.iliskiliTaraflaraBorclarUzun + kaynakBean.instance.calisanlaraSaglananDigerFUzun + kaynakBean.instance.ertelenmisVergiYukumluluk + kaynakBean.instance.digerUzunVadeliYukumluluk + kaynakBean.instance.turevFinansalAraclarUzun + kaynakBean.instance.finansalBorclar + kaynakBean.instance.uzunVadeliKrediKisaKisim + kaynakBean.instance.finansalKiralama + kaynakBean.instance.ticariBorc + kaynakBean.instance.yolcuUcusYukumluluk +kaynakBean.instance.faaliyetTipiKiralananUcakBG + kaynakBean.instance.odenecekPersonelUcreti + kaynakBean.instance.calisanlaraSaglananDigerF + kaynakBean.instance.odenecekVergiFonlar + kaynakBean.instance.turevFinansalAraclar + kaynakBean.instance.iliskiliTaraflaraBorclar + kaynakBean.instance.borcKarsiliklari + kaynakBean.instance.digerKisaVadeliYukumluluk}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{kaynaklarBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{kaynakBean.save()}" update="kaynakPanel1,kaynakPanel2,kaynakPanel3,kaynakPanelToplam"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="removeButton" immediate="true" process="@this" async="true" action="#{kaynakBean.remove()}"  update="kaynakPanel1,kaynakPanel2,kaynakPanel3,kaynakPanelToplam"/>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

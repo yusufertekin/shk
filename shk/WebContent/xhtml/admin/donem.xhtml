@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<h:panelGrid id="donemPanel" columns="2">
+				<h:outputText value="#{msg['common.donem']}"/>
+				<p:calendar required="true" id="donem" pattern="dd/MM/yyyy" requiredMessage="#{msg['common.donem']} #{msg['common.requiredMessage']}" value="#{donemBean.instance.donem}">
+       			</p:calendar>
+				<h:outputText value="#{msg['donem.durum']}" />
+				<p:selectOneRadio value="#{donemBean.instance.durum}" required="true" requiredMessage="#{msg['donem.durum']} #{msg['common.requiredMessage']}">
+					<f:selectItem itemValue="#{0}" itemLabel="#{msg['donem.active']}"/>
+					<f:selectItem itemValue="#{1}" itemLabel="#{msg['donem.passive']}"/>
+				</p:selectOneRadio>
+			</h:panelGrid>
+			<br />
+			<p:commandButton value="#{msg['common.save']}" id="saveButton"  update="donemList, donemPanel" action="#{donemBean.save()}"/>
+			<br />			
+			<br />			
+			<p:dataTable id="donemList" editable="true" styleClass="data-table" value="#{donemBean.list}" var="don">
+				<p:ajax event="rowEdit" listener="#{donemBean.update(don)}" update="donemList" />
+       			<p:ajax event="rowEditCancel" listener="#{donemBean.addMessage(msg['common.cancelProcess'])}" />
+				<p:column headerText="#{msg['common.donem']}">
+					<p:cellEditor>
+		                <f:facet name="output">
+		                	<h:outputText value="#{don.donem}">
+		                		<f:convertDateTime pattern="dd/MM/yyyy"/>
+		                	</h:outputText>
+		                </f:facet>
+		                <f:facet name="input">
+							  <p:calendar styleClass="input-text" pattern="dd/MM/yyyy" value="#{don.donem}"/>
+		                </f:facet>
+       				</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['donem.durum']}">
+					<p:cellEditor>
+		                <f:facet name="output">
+		                	<h:outputText value="#{don.durum == 0 ? msg['donem.active'] : msg['donem.passive']}"/>
+		                </f:facet>
+		                <f:facet name="input">
+		                	<h:selectOneMenu value="#{don.durum}">
+								<f:selectItem itemValue="#{0}" itemLabel="#{msg['donem.active']}"/>
+								<f:selectItem itemValue="#{1}" itemLabel="#{msg['donem.passive']}"/>
+							</h:selectOneMenu>
+		                </f:facet>
+       				</p:cellEditor>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.update']}" />
+					</f:facet>
+					<p:rowEditor />
+				</p:column>
+				<p:column headerText="#{msg['common.remove']}">
+					<p:commandLink value="#{msg['common.remove']}" action="#{donemBean.remove(don)}" immediate="true" update="donemList"/>
+				</p:column>
+			</p:dataTable>			
+		</h:form>
+	</ui:define>
+</ui:composition>

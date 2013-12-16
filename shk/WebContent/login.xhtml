@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<style type="text/css">
+		.ui-widget, .ui-widget .ui-widget { 
+			font-size: 12px !important;  
+		}
+</style>
+
+</h:head>
+
+<h:body>	  
+   <p:layout  fullPage="true" resizeTitle="resize" style="background-color:#FFFFFF;">
+	   
+	   <p:layoutUnit position="north" size="80" style="border:0;" id="north" effect="fade"> 
+	   	  <p:graphicImage value="/resources/images/shkLogo.jpg" height="60" width="135"/>  
+	   </p:layoutUnit>
+	   
+	   <p:layoutUnit position="west" size="0" style="border:0; width:0px; display:none;" id="west">
+	   </p:layoutUnit>
+	
+	   <p:layoutUnit style="border:0;" position="center">
+	   <h:form>
+	       <p:messages id="message" autoUpdate="true"/>  
+		   <p:panelGrid  style="width:400px; margin: auto; margin-left:auto; margin-right:auto; overflow:auto;" >  
+			    <f:facet name="header">  
+			        <p:outputLabel value="Giriş Formu"/>  
+			    </f:facet>  
+			    <p:row style="width:150px !important;">
+				    <p:column>
+				    	<p:outputLabel id="nameLabel" value="Kullanıcı Adı "/>
+				    </p:column>
+				    <p:column>
+				    	<p:inputText style="background-color:#ffffff;width:200px;" id="name" value="#{loginBean.username}"/> 
+				    </p:column> 
+				</p:row> 
+				<p:row style="width:150px !important;">
+					<p:column>
+				    	<p:outputLabel id="passLabel"  value="Şifre "/>
+				    </p:column>
+				    <p:column>
+				   		<p:password redisplay="true" id="pass" style="background-color:#ffffff;width:200px;" value="#{loginBean.password}"/> 
+				    </p:column>
+			    </p:row>
+			    <p:row>
+			   	    <p:column colspan="2">
+			    		<p:captcha label="Captcha" language="tr" required="true" theme="white" requiredMessage="#{msg['captcha.required']}" validatorMessage="#{msg['captcha.validator']}"/>
+			    	</p:column>
+			    </p:row>
+			    <p:row>
+			    	<p:column>
+			    		<p:commandButton value="Giriş" action="#{loginBean.login()}"/>
+			    	</p:column>
+			    </p:row>
+		    </p:panelGrid>
+	   </h:form>
+	   </p:layoutUnit>
+	   <p:layoutUnit position="east" size="0" style="width:0px; display:none; border:0;" id="east">
+	   </p:layoutUnit>
+	
+	   <p:layoutUnit position="south" size="73" style="display:none;text-align:center;" id="south">
+	        <p:graphicImage style="display: block; margin-left: auto; margin-right: auto;" value="/resources/images/poweredByDeloitte.png" height="35" width="200"/>
+	   </p:layoutUnit>
+   </p:layout>
+</h:body>
+</html>

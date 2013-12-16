@@ -1,0 +1,457 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['trafikStat.pageHeader']}">
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{trafikStatBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{trafikStatBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{trafikStatBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change" update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{trafikStatBean.sorgula()}" update="trafikStatPanel1,trafikStatPanel2,trafikStatPanel3,trafikStatPanel4,trafikStatPanel5"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<p:panelGrid styleClass="panel-grid" id="trafikStatPanel1">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">
+								<h:outputText value="#{msg['trafikStat.panelHeader']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['trafikStat.bigHeader1']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['trafikStat.bigHeader2']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat1" value="#{trafikStatBean.instance.arzKoltuk}" required="true" requiredMessage="#{msg['trafikStat.1']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat2" value="#{trafikStatBean.instance.ucretliYolcu}" required="true" requiredMessage="#{msg['trafikStat.2']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat2" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat3" value="#{trafikStatBean.instance.ucretliYolcuKm}" required="true" requiredMessage="#{msg['trafikStat.3']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat3,trafikStatToplam1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat4" value="#{trafikStatBean.instance.arzKoltukKm}" required="true" requiredMessage="#{msg['trafikStat.4']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat4,trafikStatToplam1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['trafikStat.toplam1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="trafikStatToplam1" styleClass="toplam-output" value="#{trafikStatBean.instance.ucretliYolcuKm / trafikStatBean.instance.arzKoltukKm}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid styleClass="panel-grid" id="trafikStatPanel2">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat5" value="#{trafikStatBean.instance.uculanKm}" required="true" requiredMessage="#{msg['trafikStat.5']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat6" value="#{trafikStatBean.instance.ortalamaMenzil}" required="true" requiredMessage="#{msg['trafikStat.6']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat6" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat7" value="#{trafikStatBean.instance.ucusSaati}" required="true" requiredMessage="#{msg['trafikStat.7']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat7,trafikStatToplam2" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat8" value="#{trafikStatBean.instance.blokSaati}" required="true" requiredMessage="#{msg['trafikStat.8']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat8,trafikStatToplam2" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['trafikStat.toplam2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="trafikStatToplam2" styleClass="toplam-output"  value="#{trafikStatBean.instance.blokSaati / trafikStatBean.instance.ucusSaati}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid styleClass="panel-grid" id="trafikStatPanel3">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.9']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat9" value="#{trafikStatBean.instance.konmaSayisi}" required="true" requiredMessage="#{msg['trafikStat.9']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat9" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.10']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat10" value="#{trafikStatBean.instance.hasilatYaratanUcuslar}" required="true" requiredMessage="#{msg['trafikStat.10']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.11']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat11" value="#{trafikStatBean.instance.disHatYolcuSayisi}" required="true" requiredMessage="#{msg['trafikStat.11']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat11" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.12']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat12" value="#{trafikStatBean.instance.transferYolcuSayisi}" required="true" requiredMessage="#{msg['trafikStat.12']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat12" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.13']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat13" value="#{trafikStatBean.instance.transferYolcuSayisiYuzde}" required="true" requiredMessage="#{msg['trafikStat.13']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat13" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.14']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat14" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemSon}" required="true" requiredMessage="#{msg['trafikStat.14']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat14" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.15']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat15" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemOrt}" required="true" requiredMessage="#{msg['trafikStat.15']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat15" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.16']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat16" value="#{trafikStatBean.instance.ucakUtilizasyonu}" required="true" requiredMessage="#{msg['trafikStat.16']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat16" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid styleClass="panel-grid" id="trafikStatPanel4">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['trafikStat.bigHeader3']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.17']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat17" value="#{trafikStatBean.instance.arzTon}" required="true" requiredMessage="#{msg['trafikStat.17']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat17" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.18']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat18" value="#{trafikStatBean.instance.ucretliTon}" required="true" requiredMessage="#{msg['trafikStat.18']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat18" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.19']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat19" value="#{trafikStatBean.instance.arzKargoTonKm}" required="true" requiredMessage="#{msg['trafikStat.19']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat19,trafikStatToplam3" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.20']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat20" value="#{trafikStatBean.instance.ucretliKargoTonKm}" required="true" requiredMessage="#{msg['trafikStat.20']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat20,trafikStatToplam3" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['trafikStat.toplam3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="trafikStatToplam3" styleClass="toplam-output"  value="#{trafikStatBean.instance.arzKargoTonKm / trafikStatBean.instance.ucretliKargoTonKm}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid styleClass="panel-grid" id="trafikStatPanel5">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['trafikStat.bigHeader4']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.21']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat21" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemSonKar}" required="true" requiredMessage="#{msg['trafikStat.21']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat21" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.22']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat22" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemOrtKar}" required="true" requiredMessage="#{msg['trafikStat.22']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat22" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.23']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat23" value="#{trafikStatBean.instance.konmaSayisiKar}" required="true" requiredMessage="#{msg['trafikStat.23']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat23" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.24']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat24" value="#{trafikStatBean.instance.arzTonKar}" required="true" requiredMessage="#{msg['trafikStat.24']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat24" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.25']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat25" value="#{trafikStatBean.instance.ucretliTonKar}" required="true" requiredMessage="#{msg['trafikStat.25']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat25" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.26']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat26" value="#{trafikStatBean.instance.arzKargoTonKmKar}" required="true" requiredMessage="#{msg['trafikStat.26']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat26,trafikStatToplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.27']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat27" value="#{trafikStatBean.instance.ucretliKargoTonKmKar}" required="true" requiredMessage="#{msg['trafikStat.27']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat27,trafikStatToplam4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['trafikStat.toplam4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="trafikStatToplam4" styleClass="toplam-output"  value="#{trafikStatBean.instance.arzKargoTonKmKar / trafikStatBean.instance.ucretliKargoTonKmKar}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.28']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat28" value="#{trafikStatBean.instance.ortalamaMenzilKar}" required="true" requiredMessage="#{msg['trafikStat.28']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat28" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.29']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat29" value="#{trafikStatBean.instance.blokSaatKar}" required="true" requiredMessage="#{msg['trafikStat.29']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat29" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['trafikStat.30']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat30" value="#{trafikStatBean.instance.kargoUcakUtilizasyonuKar}" required="true" requiredMessage="#{msg['trafikStat.30']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="trafikStat30" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{trafikStatBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{trafikStatBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{trafikStatBean.save()}" update="trafikStatPanel1,trafikStatPanel2,trafikStatPanel3,trafikStatPanel4,trafikStatPanel5"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{trafikStatBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{trafikStatBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

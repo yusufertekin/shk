@@ -1,0 +1,672 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['iliskiliTarafIslem.pageHeader']}">
+				<f:facet name="footer">
+					<h:outputText value="#{msg['iliskiliTarafIslem.footer']}" styleClass="bold-header" />
+				</f:facet>
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{iliskiliTarafIslemBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{iliskiliTarafIslemBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{iliskiliTarafIslemBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change"  update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{iliskiliTarafIslemBean.sorgula()}" update="iliskiliTarafIslemPanel1,iliskiliTarafIslemTable1,iliskiliTarafIslemTable2,iliskiliTarafIslemTable3,iliskiliTarafIslemTable4,iliskiliTarafIslemToplam"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<h:outputText value="#{msg['iliskiliTarafIslem.panelHeader']}" styleClass="bold-header"/>
+				<p:panelGrid styleClass="panel-grid" id="iliskiliTarafIslemPanel1">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">
+								<h:outputText value="#{msg['iliskiliTarafIslem.bilgiGiris']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafIslem.tip']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:selectOneMenu id="iliskiliTarafIslemTip" value="#{iliskiliTarafIslemBean.instance.tip}">
+								<f:selectItem itemValue="#{0}" itemLabel="#{msg['iliskiliTarafIslem.tableHeader1']}"/>
+								<f:selectItem itemValue="#{1}" itemLabel="#{msg['iliskiliTarafIslem.tableHeader2']}"/>
+								<f:selectItem itemValue="#{2}" itemLabel="#{msg['iliskiliTarafIslem.tableHeader3']}"/>
+								<f:selectItem itemValue="#{3}" itemLabel="#{msg['iliskiliTarafIslem.tableHeader4']}"/>
+								<f:converter converterId="entityConverter"/>
+								<p:ajax event="change" update="iliskiliTarafIslemPanel1"/>
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafIslem.0']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafIslem0" value="#{iliskiliTarafIslemBean.instance.name}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.0']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="iliskiliTarafIslem0" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafIslem.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafIslem1" value="#{iliskiliTarafIslemBean.instance.malHizmetAlim}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.1']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="iliskiliTarafIslem1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafIslem.2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafIslem2" value="#{iliskiliTarafIslemBean.instance.malHizmetSatis}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.2']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="iliskiliTarafIslem2" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafIslem.3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafIslem3" value="#{iliskiliTarafIslemBean.instance.faizGelir}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.3']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="iliskiliTarafIslem3" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafIslem.4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafIslem4" value="#{iliskiliTarafIslemBean.instance.faizGider}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.4']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="iliskiliTarafIslem4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafIslem.5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafIslem5" value="#{iliskiliTarafIslemBean.instance.kiraGelir}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.5']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="iliskiliTarafIslem5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafIslem.6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafIslem6" value="#{iliskiliTarafIslemBean.instance.kiraGider}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.6']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="iliskiliTarafIslem6" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafIslem.7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafIslem7" value="#{iliskiliTarafIslemBean.instance.sabitKiymetSatis}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.7']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="iliskiliTarafIslem7" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafIslem.8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafIslem8" value="#{iliskiliTarafIslemBean.instance.komisyonGider}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.8']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="iliskiliTarafIslem8" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{iliskiliTarafIslemBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{iliskiliTarafIslemBean.save()}" update="iliskiliTarafIslemPanel1, iliskiliTarafIslemTable1, iliskiliTarafIslemToplam, iliskiliTarafIslemTable2, iliskiliTarafIslemTable3, iliskiliTarafIslemTable4"/>
+				<br />
+				<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTarafIslemTable1" var="taraf" value="#{iliskiliTarafIslemBean.ortakList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTarafIslem.tableHeader1']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTarafIslemBean.update(taraf)}" update="@([id$=iliskiliTarafIslemToplam]),iliskiliTarafIslemTable1" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafIslemBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTarafIslem.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.malHizmetAlim}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.malHizmetAlim}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.2']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                	<h:outputText value="#{taraf.malHizmetSatis}">
+			                	</h:outputText>
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.malHizmetSatis}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.3']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizGelir}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizGelir}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.4']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.5']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kiraGelir}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kiraGelir}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.6']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kiraGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kiraGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.7']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.sabitKiymetSatis}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.sabitKiymetSatis}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.8']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.komisyonGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.komisyonGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}" >
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTarafIslemBean.remove(taraf)}" immediate="true" value="#{msg['common.remove']}" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTarafIslemTable2" var="taraf" value="#{iliskiliTarafIslemBean.aileBireyList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTarafIslem.tableHeader2']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTarafIslemBean.update(taraf)}" update="@([id$=iliskiliTarafIslemToplam]),iliskiliTarafIslemTable2" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafIslemBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTarafIslem.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.malHizmetAlim}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.malHizmetAlim}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.2']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                	<h:outputText value="#{taraf.malHizmetSatis}">
+			                	</h:outputText>
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.malHizmetSatis}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.3']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizGelir}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizGelir}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.4']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.5']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kiraGelir}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kiraGelir}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.6']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kiraGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kiraGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.7']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.sabitKiymetSatis}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.sabitKiymetSatis}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.8']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.komisyonGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.komisyonGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTarafIslemBean.remove(taraf)}" value="#{msg['common.remove']}" immediate="true" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTarafIslemTable3" var="taraf" value="#{iliskiliTarafIslemBean.ustDuzeyYonList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTarafIslem.tableHeader3']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTarafIslemBean.update(taraf)}" update="@([id$=iliskiliTarafIslemToplam]),iliskiliTarafIslemTable3" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafIslemBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTarafIslem.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.malHizmetAlim}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.malHizmetAlim}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.2']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                	<h:outputText value="#{taraf.malHizmetSatis}">
+			                	</h:outputText>
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.malHizmetSatis}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.3']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizGelir}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizGelir}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.4']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.5']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kiraGelir}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kiraGelir}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.6']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kiraGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kiraGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.7']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.sabitKiymetSatis}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.sabitKiymetSatis}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.8']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.komisyonGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.komisyonGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTarafIslemBean.remove(taraf)}" value="#{msg['common.remove']}" immediate="true" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTarafIslemTable4" var="taraf" value="#{iliskiliTarafIslemBean.digerIliskiliTarafList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTarafIslem.tableHeader4']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTarafIslemBean.update(taraf)}" update="@([id$=iliskiliTarafIslemToplam]),iliskiliTarafIslemTable4" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafIslemBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTarafIslem.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.malHizmetAlim}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.malHizmetAlim}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.2']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                	<h:outputText value="#{taraf.malHizmetSatis}">
+			                	</h:outputText>
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.malHizmetSatis}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.3']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizGelir}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizGelir}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.4']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.5']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kiraGelir}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kiraGelir}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.6']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kiraGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kiraGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.7']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.sabitKiymetSatis}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.sabitKiymetSatis}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafIslem.8']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.komisyonGider}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.komisyonGider}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTarafIslemBean.remove(taraf)}" immediate="true" value="#{msg['common.remove']}" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:panelGrid id="iliskiliTarafIslemToplam" columns="2">
+					<p:column>
+						<h:outputText value="#{msg['iliskiliTarafIslem.toplam']} #{msg['iliskiliTarafIslem.1']}" />
+					</p:column>
+		          	<p:column>
+		          		<h:outputText value="#{iliskiliTarafIslemBean.toplam1}" />
+		          	</p:column>
+		          	<p:column>
+						<h:outputText value="#{msg['iliskiliTarafIslem.toplam']} #{msg['iliskiliTarafIslem.2']}" />
+					</p:column>
+		          	<p:column>
+		          		<h:outputText value="#{iliskiliTarafIslemBean.toplam2}" />
+		          	</p:column>
+		          	<p:column>
+						<h:outputText value="#{msg['iliskiliTarafIslem.toplam']} #{msg['iliskiliTarafIslem.3']}" />
+					</p:column>
+		          	<p:column>
+		          		<h:outputText value="#{iliskiliTarafIslemBean.toplam3}" />
+		          	</p:column>
+		          	<p:column>
+						<h:outputText value="#{msg['iliskiliTarafIslem.toplam']} #{msg['iliskiliTarafIslem.4']}" />
+					</p:column>
+		          	<p:column>
+		          		<h:outputText value="#{iliskiliTarafIslemBean.toplam4}" />
+		          	</p:column>
+		          	<p:column>
+						<h:outputText value="#{msg['iliskiliTarafIslem.toplam']} #{msg['iliskiliTarafIslem.5']}" />
+					</p:column>
+		          	<p:column>
+		          		<h:outputText value="#{iliskiliTarafIslemBean.toplam5}" />
+		          	</p:column>
+		          	<p:column>
+						<h:outputText value="#{msg['iliskiliTarafIslem.toplam']} #{msg['iliskiliTarafIslem.6']}" />
+					</p:column>
+		          	<p:column>
+		          		<h:outputText value="#{iliskiliTarafIslemBean.toplam6}" />
+		          	</p:column>
+		          	<p:column>
+						<h:outputText value="#{msg['iliskiliTarafIslem.toplam']} #{msg['iliskiliTarafIslem.7']}" />
+					</p:column>
+		          	<p:column>
+		          		<h:outputText value="#{iliskiliTarafIslemBean.toplam7}" />
+		          	</p:column>
+		          	<p:column>
+						<h:outputText value="#{msg['iliskiliTarafIslem.toplam']} #{msg['iliskiliTarafIslem.8']}" />
+					</p:column>
+		          	<p:column>
+		          		<h:outputText value="#{iliskiliTarafIslemBean.toplam8}" />
+		          	</p:column>
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

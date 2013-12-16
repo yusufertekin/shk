@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			<h:outputText styleClass="welcome" value= "Sivil Havacılık Genel Müdürlüğü Finansal Takip Sistemine Hoşgeldiniz #{currentUser.username} --- #{currentUser.company.name}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+
+

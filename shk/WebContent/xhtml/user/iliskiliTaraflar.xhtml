@@ -1,0 +1,262 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['iliskiliTaraflar.pageHeader']}">
+				<f:facet name="footer">
+					<h:outputText value="#{msg['iliskiliTaraflar.footer']}" styleClass="bold-header" />
+				</f:facet>
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{iliskiliTaraflarBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{iliskiliTaraflarBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{iliskiliTaraflarBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change"  update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{iliskiliTaraflarBean.sorgula()}" update="iliskiliTaraflarPanel1,iliskiliTaraflarTable1,iliskiliTaraflarTable2,iliskiliTaraflarTable3,iliskiliTaraflarTable4"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<h:outputText value="#{msg['iliskiliTaraflar.panelHeader']}" styleClass="bold-header"/>
+				<p:panelGrid styleClass="panel-grid" id="iliskiliTaraflarPanel1">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">
+								<h:outputText value="#{msg['iliskiliTaraflar.bilgiGiris']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTaraflar.tip']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:selectOneMenu id="iliskiliTaraflarTip" value="#{iliskiliTaraflarBean.instance.tip}">
+								<f:selectItem itemValue="#{0}" itemLabel="#{msg['iliskiliTaraflar.tableHeader1']}"/>
+								<f:selectItem itemValue="#{1}" itemLabel="#{msg['iliskiliTaraflar.tableHeader2']}"/>
+								<f:selectItem itemValue="#{2}" itemLabel="#{msg['iliskiliTaraflar.tableHeader3']}"/>
+								<f:selectItem itemValue="#{3}" itemLabel="#{msg['iliskiliTaraflar.tableHeader4']}"/>
+								<f:converter converterId="entityConverter"/>
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTaraflar.0']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 ? true : false}" styleClass="input-text" id="iliskiliTaraflar0" value="#{iliskiliTaraflarBean.instance.name}" required="true" requiredMessage="#{msg['iliskiliTaraflar.0']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="iliskiliTaraflar0" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTaraflar.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputTextarea disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 ? true : false}" styleClass="input-text" id="iliskiliTaraflar1" value="#{iliskiliTaraflarBean.instance.aciklama}" required="true" requiredMessage="#{msg['iliskiliTaraflar.1']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="iliskiliTaraflar1" />
+							</p:inputTextarea>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{iliskiliTaraflarBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{iliskiliTaraflarBean.save()}" update="iliskiliTaraflarPanel1, iliskiliTaraflarTable1, iliskiliTaraflarTable2, iliskiliTaraflarTable3, iliskiliTaraflarTable4"/>
+				<br />
+				<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTaraflarTable1" var="taraf" value="#{iliskiliTaraflarBean.ortakList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTaraflar.tableHeader1']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTaraflarBean.update(taraf)}" update="iliskiliTaraflarTable1" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTaraflarBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTaraflar.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTaraflar.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.aciklama}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.aciklama}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 ? true : false}" >
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTaraflarBean.remove(taraf)}" immediate="true" value="#{msg['common.remove']}" update="@([id$=iliskiliTaraflarTable1])" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTaraflarTable2" var="taraf" value="#{iliskiliTaraflarBean.aileBireyList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTaraflar.tableHeader2']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTaraflarBean.update(taraf)}" update="iliskiliTaraflarTable2" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTaraflarBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTaraflar.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTaraflar.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.aciklama}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.aciklama}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTaraflarBean.remove(taraf)}" value="#{msg['common.remove']}" immediate="true" update="@([id$=iliskiliTaraflarTable2])" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTaraflarTable3" var="taraf" value="#{iliskiliTaraflarBean.ustDuzeyYonList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTaraflar.tableHeader3']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTaraflarBean.update(taraf)}" update="iliskiliTaraflarTable3" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTaraflarBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTaraflar.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTaraflar.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.aciklama}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.aciklama}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTaraflarBean.remove(taraf)}" value="#{msg['common.remove']}" immediate="true" update="@([id$=iliskiliTaraflarTable3])" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTaraflarTable4" var="taraf" value="#{iliskiliTaraflarBean.digerIliskiliTarafList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTaraflar.tableHeader4']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTaraflarBean.update(taraf)}" update="iliskiliTaraflarTable4" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTaraflarBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTaraflar.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTaraflar.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.aciklama}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.aciklama}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTaraflarBean.remove(taraf)}" value="#{msg['common.remove']}" immediate="true" update="@([id$=iliskiliTaraflarTable4])" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

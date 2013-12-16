@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<h:panelGrid id="companyPanel" columns="2">
+				<h:outputText value="#{msg['company.name']}"/>
+				<p:inputText value="#{companyBean.instance.name}"/>
+			</h:panelGrid>
+			<br />
+			<p:commandButton value="#{msg['common.save']}" id="saveButton"  update="companyList,companyPanel" action="#{companyBean.save()}"/>
+			<br />			
+			<br />			
+			<p:dataTable id="companyList" styleClass="data-table" value="#{companyBean.list}" var="com">
+				<p:column headerText="#{msg['company.name']}">
+					<h:outputText value="#{com.name}" />
+				</p:column>
+				<p:column>
+					<p:commandLink value="#{msg['common.remove']}" action="#{companyBean.remove(com)}" update="@form"/>
+				</p:column>
+			</p:dataTable>			
+		</h:form>
+	</ui:define>
+</ui:composition>

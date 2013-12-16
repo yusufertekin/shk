@@ -1,0 +1,372 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['ucakFilo.pageHeader']}">
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{ucakFiloBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{ucakFiloBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{ucakFiloBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change" update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{ucakFiloBean.sorgula()}" update="ucakFiloPanel1,ucakFiloTable1,ucakFiloGirenToplam,adetPanel"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<p:panelGrid id="adetPanel" columns="2">
+					<p:column styleClass="column-definition">
+						<h:outputText value="#{msg['ucakFilo.donemBasi']}" />
+					</p:column>
+					<p:column styleClass="column-input">
+						<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" value="#{ucakFiloBean.instanceAdet.adet}" required="true" requiredMessage="#{msg['ucakFilo.donemBasi']}#{msg['common.requiredMessage']}">
+						</p:inputText>
+					</p:column>
+				</p:panelGrid>
+				<p:panelGrid styleClass="panel-grid" id="ucakFiloPanel1">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">
+								<h:outputText value="#{msg['ucakFilo.panelHeader']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ucakFilo.girisOrCikis']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:selectOneMenu id="ucakFiloTip" value="#{ucakFiloBean.instance.tip}">
+								<f:selectItem itemValue="#{0}" itemLabel="#{msg['ucakFilo.filoyaGiris']}"/>
+								<f:selectItem itemValue="#{1}" itemLabel="#{msg['ucakFilo.filodanCikis']}"/>
+								<f:converter converterId="entityConverter"/>
+								<p:ajax event="change" update="ucakFiloPanel1"/>
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ucakFilo.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakFilo1" value="#{ucakFiloBean.instance.adet}" required="true" requiredMessage="#{msg['ucakFilo.1']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="ucakFilo1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row rendered="#{ucakFiloBean.instance.tip == 0}">
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ucakFilo.2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:calendar styleClass="input-text"  pattern="dd/MM/yyyy" id="ucakFilo2" value="#{ucakFiloBean.instance.filoyaGirisTarih}" required="true" requiredMessage="#{msg['ucakFilo.2']}#{msg['common.requiredMessage']}">
+							</p:calendar>
+						</p:column>
+					</p:row>
+					<p:row rendered="#{ucakFiloBean.instance.tip == 1}">
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ucakFilo.3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:calendar styleClass="input-text" pattern="dd/MM/yyyy" id="ucakFilo3" value="#{ucakFiloBean.instance.filodanCikisTarih}" required="true" requiredMessage="#{msg['ucakFilo.3']}#{msg['common.requiredMessage']}">
+							</p:calendar>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ucakFilo.4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakFilo4" value="#{ucakFiloBean.instance.ucakLisansNo}" required="true" requiredMessage="#{msg['ucakFilo.4']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="ucakFilo4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ucakFilo.5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakFilo5" value="#{ucakFiloBean.instance.ucakTipiModeli}" required="true" requiredMessage="#{msg['ucakFilo.5']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="ucakFilo5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ucakFilo.6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakFilo6" value="#{ucakFiloBean.instance.maxKapasite}" required="true" requiredMessage="#{msg['ucakFilo.6']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="ucakFilo6" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row rendered="#{ucakFiloBean.instance.tip == 0}">
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ucakFilo.7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:selectOneMenu id="ucakFilo7" value="#{ucakFiloBean.instance.edinimYontemi}" required="true" requiredMessage="#{msg['ucakFilo.7']}#{msg['common.requiredMessage']}">
+								<f:selectItem itemValue="#{msg['ucakFilo.edinimYontem1']}" itemLabel="#{msg['ucakFilo.edinimYontem1']}"/>
+								<f:selectItem itemValue="#{msg['ucakFilo.edinimYontem2']}" itemLabel="#{msg['ucakFilo.edinimYontem2']}"/>
+								<f:selectItem itemValue="#{msg['ucakFilo.edinimYontem3']}" itemLabel="#{msg['ucakFilo.edinimYontem3']}"/>
+								<f:selectItem itemValue="#{msg['ucakFilo.edinimYontem4']}" itemLabel="#{msg['ucakFilo.edinimYontem4']}"/>
+								<f:converter converterId="entityConverter"/>
+								<p:ajax event="blur" update="ucakFilo7" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row rendered="#{ucakFiloBean.instance.tip == 1}">
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ucakFilo.8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:selectOneMenu id="ucakFilo8" value="#{ucakFiloBean.instance.filodanCikisSebep}">
+								<f:selectItem itemValue="#{msg['ucakFilo.edinimYontem1']}" itemLabel="#{msg['ucakFilo.filoCikisSebep1']}"/>
+								<f:selectItem itemValue="#{msg['ucakFilo.filoCikisSebep2']}" itemLabel="#{msg['ucakFilo.filoCikisSebep2']}"/>
+								<f:selectItem itemValue="#{msg['ucakFilo.filoCikisSebep3']}" itemLabel="#{msg['ucakFilo.filoCikisSebep3']}"/>
+								<f:selectItem itemValue="#{msg['ucakFilo.filoCikisSebep4']}" itemLabel="#{msg['ucakFilo.filoCikisSebep4']}"/>
+								<f:selectItem itemValue="#{msg['ucakFilo.filoCikisSebep5']}" itemLabel="#{msg['ucakFilo.filoCikisSebep5']}"/>
+								<f:converter converterId="entityConverter"/>
+								<p:ajax event="blur" update="ucakFilo8" />
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{ucakFiloBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ucakFiloBean.save()}" update="ucakFiloPanel1, ucakFiloTable1, ucakFiloGirenToplam, ucakFiloTable2, ucakFiloCikanToplam, ucakFiloToplam"/>
+				<br />
+				<p:separator />
+				<br />
+				<p:panelGrid id="ucakFiloGirenToplam" columns="2">
+		            <p:column>
+		                <h:outputText value="#{msg['ucakFilo.toplam']}" />
+		            </p:column>
+		            <p:column>
+		                <h:outputText value="#{ucakFiloBean.girenToplam}" />
+		            </p:column>
+				</p:panelGrid>
+				<p:dataTable id="ucakFiloTable1" var="filo" value="#{ucakFiloBean.filoyaGirenList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['ucakFilo.filoyaGiris']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{ucakFiloBean.update(filo)}" update="@([id$=ucakFiloGirenToplam]),@([id$=ucakFiloToplam]),ucakFiloTable1" />
+       				<p:ajax event="rowEditCancel" listener="#{ucakFiloBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['ucakFilo.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{filo.adet}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.adet}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['ucakFilo.2']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                	<h:outputText value="#{filo.filoyaGirisTarih}">
+			                		<f:convertDateTime pattern="dd/MM/yyyy"/>
+			                	</h:outputText>
+			                </f:facet>
+			                <f:facet name="input">
+								  <p:calendar styleClass="input-text" pattern="dd/MM/yyyy" value="#{filo.filoyaGirisTarih}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['ucakFilo.3']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{filo.ucakLisansNo}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.ucakLisansNo}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['ucakFilo.5']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{filo.ucakTipiModeli}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.ucakTipiModeli}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['ucakFilo.6']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{filo.maxKapasite}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.maxKapasite}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['ucakFilo.7']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{filo.edinimYontemi}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:selectOneMenu value="#{filo.edinimYontemi}">
+									<f:selectItem itemValue="#{msg['ucakFilo.edinimYontem1']}" itemLabel="#{msg['ucakFilo.edinimYontem1']}"/>
+									<f:selectItem itemValue="#{msg['ucakFilo.edinimYontem2']}" itemLabel="#{msg['ucakFilo.edinimYontem2']}"/>
+									<f:selectItem itemValue="#{msg['ucakFilo.edinimYontem3']}" itemLabel="#{msg['ucakFilo.edinimYontem3']}"/>
+									<f:selectItem itemValue="#{msg['ucakFilo.edinimYontem4']}" itemLabel="#{msg['ucakFilo.edinimYontem4']}"/>
+									<f:converter converterId="entityConverter"/>
+								</p:selectOneMenu>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{ucakFiloBean.remove(filo)}" immediate="true" value="#{msg['common.remove']}" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:panelGrid id="ucakFiloCikanToplam" columns="2">
+		            <p:column>
+		                <h:outputText value="#{msg['ucakFilo.toplam']}" />
+		            </p:column>
+		            <p:column>
+		                <h:outputText value="#{ucakFiloBean.cikanToplam}" />
+		            </p:column>
+				</p:panelGrid>
+				<p:dataTable id="ucakFiloTable2" var="filo" value="#{ucakFiloBean.filodanCikanList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['ucakFilo.filodanCikis']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{ucakFiloBean.update(filo)}" update="@([id$=ucakFiloCikanToplam]),@([id$=ucakFiloToplam]),ucakFiloTable2" />
+       				<p:ajax event="rowEditCancel" listener="#{ucakFiloBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['ucakFilo.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{filo.adet}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.adet}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['ucakFilo.2']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                	<h:outputText value="#{filo.filodanCikisTarih}">
+			                		<f:convertDateTime pattern="dd/MM/yyyy"/>
+			                	</h:outputText>
+			                </f:facet>
+			                <f:facet name="input">
+								  <p:calendar styleClass="input-text" pattern="dd/MM/yyyy" value="#{filo.filodanCikisTarih}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['ucakFilo.3']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{filo.ucakLisansNo}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.ucakLisansNo}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['ucakFilo.5']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{filo.ucakTipiModeli}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.ucakTipiModeli}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['ucakFilo.6']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{filo.maxKapasite}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.maxKapasite}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['ucakFilo.8']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{filo.filodanCikisSebep}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:selectOneMenu value="#{filo.filodanCikisSebep}">
+									<f:selectItem itemValue="#{msg['ucakFilo.filoCikisSebep1']}" itemLabel="#{msg['ucakFilo.filoCikisSebep1']}"/>
+									<f:selectItem itemValue="#{msg['ucakFilo.filoCikisSebep2']}" itemLabel="#{msg['ucakFilo.filoCikisSebep2']}"/>
+									<f:selectItem itemValue="#{msg['ucakFilo.filoCikisSebep3']}" itemLabel="#{msg['ucakFilo.filoCikisSebep3']}"/>
+									<f:selectItem itemValue="#{msg['ucakFilo.filoCikisSebep4']}" itemLabel="#{msg['ucakFilo.filoCikisSebep4']}"/>
+									<f:selectItem itemValue="#{msg['ucakFilo.filoCikisSebep5']}" itemLabel="#{msg['ucakFilo.filoCikisSebep5']}"/>
+									<f:converter converterId="entityConverter"/>
+								</p:selectOneMenu>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{ucakFiloBean.remove(filo)}" immediate="true" value="#{msg['common.remove']}" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:panelGrid id="ucakFiloToplam" columns="2">
+		            <p:column>
+		                <h:outputText value="#{msg['ucakFilo.toplam']}" />
+		            </p:column>
+		            <p:column>
+		                <h:outputText value="#{ucakFiloBean.donemSonToplam}" />
+		            </p:column>
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

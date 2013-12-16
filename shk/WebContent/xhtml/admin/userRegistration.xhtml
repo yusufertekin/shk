@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<h:panelGrid id="userPanel" columns="2">
+				<h:outputText value="#{msg['user.name']}"/>
+				<p:inputText value="#{kullaniciBean.instance.username}"/>
+				<h:outputText value="#{msg['user.password']}"/>
+				<p:inputText value="#{kullaniciBean.instance.password}" required="true" requiredMessage="#{msg['user.durum']} #{msg['common.requiredMessage']}"/>
+				<h:outputText value="#{msg['user.durum']}" />
+				<p:selectOneRadio value="#{kullaniciBean.instance.durum}" required="true" requiredMessage="#{msg['user.durum']} #{msg['common.requiredMessage']}">
+					<f:selectItem itemValue="0" itemLabel="#{msg['user.active']}"/>
+					<f:selectItem itemValue="1" itemLabel="#{msg['user.passive']}"/>
+				</p:selectOneRadio>
+				<h:outputText value="#{msg['user.company']}" />
+				<p:selectOneMenu id="sirketAnaCombo" value="#{kullaniciBean.instance.company}">
+	        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+	        		<f:converter converterId="entityConverter"/>
+        		</p:selectOneMenu>
+			</h:panelGrid>
+			<br />
+			<p:commandButton value="#{msg['common.save']}"  id="saveButton"  update="userList, userPanel" action="#{kullaniciBean.save()}"/>
+			<br />			
+			<br />			
+			<p:dataTable id="userList" styleClass="data-table" value="#{kullaniciBean.list}" var="usr">
+				<p:column headerText="#{msg['user.company']}">
+					<h:outputText value="#{usr.company.name}" />
+				</p:column>
+				<p:column headerText="#{msg['user.name']}">
+					<h:outputText value="#{usr.username}" />
+				</p:column>
+				<p:column headerText="#{msg['common.remove']}">
+					<p:commandLink value="#{msg['common.remove']}" action="#{kullaniciBean.remove(usr)}" update="@form"/>
+				</p:column>
+			</p:dataTable>			
+		</h:form>
+	</ui:define>
+</ui:composition>

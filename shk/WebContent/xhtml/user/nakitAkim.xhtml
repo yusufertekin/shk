@@ -1,0 +1,568 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['nakitAkim.pageHeader']}">
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{nakitAkimBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{nakitAkimBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{nakitAkimBean.formatDate(don.donem,'dd/MM/yyyy')}"/>
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change" update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{nakitAkimBean.sorgula()}" update="nakitAkimPanel1,nakitAkimPanel2,nakitAkimPanel3,nakitAkimPanel4,nakitAkimPanel5,nakitAkimPanel6"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<p:panelGrid styleClass="panel-grid" id="nakitAkimPanel1">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">
+								<h:outputText value="#{msg['nakitAkim.panelHeader']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim1" value="#{nakitAkimBean.instance.vergiOncesiKarZarar}" required="true" requiredMessage="#{msg['nakitAkim.1']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['nakitAkim.bigHeader1']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim2" value="#{nakitAkimBean.instance.amortsmanItfaPay}" required="true" requiredMessage="#{msg['nakitAkim.2']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim2" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim3" value="#{nakitAkimBean.instance.kidemTazminatKarsilik}" required="true" requiredMessage="#{msg['nakitAkim.3']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim3" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim4" value="#{nakitAkimBean.instance.borcKarislikNet}" required="true" requiredMessage="#{msg['nakitAkim.4']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim5" value="#{nakitAkimBean.instance.faizGelir}" required="true" requiredMessage="#{msg['nakitAkim.5']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim6" value="#{nakitAkimBean.instance.sabitKiymetSatisKar}" required="true" requiredMessage="#{msg['nakitAkim.6']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim6" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim7" value="#{nakitAkimBean.instance.degerDusukKarsilik}" required="true" requiredMessage="#{msg['nakitAkim.7']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim7" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim8" value="#{nakitAkimBean.instance.ozkaynakPayAYGMuhasebe}" required="true" requiredMessage="#{msg['nakitAkim.8']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim8" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.9']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim9" value="#{nakitAkimBean.instance.finansalKiralamaFaizGider}" required="true" requiredMessage="#{msg['nakitAkim.9']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim9" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.10']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim10" value="#{nakitAkimBean.instance.hibeKrediDegisim}" required="true" requiredMessage="#{msg['nakitAkim.10']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim10" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.11']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim11" value="#{nakitAkimBean.instance.gerceklesmemisKurFarkiGider}" required="true" requiredMessage="#{msg['nakitAkim.11']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim11" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.12']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim12" value="#{nakitAkimBean.instance.supheliAlacakArtis}" required="true" requiredMessage="#{msg['nakitAkim.12']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim12" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.13']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim13" value="#{nakitAkimBean.instance.yatirimAmacliGayrimenkul}" required="true" requiredMessage="#{msg['nakitAkim.13']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim13" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.14']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim14" value="#{nakitAkimBean.instance.turevEnstrumanMakulDeger}" required="true" requiredMessage="#{msg['nakitAkim.14']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim14" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="nakitAkimPanel2" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="bold-header" value="#{msg['nakitAkim.boldHeader1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  id="nakitAkimBoldInput1" styleClass="bold-input" value="#{nakitAkimBean.instance.isletmeSermayeDegisiklikKar}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkimBoldInput1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.15']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim15" value="#{nakitAkimBean.instance.ticariAlacakArtis}" required="true" requiredMessage="#{msg['nakitAkim.15']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim15" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.16']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim16" value="#{nakitAkimBean.instance.digerKisaUzunVadeliArtis}" required="true" requiredMessage="#{msg['nakitAkim.16']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim16" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.17']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim17" value="#{nakitAkimBean.instance.stoklarArtis}" required="true" requiredMessage="#{msg['nakitAkim.17']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim17" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.18']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim18" value="#{nakitAkimBean.instance.digerCariVarlikArtisAzalis}" required="true" requiredMessage="#{msg['nakitAkim.18']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim18" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.19']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim19" value="#{nakitAkimBean.instance.digerCariOlmayanDuranVarlik}" required="true" requiredMessage="#{msg['nakitAkim.19']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim19" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.20']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim20" value="#{nakitAkimBean.instance.ticariBorcArtis}" required="true" requiredMessage="#{msg['nakitAkim.20']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim20" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.21']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim21" value="#{nakitAkimBean.instance.digerBorcAzalis}" required="true" requiredMessage="#{msg['nakitAkim.21']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim21" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.22']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim22" value="#{nakitAkimBean.instance.digerKisaUzunYukumlulukArtis}" required="true" requiredMessage="#{msg['nakitAkim.22']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim22" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.23']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim23" value="#{nakitAkimBean.instance.kisaVadeliCalisanFaydaAA}" required="true" requiredMessage="#{msg['nakitAkim.23']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim23" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.24']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim24" value="#{nakitAkimBean.instance.yolcuUcusYukumlulukArtis}" required="true" requiredMessage="#{msg['nakitAkim.24']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim24" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="nakitAkimPanel3" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="bold-header" value="#{msg['nakitAkim.boldHeader2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  id="nakitAkimBoldInput2" styleClass="bold-input" value="#{nakitAkimBean.instance.faaliyetEldeEdilenNakit}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkimBoldInput2" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.25']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim25" value="#{nakitAkimBean.instance.odenenKidemTazminat}" required="true" requiredMessage="#{msg['nakitAkim.25']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim25" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.26']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim26" value="#{nakitAkimBean.instance.odenenFaiz}" required="true" requiredMessage="#{msg['nakitAkim.26']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim26" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.27']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim27" value="#{nakitAkimBean.instance.odenenVergi}" required="true" requiredMessage="#{msg['nakitAkim.27']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim27" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="bold-header" value="#{msg['nakitAkim.boldHeader3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  id="nakitAkimBoldInput3" styleClass="bold-input" value="#{nakitAkimBean.instance.faaliyetEldeEdilenNetNakit}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkimBoldInput3" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="nakitAkimPanel4" styleClass="panel-grid">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['nakitAkim.bigHeader2']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="bold-header" value="#{msg['nakitAkim.boldHeader4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  id="nakitAkimBoldInput4" styleClass="bold-input" value="#{nakitAkimBean.instance.maddiMaddiOlmayanEldeEdilen}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkimBoldInput4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.28']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim28" value="#{nakitAkimBean.instance.alinanFaiz}" required="true" requiredMessage="#{msg['nakitAkim.28']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim28" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.29']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim29" value="#{nakitAkimBean.instance.maddiMaddiOlmayanVarlikAlimi}" required="true" requiredMessage="#{msg['nakitAkim.29']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim29" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.30']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim30" value="#{nakitAkimBean.instance.ucakOnOdemeGeriDonus}" required="true" requiredMessage="#{msg['nakitAkim.30']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim30" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.31']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim31" value="#{nakitAkimBean.instance.finansalYatirimArtis}" required="true" requiredMessage="#{msg['nakitAkim.31']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim31" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.32']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim32" value="#{nakitAkimBean.instance.istirakSermayaArtirimNakit}" required="true" requiredMessage="#{msg['nakitAkim.32']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim32" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="bold-header" value="#{msg['nakitAkim.boldHeader5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  id="nakitAkimBoldInput5" styleClass="bold-input" value="#{nakitAkimBean.instance.yatirimFaaliyetKullanilanNet}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkimBoldInput5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="nakitAkimPanel5" styleClass="panel-grid">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['nakitAkim.bigHeader3']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.33']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim33" value="#{nakitAkimBean.instance.finansalKirlamaAnaparaGeri}" required="true" requiredMessage="#{msg['nakitAkim.33']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim33" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.34']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim34" value="#{nakitAkimBean.instance.finansalBorcAzalis}" required="true" requiredMessage="#{msg['nakitAkim.34']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim34" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['nakitAkim.35']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="nakitAkim35" value="#{nakitAkimBean.instance.digerFinansalYukumlulukArtis}" required="true" requiredMessage="#{msg['nakitAkim.35']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkim35" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="bold-header" value="#{msg['nakitAkim.boldHeader6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  id="nakitAkimBoldInput6" styleClass="bold-input" value="#{nakitAkimBean.instance.yatirimFaaliyetKullanilanNet}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkimBoldInput6" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="nakitAkimPanel6" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="bold-header" value="#{msg['nakitAkim.boldHeader7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  id="nakitAkimBoldInput7" styleClass="bold-input" value="#{nakitAkimBean.instance.nakitDegerNetArtisAzalis}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkimBoldInput7" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="bold-header" value="#{msg['nakitAkim.boldHeader8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  id="nakitAkimBoldInput8" styleClass="bold-input" value="#{nakitAkimBean.instance.donemBasindakiNakit}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkimBoldInput8" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="bold-header" value="#{msg['nakitAkim.boldHeader9']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{nakitAkimBean.selectedDonem.durum == 1 ? true : false}"  id="nakitAkimBoldInput9" styleClass="bold-input" value="#{nakitAkimBean.instance.donemSonundakiNakit}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="nakitAkimBoldInput9" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{nakitAkimBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{nakitAkimBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{nakitAkimBean.save()}" update="nakitAkimPanel1,nakitAkimPanel2,nakitAkimPanel3,nakitAkimPanel4,nakitAkimPanel5,nakitAkimPanel6"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{nakitAkimBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{nakitAkimBean.remove()}" immediate="true" process="@this" async="true" update="nakitAkimPanel1,nakitAkimPanel2,nakitAkimPanel3,nakitAkimPanel4,nakitAkimPanel5,nakitAkimPanel6"/>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

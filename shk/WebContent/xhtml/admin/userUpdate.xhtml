@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			<h:panelGrid rendered="#{currentUser.company.companyId == null}">
+				<p:selectOneMenu id="kullaniciAnaCombo" value="#{kullaniciBean.instance}">
+	        		<f:selectItems value="#{kullaniciBean.list}" var="usr" itemValue="#{usr}" itemLabel="#{usr.username}"/>
+	        		<f:converter converterId="entityConverter"/>
+	        		<p:ajax update="userPanel"/>
+        		</p:selectOneMenu>
+			</h:panelGrid>
+			<h:panelGrid id="userPanel" columns="2">
+				<h:outputText value="#{msg['user.name']}"/>
+				<p:inputText value="#{kullaniciBean.instance.username}"/>
+				<h:outputText value="#{msg['user.password']}"/>
+				<p:password value="#{kullaniciBean.password}"/>
+				<h:outputText value="#{msg['user.retypePassword']}"/>
+				<p:password value="#{kullaniciBean.retypePassword}"/>
+				<h:outputText value="#{msg['user.durum']}" />
+				<p:selectOneRadio value="#{kullaniciBean.instance.durum}">
+					<f:selectItem itemValue="0" itemLabel="#{msg['user.active']}"/>
+					<f:selectItem itemValue="1" itemLabel="#{msg['user.passive']}"/>
+				</p:selectOneRadio>
+				<h:outputText value="#{msg['user.company']}" />
+        		<p:selectOneMenu id="sirketAnaCombo" value="#{kullaniciBean.instance.company}">
+	        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+	        		<f:converter converterId="entityConverter"/>
+        		</p:selectOneMenu>
+			</h:panelGrid>
+			
+			<p:commandButton value="#{msg['common.update']}" update="userPanel" action="#{kullaniciBean.update()}"/>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>

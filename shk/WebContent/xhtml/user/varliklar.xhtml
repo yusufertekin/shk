@@ -1,0 +1,450 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['varliklar.pageHeader']}">
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{varlikBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{varlikBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{varlikBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change" update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{varlikBean.sorgula()}" update="@form"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<p:panelGrid styleClass="panel-grid" id="varlikPanel1">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">
+								<h:outputText value="#{msg['varliklar.panelHeader']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['varliklar.bigHeader1']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar1" value="#{varlikBean.instance.nakit}" required="true" requiredMessage="#{msg['varliklar.1']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar1,varliklarToplam1,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar2" value="#{varlikBean.instance.finansalYatirim}" required="true" requiredMessage="#{msg['varliklar.2']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar2,varliklarToplam1,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar3" value="#{varlikBean.instance.ticariAlacak}" required="true" requiredMessage="#{msg['varliklar.3']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar3,varliklarToplam1,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar4" value="#{varlikBean.instance.supheliAlacakKarsilik}" required="true" requiredMessage="#{msg['varliklar.4']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar4,varliklarToplam1,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar5" value="#{varlikBean.instance.teknikMalzemeStok}" required="true" requiredMessage="#{msg['varliklar.5']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar5,varliklarToplam1,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar6" value="#{varlikBean.instance.ucakAlimOnOdeme}" required="true" requiredMessage="#{msg['varliklar.6']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar6,varliklarToplam1,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar7" value="#{varlikBean.instance.turevFinansalAraclar}" required="true" requiredMessage="#{msg['varliklar.7']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar7,varliklarToplam1,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar8" value="#{varlikBean.instance.iliskiliTaraflardanAlacaklar}" required="true" requiredMessage="#{msg['varliklar.8']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar8,varliklarToplam1,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.9']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar9" value="#{varlikBean.instance.digerAlacak}" required="true" requiredMessage="#{msg['varliklar.9']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar9,varliklarToplam1,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.10']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar10" value="#{varlikBean.instance.satisAmaciylaeldeTutulanVarlik}" required="true" requiredMessage="#{msg['varliklar.10']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar10,varliklarToplam1,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['varliklar.toplam1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="varliklarToplam1" styleClass="toplam-output" value="#{varlikBean.instance.nakit + varlikBean.instance.finansalYatirim + varlikBean.instance.ticariAlacak + varlikBean.instance.supheliAlacakKarsilik + varlikBean.instance.teknikMalzemeStok + varlikBean.instance.ucakAlimOnOdeme + varlikBean.instance.turevFinansalAraclar + varlikBean.instance.iliskiliTaraflardanAlacaklar + varlikBean.instance.digerAlacak + varlikBean.instance.satisAmaciylaeldeTutulanVarlik}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="varlikPanel2" styleClass="panel-grid">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['varliklar.bigHeader2']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText value="#{msg['varliklar.header1']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.11']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar11" value="#{varlikBean.instance.ozkaynakDegerlenenYatirim}" required="true" requiredMessage="#{msg['varliklar.11']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar11,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.12']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar12" value="#{varlikBean.instance.uzunVadeliFinansalYatirim}" required="true" requiredMessage="#{msg['varliklar.12']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar12,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="varlikPanel3" styleClass="panel-grid">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['varliklar.bigHeader3']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.13']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar13" value="#{varlikBean.instance.ucaklarMotorlar}" required="true" requiredMessage="#{msg['varliklar.13']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar13,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.14']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar14" value="#{varlikBean.instance.digerUcusEkipman}" required="true" requiredMessage="#{msg['varliklar.14']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar14,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.15']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar15" value="#{varlikBean.instance.yerEkipman}" required="true" requiredMessage="#{msg['varliklar.15']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar15,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.16']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar16" value="#{varlikBean.instance.birikmisAmortisman}" required="true" requiredMessage="#{msg['varliklar.16']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar16,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.17']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar17" value="#{varlikBean.instance.arsaArazi}" required="true" requiredMessage="#{msg['varliklar.17']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar17,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.18']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar18" value="#{varlikBean.instance.ucakAlimOnOdeme}" required="true" requiredMessage="#{msg['varliklar.18']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar18,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.19']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar19" value="#{varlikBean.instance.yapilmaktaOlanYatirim}" required="true" requiredMessage="#{msg['varliklar.19']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar19,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="varlikPanel4" styleClass="panel-grid">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['varliklar.bigHeader4']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.20']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar20" value="#{varlikBean.instance.serefiye}" required="true" requiredMessage="#{msg['varliklar.20']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar20,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.21']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar21" value="#{varlikBean.instance.slotHakki}" required="true" requiredMessage="#{msg['varliklar.21']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar21,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.22']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar22" value="#{varlikBean.instance.digerMaddiOlmayanDuranVarlik}" required="true" requiredMessage="#{msg['varliklar.22']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar22,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.23']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar23" value="#{varlikBean.instance.birikmisAmortismanMaddiOlmayan}" required="true" requiredMessage="#{msg['varliklar.23']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar23,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="varlikPanel5" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.24']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar24" value="#{varlikBean.instance.yatirimAmacliGayrimenkuller}" required="true" requiredMessage="#{msg['varliklar.24']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar24,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="varlikPanel6" styleClass="panel-grid">
+					<p:row>
+						<p:column colspan="2">
+							<h:outputText styleClass="big-header" value="#{msg['varliklar.bigHeader5']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.25']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar25" value="#{varlikBean.instance.uzunVadeliDigerAlacaklar}" required="true" requiredMessage="#{msg['varliklar.25']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar25,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.26']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar26" value="#{varlikBean.instance.iliskiliTaraflarAlacaklarDiger}" required="true" requiredMessage="#{msg['varliklar.26']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar26,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.27']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar27" value="#{varlikBean.instance.ertelenmisVergiVarliklar}" required="true" requiredMessage="#{msg['varliklar.27']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar27,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.28']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar28" value="#{varlikBean.instance.digerDuranVarliklar}" required="true" requiredMessage="#{msg['varliklar.28']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar28,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['varliklar.29']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{varlikBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="varliklar29" value="#{varlikBean.instance.turevFinansalAraclarDiger}" required="true" requiredMessage="#{msg['varliklar.29']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="varliklar29,varliklarToplam2,varliklarToplamGenel" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['varliklar.toplam2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="varliklarToplam2" styleClass="toplam-output"  value="#{varlikBean.instance.turevFinansalAraclarDiger + varlikBean.instance.digerDuranVarliklar + varlikBean.instance.ertelenmisVergiVarliklar + varlikBean.instance.iliskiliTaraflarAlacaklarDiger + varlikBean.instance.uzunVadeliDigerAlacaklar + varlikBean.instance.yatirimAmacliGayrimenkuller + varlikBean.instance.birikmisAmortismanMaddiOlmayan + varlikBean.instance.digerMaddiOlmayanDuranVarlik + varlikBean.instance.slotHakki + varlikBean.instance.serefiye + varlikBean.instance.yapilmaktaOlanYatirim +varlikBean.instance.ucakAlimOnOdeme + varlikBean.instance.arsaArazi + varlikBean.instance.birikmisAmortisman + varlikBean.instance.yerEkipman + varlikBean.instance.digerUcusEkipman + varlikBean.instance.ucaklarMotorlar}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="varlikPanelToplam" styleClass="panel-grid">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="toplam-text" value="#{msg['varliklar.toplamGenel']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="varliklarToplamGenel" styleClass="toplam-output" value="#{varlikBean.instance.turevFinansalAraclarDiger + varlikBean.instance.digerDuranVarliklar + varlikBean.instance.ertelenmisVergiVarliklar + varlikBean.instance.iliskiliTaraflarAlacaklarDiger + varlikBean.instance.uzunVadeliDigerAlacaklar + varlikBean.instance.yatirimAmacliGayrimenkuller + varlikBean.instance.birikmisAmortismanMaddiOlmayan + varlikBean.instance.digerMaddiOlmayanDuranVarlik + varlikBean.instance.slotHakki + varlikBean.instance.serefiye + varlikBean.instance.yapilmaktaOlanYatirim +varlikBean.instance.ucakAlimOnOdeme + varlikBean.instance.arsaArazi + varlikBean.instance.birikmisAmortisman + varlikBean.instance.yerEkipman + varlikBean.instance.digerUcusEkipman + varlikBean.instance.ucaklarMotorlar + varlikBean.instance.nakit + varlikBean.instance.finansalYatirim + varlikBean.instance.ticariAlacak + varlikBean.instance.supheliAlacakKarsilik + varlikBean.instance.teknikMalzemeStok + varlikBean.instance.ucakAlimOnOdeme + varlikBean.instance.turevFinansalAraclar + varlikBean.instance.iliskiliTaraflardanAlacaklar + varlikBean.instance.digerAlacak + varlikBean.instance.satisAmaciylaeldeTutulanVarlik}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{varlikBean.instance.dipnot}" />
+				</p:panelGrid>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{varlikBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{varlikBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{varlikBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{varlikBean.remove()}" update="@form" async="true" process="@this" immediate="true"/>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

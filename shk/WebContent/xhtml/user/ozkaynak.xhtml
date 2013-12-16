@@ -1,0 +1,1024 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel style="width:2500px !important;"  header="#{msg['ozkaynak.pageHeader']}">
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{ozkaynakBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{ozkaynakBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{ozkaynakBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change" update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" action="#{ozkaynakBean.sorgula()}" update="ozkaynakPanel1"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<p:panelGrid style="width:2400px !important;"  styleClass="panel-grid" id="ozkaynakPanel1">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="14">
+								<h:outputText value="#{msg['ozkaynak.panelHeader']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header"  value="                               " />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header"  value="#{msg['ozkaynak.yat1']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header"  value="#{msg['ozkaynak.yat2']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header"  value="#{msg['ozkaynak.yat3']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header"  value="#{msg['ozkaynak.yat4']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header"  value="#{msg['ozkaynak.yat5']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['ozkaynak.yat6']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['ozkaynak.yat7']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['ozkaynak.yat8']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['ozkaynak.yat9']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['ozkaynak.yat10']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['ozkaynak.yatToplam1']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['ozkaynak.yat11']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['ozkaynak.yatToplam2']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.ilkBakiye']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance" value="#{ozkaynakBean.instance.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance1" value="#{ozkaynakBean.instance1.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance2" value="#{ozkaynakBean.instance2.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance3" value="#{ozkaynakBean.instance3.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance4" value="#{ozkaynakBean.instance4.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance5" value="#{ozkaynakBean.instance5.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance6" value="#{ozkaynakBean.instance6.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance7" value="#{ozkaynakBean.instance7.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance8" value="#{ozkaynakBean.instance8.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance9" value="#{ozkaynakBean.instance9.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakIlkBakiyeToplam1" value="#{ozkaynakBean.instance.ilkBakiye + ozkaynakBean.instance1.ilkBakiye + ozkaynakBean.instance2.ilkBakiye + ozkaynakBean.instance3.ilkBakiye + ozkaynakBean.instance4.ilkBakiye + ozkaynakBean.instance5.ilkBakiye + ozkaynakBean.instance6.ilkBakiye + ozkaynakBean.instance7.ilkBakiye + ozkaynakBean.instance8.ilkBakiye + ozkaynakBean.instance9.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynakIlkBakiyeinstance10" value="#{ozkaynakBean.instance10.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakIlkBakiyeToplam2" value="#{ozkaynakBean.instance.ilkBakiye + ozkaynakBean.instance1.ilkBakiye + ozkaynakBean.instance2.ilkBakiye + ozkaynakBean.instance3.ilkBakiye + ozkaynakBean.instance4.ilkBakiye + ozkaynakBean.instance5.ilkBakiye + ozkaynakBean.instance6.ilkBakiye + ozkaynakBean.instance7.ilkBakiye + ozkaynakBean.instance8.ilkBakiye + ozkaynakBean.instance9.ilkBakiye + ozkaynakBean.instance10.ilkBakiye}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance" value="#{ozkaynakBean.instance.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance1" value="#{ozkaynakBean.instance1.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance2" value="#{ozkaynakBean.instance2.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance3" value="#{ozkaynakBean.instance3.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance4" value="#{ozkaynakBean.instance4.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance5" value="#{ozkaynakBean.instance5.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance6" value="#{ozkaynakBean.instance6.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance7" value="#{ozkaynakBean.instance7.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance8" value="#{ozkaynakBean.instance8.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance9" value="#{ozkaynakBean.instance9.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak1Toplam1" value="#{ozkaynakBean.instance.donemKarZarar + ozkaynakBean.instance1.donemKarZarar + ozkaynakBean.instance2.donemKarZarar + ozkaynakBean.instance3.donemKarZarar + ozkaynakBean.instance4.donemKarZarar + ozkaynakBean.instance5.donemKarZarar + ozkaynakBean.instance6.donemKarZarar + ozkaynakBean.instance7.donemKarZarar + ozkaynakBean.instance8.donemKarZarar + ozkaynakBean.instance9.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak1instance10" value="#{ozkaynakBean.instance10.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak1Toplam2" value="#{ozkaynakBean.instance.donemKarZarar + ozkaynakBean.instance1.donemKarZarar + ozkaynakBean.instance2.donemKarZarar + ozkaynakBean.instance3.donemKarZarar + ozkaynakBean.instance4.donemKarZarar + ozkaynakBean.instance5.donemKarZarar + ozkaynakBean.instance6.donemKarZarar + ozkaynakBean.instance7.donemKarZarar + ozkaynakBean.instance8.donemKarZarar + ozkaynakBean.instance9.donemKarZarar + ozkaynakBean.instance10.donemKarZarar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance" value="#{ozkaynakBean.instance.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance1" value="#{ozkaynakBean.instance1.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance2" value="#{ozkaynakBean.instance2.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance3" value="#{ozkaynakBean.instance3.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance4" value="#{ozkaynakBean.instance4.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance5" value="#{ozkaynakBean.instance5.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance6" value="#{ozkaynakBean.instance6.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance7" value="#{ozkaynakBean.instance7.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance8" value="#{ozkaynakBean.instance8.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance9" value="#{ozkaynakBean.instance9.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak2Toplam1" value="#{ozkaynakBean.instance.digerKapsamliGelir + ozkaynakBean.instance1.digerKapsamliGelir + ozkaynakBean.instance2.digerKapsamliGelir + ozkaynakBean.instance3.digerKapsamliGelir + ozkaynakBean.instance4.digerKapsamliGelir + ozkaynakBean.instance5.digerKapsamliGelir + ozkaynakBean.instance6.digerKapsamliGelir + ozkaynakBean.instance7.digerKapsamliGelir + ozkaynakBean.instance8.digerKapsamliGelir + ozkaynakBean.instance9.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak2instance10" value="#{ozkaynakBean.instance10.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak2Toplam2" value="#{ozkaynakBean.instance.digerKapsamliGelir + ozkaynakBean.instance1.digerKapsamliGelir + ozkaynakBean.instance2.digerKapsamliGelir + ozkaynakBean.instance3.digerKapsamliGelir + ozkaynakBean.instance4.digerKapsamliGelir + ozkaynakBean.instance5.digerKapsamliGelir + ozkaynakBean.instance6.digerKapsamliGelir + ozkaynakBean.instance7.digerKapsamliGelir + ozkaynakBean.instance8.digerKapsamliGelir + ozkaynakBean.instance9.digerKapsamliGelir + ozkaynakBean.instance10.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.toplam1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance" value="#{ozkaynakBean.instance.donemKarZarar + ozkaynakBean.instance.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance1" value="#{ozkaynakBean.instance1.donemKarZarar + ozkaynakBean.instance1.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance2" value="#{ozkaynakBean.instance2.donemKarZarar + ozkaynakBean.instance2.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance3" value="#{ozkaynakBean.instance3.donemKarZarar + ozkaynakBean.instance3.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance4" value="#{ozkaynakBean.instance4.donemKarZarar + ozkaynakBean.instance4.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance5" value="#{ozkaynakBean.instance5.donemKarZarar + ozkaynakBean.instance5.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance6" value="#{ozkaynakBean.instance6.donemKarZarar + ozkaynakBean.instance6.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance7" value="#{ozkaynakBean.instance7.donemKarZarar + ozkaynakBean.instance7.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance8" value="#{ozkaynakBean.instance8.donemKarZarar + ozkaynakBean.instance8.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance9" value="#{ozkaynakBean.instance9.donemKarZarar + ozkaynakBean.instance9.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1Toplam1" value="#{ozkaynakBean.instance.donemKarZarar + ozkaynakBean.instance1.donemKarZarar + ozkaynakBean.instance2.donemKarZarar + ozkaynakBean.instance3.donemKarZarar + ozkaynakBean.instance4.donemKarZarar + ozkaynakBean.instance5.donemKarZarar + ozkaynakBean.instance6.donemKarZarar + ozkaynakBean.instance7.donemKarZarar + ozkaynakBean.instance8.donemKarZarar + ozkaynakBean.instance9.donemKarZarar + ozkaynakBean.instance.digerKapsamliGelir + ozkaynakBean.instance1.digerKapsamliGelir + ozkaynakBean.instance2.digerKapsamliGelir + ozkaynakBean.instance3.digerKapsamliGelir + ozkaynakBean.instance4.digerKapsamliGelir + ozkaynakBean.instance5.digerKapsamliGelir + ozkaynakBean.instance6.digerKapsamliGelir + ozkaynakBean.instance7.digerKapsamliGelir + ozkaynakBean.instance8.digerKapsamliGelir + ozkaynakBean.instance9.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1instance10" value="#{ozkaynakBean.instance10.donemKarZarar + ozkaynakBean.instance10.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakToplam1Toplam2" value="#{ozkaynakBean.instance.donemKarZarar + ozkaynakBean.instance1.donemKarZarar + ozkaynakBean.instance2.donemKarZarar + ozkaynakBean.instance3.donemKarZarar + ozkaynakBean.instance4.donemKarZarar +  ozkaynakBean.instance5.donemKarZarar + ozkaynakBean.instance6.donemKarZarar + ozkaynakBean.instance7.donemKarZarar + ozkaynakBean.instance8.donemKarZarar + ozkaynakBean.instance9.donemKarZarar + ozkaynakBean.instance10.donemKarZarar + ozkaynakBean.instance.digerKapsamliGelir + ozkaynakBean.instance1.digerKapsamliGelir + ozkaynakBean.instance2.digerKapsamliGelir + ozkaynakBean.instance3.digerKapsamliGelir + ozkaynakBean.instance4.digerKapsamliGelir + ozkaynakBean.instance5.digerKapsamliGelir + ozkaynakBean.instance6.digerKapsamliGelir + ozkaynakBean.instance7.digerKapsamliGelir + ozkaynakBean.instance8.digerKapsamliGelir + ozkaynakBean.instance9.digerKapsamliGelir + ozkaynakBean.instance10.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance" value="#{ozkaynakBean.instance.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance1" value="#{ozkaynakBean.instance1.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance2" value="#{ozkaynakBean.instance2.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance3" value="#{ozkaynakBean.instance3.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance4" value="#{ozkaynakBean.instance4.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance5" value="#{ozkaynakBean.instance5.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance6" value="#{ozkaynakBean.instance6.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance7" value="#{ozkaynakBean.instance7.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance8" value="#{ozkaynakBean.instance8.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance9" value="#{ozkaynakBean.instance9.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak3Toplam1" value="#{ozkaynakBean.instance.sermayeArtisi + ozkaynakBean.instance1.sermayeArtisi + ozkaynakBean.instance2.sermayeArtisi + ozkaynakBean.instance3.sermayeArtisi + ozkaynakBean.instance4.sermayeArtisi + ozkaynakBean.instance5.sermayeArtisi + ozkaynakBean.instance6.sermayeArtisi + ozkaynakBean.instance7.sermayeArtisi + ozkaynakBean.instance8.sermayeArtisi + ozkaynakBean.instance9.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak3instance10" value="#{ozkaynakBean.instance10.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak3Toplam2" value="#{ozkaynakBean.instance.sermayeArtisi + ozkaynakBean.instance1.sermayeArtisi + ozkaynakBean.instance2.sermayeArtisi + ozkaynakBean.instance3.sermayeArtisi + ozkaynakBean.instance4.sermayeArtisi + ozkaynakBean.instance5.sermayeArtisi + ozkaynakBean.instance6.sermayeArtisi + ozkaynakBean.instance7.sermayeArtisi + ozkaynakBean.instance8.sermayeArtisi + ozkaynakBean.instance9.sermayeArtisi + ozkaynakBean.instance10.sermayeArtisi}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance" value="#{ozkaynakBean.instance.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance1" value="#{ozkaynakBean.instance1.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance2" value="#{ozkaynakBean.instance2.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance3" value="#{ozkaynakBean.instance3.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance4" value="#{ozkaynakBean.instance4.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance5" value="#{ozkaynakBean.instance5.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance6" value="#{ozkaynakBean.instance6.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance7" value="#{ozkaynakBean.instance7.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance8" value="#{ozkaynakBean.instance8.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance9" value="#{ozkaynakBean.instance9.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak4Toplam1" value="#{ozkaynakBean.instance.odenenTemettuler + ozkaynakBean.instance1.odenenTemettuler + ozkaynakBean.instance2.odenenTemettuler + ozkaynakBean.instance3.odenenTemettuler + ozkaynakBean.instance4.odenenTemettuler + ozkaynakBean.instance5.odenenTemettuler + ozkaynakBean.instance6.odenenTemettuler + ozkaynakBean.instance7.odenenTemettuler + ozkaynakBean.instance8.odenenTemettuler + ozkaynakBean.instance9.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak4instance10" value="#{ozkaynakBean.instance10.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak4Toplam2" value="#{ozkaynakBean.instance.odenenTemettuler + ozkaynakBean.instance1.odenenTemettuler + ozkaynakBean.instance2.odenenTemettuler + ozkaynakBean.instance3.odenenTemettuler + ozkaynakBean.instance4.odenenTemettuler + ozkaynakBean.instance5.odenenTemettuler + ozkaynakBean.instance6.odenenTemettuler + ozkaynakBean.instance7.odenenTemettuler + ozkaynakBean.instance8.odenenTemettuler + ozkaynakBean.instance9.odenenTemettuler + ozkaynakBean.instance10.odenenTemettuler}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance" value="#{ozkaynakBean.instance.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance1" value="#{ozkaynakBean.instance1.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance2" value="#{ozkaynakBean.instance2.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance3" value="#{ozkaynakBean.instance3.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance4" value="#{ozkaynakBean.instance4.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance5" value="#{ozkaynakBean.instance5.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance6" value="#{ozkaynakBean.instance6.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance7" value="#{ozkaynakBean.instance7.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance8" value="#{ozkaynakBean.instance8.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance9" value="#{ozkaynakBean.instance9.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak5Toplam1" value="#{ozkaynakBean.instance.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance1.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance2.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance3.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance4.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance5.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance6.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance7.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance8.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance9.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak5instance10" value="#{ozkaynakBean.instance10.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak5Toplam2" value="#{ozkaynakBean.instance.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance1.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance2.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance3.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance4.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance5.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance6.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance7.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance8.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance9.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance10.bagliOrtaklikAlimiKaynakli}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance" value="#{ozkaynakBean.instance.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance1" value="#{ozkaynakBean.instance1.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance2" value="#{ozkaynakBean.instance2.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance3" value="#{ozkaynakBean.instance3.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance4" value="#{ozkaynakBean.instance4.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance5" value="#{ozkaynakBean.instance5.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance6" value="#{ozkaynakBean.instance6.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance7" value="#{ozkaynakBean.instance7.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance8" value="#{ozkaynakBean.instance8.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance9" value="#{ozkaynakBean.instance9.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak6Toplam1" value="#{ozkaynakBean.instance.kismiBagliOrtaklikSatis + ozkaynakBean.instance1.kismiBagliOrtaklikSatis + ozkaynakBean.instance2.kismiBagliOrtaklikSatis + ozkaynakBean.instance3.kismiBagliOrtaklikSatis + ozkaynakBean.instance4.kismiBagliOrtaklikSatis + ozkaynakBean.instance5.kismiBagliOrtaklikSatis + ozkaynakBean.instance6.kismiBagliOrtaklikSatis + ozkaynakBean.instance7.kismiBagliOrtaklikSatis + ozkaynakBean.instance8.kismiBagliOrtaklikSatis + ozkaynakBean.instance9.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak6instance10" value="#{ozkaynakBean.instance10.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak6Toplam2" value="#{ozkaynakBean.instance.kismiBagliOrtaklikSatis + ozkaynakBean.instance1.kismiBagliOrtaklikSatis + ozkaynakBean.instance2.kismiBagliOrtaklikSatis + ozkaynakBean.instance3.kismiBagliOrtaklikSatis + ozkaynakBean.instance4.kismiBagliOrtaklikSatis + ozkaynakBean.instance5.kismiBagliOrtaklikSatis + ozkaynakBean.instance6.kismiBagliOrtaklikSatis + ozkaynakBean.instance7.kismiBagliOrtaklikSatis + ozkaynakBean.instance8.kismiBagliOrtaklikSatis + ozkaynakBean.instance9.kismiBagliOrtaklikSatis + ozkaynakBean.instance10.kismiBagliOrtaklikSatis}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance" value="#{ozkaynakBean.instance.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance1" value="#{ozkaynakBean.instance1.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance2" value="#{ozkaynakBean.instance2.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance3" value="#{ozkaynakBean.instance3.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance4" value="#{ozkaynakBean.instance4.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance5" value="#{ozkaynakBean.instance5.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance6" value="#{ozkaynakBean.instance6.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance7" value="#{ozkaynakBean.instance7.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance8" value="#{ozkaynakBean.instance8.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance9" value="#{ozkaynakBean.instance9.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak7Toplam1" value="#{ozkaynakBean.instance.transfer + ozkaynakBean.instance1.transfer + ozkaynakBean.instance2.transfer + ozkaynakBean.instance3.transfer + ozkaynakBean.instance4.transfer + ozkaynakBean.instance5.transfer + ozkaynakBean.instance6.transfer + ozkaynakBean.instance7.transfer + ozkaynakBean.instance8.transfer + ozkaynakBean.instance9.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak7instance10" value="#{ozkaynakBean.instance10.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak7Toplam2" value="#{ozkaynakBean.instance.transfer + ozkaynakBean.instance1.transfer + ozkaynakBean.instance2.transfer + ozkaynakBean.instance3.transfer + ozkaynakBean.instance4.transfer + ozkaynakBean.instance5.transfer + ozkaynakBean.instance6.transfer + ozkaynakBean.instance7.transfer + ozkaynakBean.instance8.transfer + ozkaynakBean.instance9.transfer + ozkaynakBean.instance10.transfer}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance" value="#{ozkaynakBean.instance.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance1" value="#{ozkaynakBean.instance1.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance2" value="#{ozkaynakBean.instance2.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance3" value="#{ozkaynakBean.instance3.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance4" value="#{ozkaynakBean.instance4.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance5" value="#{ozkaynakBean.instance5.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance6" value="#{ozkaynakBean.instance6.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance7" value="#{ozkaynakBean.instance7.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance8" value="#{ozkaynakBean.instance8.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance9" value="#{ozkaynakBean.instance9.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak8Toplam1" value="#{ozkaynakBean.instance.diger + ozkaynakBean.instance1.diger + ozkaynakBean.instance2.diger + ozkaynakBean.instance3.diger + ozkaynakBean.instance4.diger + ozkaynakBean.instance5.diger + ozkaynakBean.instance6.diger + ozkaynakBean.instance7.diger + ozkaynakBean.instance8.diger + ozkaynakBean.instance9.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{ozkaynakBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ozkaynak8instance10" value="#{ozkaynakBean.instance10.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="ozkaynakPanel1" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynak8Toplam2" value="#{ozkaynakBean.instance.diger + ozkaynakBean.instance1.diger + ozkaynakBean.instance2.diger + ozkaynakBean.instance3.diger + ozkaynakBean.instance4.diger + ozkaynakBean.instance5.diger + ozkaynakBean.instance6.diger + ozkaynakBean.instance7.diger + ozkaynakBean.instance8.diger + ozkaynakBean.instance9.diger + ozkaynakBean.instance10.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.sonBakiye']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance" value="#{ozkaynakBean.instance.donemKarZarar + ozkaynakBean.instance.digerKapsamliGelir + ozkaynakBean.instance.ilkBakiye + ozkaynakBean.instance.sermayeArtisi + ozkaynakBean.instance.odenenTemettuler + ozkaynakBean.instance.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance.kismiBagliOrtaklikSatis + ozkaynakBean.instance.transfer + ozkaynakBean.instance.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance1" value="#{ozkaynakBean.instance1.donemKarZarar + ozkaynakBean.instance1.digerKapsamliGelir + ozkaynakBean.instance1.ilkBakiye + ozkaynakBean.instance1.sermayeArtisi + ozkaynakBean.instance1.odenenTemettuler + ozkaynakBean.instance1.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance1.kismiBagliOrtaklikSatis + ozkaynakBean.instance1.transfer + ozkaynakBean.instance1.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance2" value="#{ozkaynakBean.instance2.donemKarZarar + ozkaynakBean.instance2.digerKapsamliGelir + ozkaynakBean.instance2.ilkBakiye + ozkaynakBean.instance2.sermayeArtisi + ozkaynakBean.instance2.odenenTemettuler + ozkaynakBean.instance2.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance2.kismiBagliOrtaklikSatis + ozkaynakBean.instance2.transfer + ozkaynakBean.instance2.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance3" value="#{ozkaynakBean.instance3.donemKarZarar + ozkaynakBean.instance3.digerKapsamliGelir + ozkaynakBean.instance3.ilkBakiye + ozkaynakBean.instance3.sermayeArtisi + ozkaynakBean.instance3.odenenTemettuler + ozkaynakBean.instance3.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance3.kismiBagliOrtaklikSatis + ozkaynakBean.instance3.transfer + ozkaynakBean.instance3.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance4" value="#{ozkaynakBean.instance4.donemKarZarar + ozkaynakBean.instance4.digerKapsamliGelir + ozkaynakBean.instance4.ilkBakiye + ozkaynakBean.instance4.sermayeArtisi + ozkaynakBean.instance4.odenenTemettuler + ozkaynakBean.instance4.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance4.kismiBagliOrtaklikSatis + ozkaynakBean.instance4.transfer + ozkaynakBean.instance4.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance5" value="#{ozkaynakBean.instance5.donemKarZarar + ozkaynakBean.instance5.digerKapsamliGelir + ozkaynakBean.instance5.ilkBakiye + ozkaynakBean.instance5.sermayeArtisi + ozkaynakBean.instance5.odenenTemettuler + ozkaynakBean.instance5.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance5.kismiBagliOrtaklikSatis + ozkaynakBean.instance5.transfer + ozkaynakBean.instance5.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance6" value="#{ozkaynakBean.instance6.donemKarZarar + ozkaynakBean.instance6.digerKapsamliGelir + ozkaynakBean.instance6.ilkBakiye + ozkaynakBean.instance6.sermayeArtisi + ozkaynakBean.instance6.odenenTemettuler + ozkaynakBean.instance6.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance6.kismiBagliOrtaklikSatis + ozkaynakBean.instance6.transfer + ozkaynakBean.instance6.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance7" value="#{ozkaynakBean.instance7.donemKarZarar + ozkaynakBean.instance7.digerKapsamliGelir + ozkaynakBean.instance7.ilkBakiye + ozkaynakBean.instance7.sermayeArtisi + ozkaynakBean.instance7.odenenTemettuler + ozkaynakBean.instance7.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance7.kismiBagliOrtaklikSatis + ozkaynakBean.instance7.transfer + ozkaynakBean.instance7.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance8" value="#{ozkaynakBean.instance8.donemKarZarar + ozkaynakBean.instance8.digerKapsamliGelir + ozkaynakBean.instance8.ilkBakiye + ozkaynakBean.instance8.sermayeArtisi + ozkaynakBean.instance8.odenenTemettuler + ozkaynakBean.instance8.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance8.kismiBagliOrtaklikSatis + ozkaynakBean.instance8.transfer + ozkaynakBean.instance8.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance9" value="#{ozkaynakBean.instance9.donemKarZarar + ozkaynakBean.instance9.digerKapsamliGelir + ozkaynakBean.instance9.ilkBakiye + ozkaynakBean.instance9.sermayeArtisi + ozkaynakBean.instance9.odenenTemettuler + ozkaynakBean.instance9.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance9.kismiBagliOrtaklikSatis + ozkaynakBean.instance9.transfer + ozkaynakBean.instance9.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeToplam1" value="#{ozkaynakBean.instance.kismiBagliOrtaklikSatis + ozkaynakBean.instance1.kismiBagliOrtaklikSatis + ozkaynakBean.instance2.kismiBagliOrtaklikSatis + ozkaynakBean.instance3.kismiBagliOrtaklikSatis + ozkaynakBean.instance4.kismiBagliOrtaklikSatis + ozkaynakBean.instance5.kismiBagliOrtaklikSatis + ozkaynakBean.instance6.kismiBagliOrtaklikSatis + ozkaynakBean.instance7.kismiBagliOrtaklikSatis + ozkaynakBean.instance8.kismiBagliOrtaklikSatis + ozkaynakBean.instance9.kismiBagliOrtaklikSatis + ozkaynakBean.instance.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance1.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance2.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance3.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance4.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance5.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance6.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance7.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance8.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance9.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance.odenenTemettuler + ozkaynakBean.instance1.odenenTemettuler + ozkaynakBean.instance2.odenenTemettuler + ozkaynakBean.instance3.odenenTemettuler + ozkaynakBean.instance4.odenenTemettuler + ozkaynakBean.instance5.odenenTemettuler + ozkaynakBean.instance6.odenenTemettuler + ozkaynakBean.instance7.odenenTemettuler + ozkaynakBean.instance8.odenenTemettuler + ozkaynakBean.instance9.odenenTemettuler + ozkaynakBean.instance.sermayeArtisi + ozkaynakBean.instance1.sermayeArtisi + ozkaynakBean.instance2.sermayeArtisi + ozkaynakBean.instance3.sermayeArtisi + ozkaynakBean.instance4.sermayeArtisi + ozkaynakBean.instance5.sermayeArtisi + ozkaynakBean.instance6.sermayeArtisi + ozkaynakBean.instance7.sermayeArtisi + ozkaynakBean.instance8.sermayeArtisi + ozkaynakBean.instance9.sermayeArtisi + ozkaynakBean.instance.ilkBakiye + ozkaynakBean.instance1.ilkBakiye + ozkaynakBean.instance2.ilkBakiye + ozkaynakBean.instance3.ilkBakiye + ozkaynakBean.instance4.ilkBakiye + ozkaynakBean.instance5.ilkBakiye + ozkaynakBean.instance6.ilkBakiye + ozkaynakBean.instance7.ilkBakiye + ozkaynakBean.instance8.ilkBakiye + ozkaynakBean.instance9.ilkBakiye + ozkaynakBean.instance.transfer + ozkaynakBean.instance1.transfer + ozkaynakBean.instance2.transfer + ozkaynakBean.instance3.transfer + ozkaynakBean.instance4.transfer + ozkaynakBean.instance5.transfer + ozkaynakBean.instance6.transfer + ozkaynakBean.instance7.transfer + ozkaynakBean.instance8.transfer + ozkaynakBean.instance9.transfer + ozkaynakBean.instance.diger + ozkaynakBean.instance1.diger + ozkaynakBean.instance2.diger + ozkaynakBean.instance3.diger + ozkaynakBean.instance4.diger + ozkaynakBean.instance5.diger + ozkaynakBean.instance6.diger + ozkaynakBean.instance7.diger + ozkaynakBean.instance8.diger + ozkaynakBean.instance9.diger + ozkaynakBean.instance.donemKarZarar + ozkaynakBean.instance1.donemKarZarar + ozkaynakBean.instance2.donemKarZarar + ozkaynakBean.instance3.donemKarZarar + ozkaynakBean.instance4.donemKarZarar + ozkaynakBean.instance5.donemKarZarar + ozkaynakBean.instance6.donemKarZarar + ozkaynakBean.instance7.donemKarZarar + ozkaynakBean.instance8.donemKarZarar + ozkaynakBean.instance9.donemKarZarar + ozkaynakBean.instance.digerKapsamliGelir + ozkaynakBean.instance1.digerKapsamliGelir + ozkaynakBean.instance2.digerKapsamliGelir + ozkaynakBean.instance3.digerKapsamliGelir + ozkaynakBean.instance4.digerKapsamliGelir + ozkaynakBean.instance5.digerKapsamliGelir + ozkaynakBean.instance6.digerKapsamliGelir + ozkaynakBean.instance7.digerKapsamliGelir + ozkaynakBean.instance8.digerKapsamliGelir + ozkaynakBean.instance9.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeinstance10" value="#{ozkaynakBean.instance10.donemKarZarar + ozkaynakBean.instance10.digerKapsamliGelir + ozkaynakBean.instance10.ilkBakiye + ozkaynakBean.instance10.sermayeArtisi + ozkaynakBean.instance10.odenenTemettuler + ozkaynakBean.instance10.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance10.kismiBagliOrtaklikSatis + ozkaynakBean.instance10.transfer + ozkaynakBean.instance10.diger}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-text" id="ozkaynakSonBakiyeToplam2" value="#{ozkaynakBean.instance.kismiBagliOrtaklikSatis + ozkaynakBean.instance1.kismiBagliOrtaklikSatis + ozkaynakBean.instance2.kismiBagliOrtaklikSatis + ozkaynakBean.instance3.kismiBagliOrtaklikSatis + ozkaynakBean.instance4.kismiBagliOrtaklikSatis + ozkaynakBean.instance5.kismiBagliOrtaklikSatis + ozkaynakBean.instance6.kismiBagliOrtaklikSatis + ozkaynakBean.instance7.kismiBagliOrtaklikSatis + ozkaynakBean.instance8.kismiBagliOrtaklikSatis + ozkaynakBean.instance9.kismiBagliOrtaklikSatis + ozkaynakBean.instance10.kismiBagliOrtaklikSatis + ozkaynakBean.instance.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance1.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance2.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance3.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance4.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance5.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance6.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance7.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance8.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance9.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance10.bagliOrtaklikAlimiKaynakli + ozkaynakBean.instance.odenenTemettuler + ozkaynakBean.instance1.odenenTemettuler + ozkaynakBean.instance2.odenenTemettuler + ozkaynakBean.instance3.odenenTemettuler + ozkaynakBean.instance4.odenenTemettuler + ozkaynakBean.instance5.odenenTemettuler + ozkaynakBean.instance6.odenenTemettuler + ozkaynakBean.instance7.odenenTemettuler + ozkaynakBean.instance8.odenenTemettuler + ozkaynakBean.instance9.odenenTemettuler + ozkaynakBean.instance10.odenenTemettuler + ozkaynakBean.instance.sermayeArtisi + ozkaynakBean.instance1.sermayeArtisi + ozkaynakBean.instance2.sermayeArtisi + ozkaynakBean.instance3.sermayeArtisi + ozkaynakBean.instance4.sermayeArtisi + ozkaynakBean.instance5.sermayeArtisi + ozkaynakBean.instance6.sermayeArtisi + ozkaynakBean.instance7.sermayeArtisi + ozkaynakBean.instance8.sermayeArtisi + ozkaynakBean.instance9.sermayeArtisi + ozkaynakBean.instance10.sermayeArtisi + ozkaynakBean.instance.ilkBakiye + ozkaynakBean.instance1.ilkBakiye + ozkaynakBean.instance2.ilkBakiye + ozkaynakBean.instance3.ilkBakiye + ozkaynakBean.instance4.ilkBakiye + ozkaynakBean.instance5.ilkBakiye + ozkaynakBean.instance6.ilkBakiye + ozkaynakBean.instance7.ilkBakiye + ozkaynakBean.instance8.ilkBakiye + ozkaynakBean.instance9.ilkBakiye + ozkaynakBean.instance10.ilkBakiye + ozkaynakBean.instance.transfer + ozkaynakBean.instance1.transfer + ozkaynakBean.instance2.transfer + ozkaynakBean.instance3.transfer + ozkaynakBean.instance4.transfer + ozkaynakBean.instance5.transfer + ozkaynakBean.instance6.transfer + ozkaynakBean.instance7.transfer + ozkaynakBean.instance8.transfer + ozkaynakBean.instance9.transfer + ozkaynakBean.instance10.transfer + ozkaynakBean.instance.diger + ozkaynakBean.instance1.diger + ozkaynakBean.instance2.diger + ozkaynakBean.instance3.diger + ozkaynakBean.instance4.diger + ozkaynakBean.instance5.diger + ozkaynakBean.instance6.diger + ozkaynakBean.instance7.diger + ozkaynakBean.instance8.diger + ozkaynakBean.instance9.diger + ozkaynakBean.instance10.diger + ozkaynakBean.instance.donemKarZarar + ozkaynakBean.instance1.donemKarZarar + ozkaynakBean.instance2.donemKarZarar + ozkaynakBean.instance3.donemKarZarar + ozkaynakBean.instance4.donemKarZarar + ozkaynakBean.instance5.donemKarZarar + ozkaynakBean.instance6.donemKarZarar + ozkaynakBean.instance7.donemKarZarar + ozkaynakBean.instance8.donemKarZarar + ozkaynakBean.instance9.donemKarZarar + ozkaynakBean.instance10.donemKarZarar + ozkaynakBean.instance.digerKapsamliGelir + ozkaynakBean.instance1.digerKapsamliGelir + ozkaynakBean.instance2.digerKapsamliGelir + ozkaynakBean.instance3.digerKapsamliGelir + ozkaynakBean.instance4.digerKapsamliGelir + ozkaynakBean.instance5.digerKapsamliGelir + ozkaynakBean.instance6.digerKapsamliGelir + ozkaynakBean.instance7.digerKapsamliGelir + ozkaynakBean.instance8.digerKapsamliGelir + ozkaynakBean.instance9.digerKapsamliGelir + ozkaynakBean.instance10.digerKapsamliGelir}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['ozkaynak.durum']}" />
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instanceBoolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instance1Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instance2Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instance3Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instance4Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instance5Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instance6Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instance7Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instance8Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instance9Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.toplam1Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.instance10Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="bold-header">
+							<h:outputText styleClass="bold-header"  value="#{ozkaynakBean.toplam2Boolean ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis'] ? msg['ozkaynak.dogru'] : msg['ozkaynak.yanlis']}">
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{ozkaynakBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ozkaynakBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ozkaynakBean.save()}" update="ozkaynakPanel1"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{ozkaynakBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{ozkaynakBean.remove()}" update="ozkaynakPanel1"/>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

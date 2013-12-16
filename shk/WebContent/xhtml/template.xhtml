@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html" id="fview">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <ui:debug />
+    <f:metadata>
+        <ui:insert name="metadata" />
+    </f:metadata>
+    <h:head>
+    	<title>Sivil Havacılık</title>
+    	<ui:insert name="head"/>
+    </h:head>
+    <h:body  onload="statusDialog.hide();">
+    	<h:outputStylesheet library="css" name="style.css" />
+	    <p:ajaxStatus onstart="statusDialog.show();" oncomplete="statusDialog.hide();"/>
+	    <p:layout fullPage="true" resizeTitle="resize" >
+	        <p:layoutUnit position="north" size="65" id="north" styleClass="layout-unit" >
+	             <p:graphicImage value="/resources/images/shkLogo.jpg" height="55" width="135"/>  
+	        </p:layoutUnit>
+	        <p:layoutUnit styleClass="layout-unit" position="west" id="west"  resizable="false" size="199">
+	        	<h:form prependId="false">
+	        		<h:outputText style="font-weight:bold;" value="#{currentUser.username}" />
+	        		<p:spacer width="10"/>
+	        		<p:commandLink ajax="false" value="#{msg['common.logout']}" action="#{loginBean.logout()}"/>
+	        		<br />
+		        	<p:menu style="width:186px;" >
+		        		<p:submenu rendered="#{currentUser.userId == 1}" label="#{msg['menu.donemProcesses']}">
+							<p:menuitem immediate="true"  id="menuItem18" value="#{msg['submenu.donem']}" url="/xhtml/admin/donem.xhtml" />
+						</p:submenu>
+		        		<p:submenu label="#{msg['menu.userProcesses']}">
+							<p:menuitem rendered="#{currentUser.userId == 1}" immediate="true" action="#{kullaniciBean.emptyUser()}" id="menuItem1" value="#{msg['submenu.saveUser']}" />
+							<p:menuitem id="menuItem2" immediate="true" action="#{kullaniciBean.loadUser()}" value="#{msg['submenu.updateUser']}"/>
+						</p:submenu>
+						<p:submenu rendered="#{currentUser.userId == 1}" label="#{msg['menu.companyProcesses']}">
+							<p:menuitem immediate="true"  id="menuItem3" value="#{msg['submenu.saveCompany']}" url="/xhtml/admin/companySave.xhtml" />
+							<p:menuitem immediate="true" id="menuItem4" value="#{msg['submenu.selectCompany']}" url="/xhtml/admin/companySelection.xhtml" />
+							<p:menuitem immediate="true" id="menuItem21" action="#{karneBean.initPage()}" value="#{msg['submenu.karne']}" />
+							<p:menuitem immediate="true" id="menuItem22" action="#{eksikTabloBean.initPage()}" value="#{msg['submenu.eksikTablo']}" />
+						</p:submenu>
+						<p:submenu label="#{msg['menu.generalProcesses']}">
+							<p:menuitem immediate="true" id="menuItem5" action="#{varlikBean.initPage()}" value="#{msg['submenu.varliklar']}" />
+							<p:menuitem immediate="true" id="menuItem6" action="#{kaynakBean.initPage()}" value="#{msg['submenu.kaynaklar']}" />
+							<p:menuitem immediate="true" id="menuItem7" action="#{karZararBean.initPage()}" value="#{msg['submenu.karZarar']}" />
+							<p:menuitem immediate="true" id="menuItem8" action="#{nakitAkimBean.initPage()}" value="#{msg['submenu.nakitAkim']}" />
+							<p:menuitem immediate="true" id="menuItem9" action="#{toplamCalisanBean.initPage()}" value="#{msg['submenu.toplamCalisan']}" />
+							<p:menuitem immediate="true" id="menuItem10" action="#{borcYaslandirmaBean.initPage()}" value="#{msg['submenu.borcYaslandirma']}" />
+							<p:menuitem immediate="true" id="menuItem11" action="#{trafikStatBean.initPage()}" value="#{msg['submenu.trafikStat']}" />
+							<p:menuitem immediate="true" id="menuItem12" action="#{ucakGiderBean.initPage()}" value="#{msg['submenu.ucakGider']}" />
+							<p:menuitem immediate="true" id="menuItem13" action="#{dovizPozisyonBean.initPage()}" value="#{msg['submenu.dovizPozisyon']}" />
+							<p:menuitem immediate="true" id="menuItem14" action="#{ucakFiloBean.initPage()}" value="#{msg['submenu.ucakFilo']}" />
+							<p:menuitem immediate="true" id="menuItem19" action="#{iliskiliTarafBakiyeBean.initPage()}" value="#{msg['submenu.iliskiliTarafBakiye']}" />
+							<p:menuitem immediate="true" id="menuItem20" action="#{iliskiliTarafIslemBean.initPage()}" value="#{msg['submenu.iliskiliTarafIslem']}" />
+							<p:menuitem immediate="true" id="menuItem15" action="#{iliskiliTarafTOBean.initPage()}" value="#{msg['submenu.iliskiliTarafTO']}" />
+							<p:menuitem immediate="true" id="menuItem16" action="#{iliskiliTaraflarBean.initPage()}" value="#{msg['submenu.iliskiliTaraflar']}" />
+							<p:menuitem immediate="true" id="menuItem17" action="#{ozkaynakBean.initPage()}" value="#{msg['submenu.ozkaynak']}" />
+						</p:submenu>
+					</p:menu>
+				</h:form>
+	        </p:layoutUnit>
+	        <p:layoutUnit styleClass="layout-unit" position="center">
+                <ui:insert name="content" />
+	        </p:layoutUnit>
+	
+	        <p:layoutUnit styleClass="layout-unit-passive" position="east" size="100" id="east">
+	        </p:layoutUnit>
+	
+	        <p:layoutUnit styleClass="layout-unit-passive" position="south" size="44" id="south">
+	        	<p:graphicImage style="display: block; margin-left: auto; margin-right: auto;" value="/resources/images/poweredByDeloitte.png" height="38" width="200"/>
+	        </p:layoutUnit>
+	    </p:layout>
+	    
+			<p:dialog modal="true" widgetVar="statusDialog" showHeader="false" draggable="false" closable="false" resizable="false" visible="false" position="center" width="150px" maximizable="false" minimizable="false" >
+	        	<p:graphicImage width="150" value="/resources/images/ajax-loader.gif" />
+	   		</p:dialog>
+    </h:body>
+</f:view>
+</html>

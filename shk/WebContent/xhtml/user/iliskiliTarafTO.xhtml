@@ -1,0 +1,483 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['iliskiliTarafTO.pageHeader']}">
+				<f:facet name="footer">
+					<h:outputText value="#{msg['iliskiliTarafTO.footer']}" styleClass="bold-header" />
+				</f:facet>
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{iliskiliTarafTOBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+        			<p:selectOneMenu value="#{iliskiliTarafTOBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{donemList}" var="don" itemValue="#{don}" itemLabel="#{iliskiliTarafTOBean.formatDate(don.donem,'dd/MM/yyyy')}" />
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change"  update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{iliskiliTarafTOBean.sorgula()}" update="iliskiliTarafTOPanel1,iliskiliTarafTOTable1,iliskiliTarafTOTable2,iliskiliTarafTOTable3,iliskiliTarafTOTable4,iliskiliTarafTOToplam"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<h:outputText value="#{msg['iliskiliTarafTO.panelHeader']}" styleClass="bold-header"/>
+				<p:panelGrid styleClass="panel-grid" id="iliskiliTarafTOPanel1">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="2">
+								<h:outputText value="#{msg['iliskiliTarafTO.bilgiGiris']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafTO.tip']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:selectOneMenu id="iliskiliTarafTOTip" value="#{iliskiliTarafTOBean.instance.tip}">
+								<f:selectItem itemValue="#{0}" itemLabel="#{msg['iliskiliTarafTO.tableHeader1']}"/>
+								<f:selectItem itemValue="#{1}" itemLabel="#{msg['iliskiliTarafTO.tableHeader2']}"/>
+								<f:selectItem itemValue="#{2}" itemLabel="#{msg['iliskiliTarafTO.tableHeader3']}"/>
+								<f:selectItem itemValue="#{3}" itemLabel="#{msg['iliskiliTarafTO.tableHeader4']}"/>
+								<f:converter converterId="entityConverter"/>
+								<p:ajax event="change" update="iliskiliTarafTOPanel1"/>
+							</p:selectOneMenu>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafTO.0']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafTO0" value="#{iliskiliTarafTOBean.instance.name}" required="true" requiredMessage="#{msg['iliskiliTarafTO.0']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="iliskiliTarafTO0" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafTO.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafTO1" value="#{iliskiliTarafTOBean.instance.orjinalParaBirimi}" required="true" requiredMessage="#{msg['iliskiliTarafTO.1']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="iliskiliTarafTO1" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafTO.2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafTO2" value="#{iliskiliTarafTOBean.instance.vade}" required="true" requiredMessage="#{msg['iliskiliTarafTO.2']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="iliskiliTarafTO2" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafTO.3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafTO3" value="#{iliskiliTarafTOBean.instance.faizOrani}" required="true" requiredMessage="#{msg['iliskiliTarafTO.3']}#{msg['common.requiredMessage']}">
+								<p:ajax event="blur" update="iliskiliTarafTO3" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafTO.4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafTO4" value="#{iliskiliTarafTOBean.instance.kisaVadeliAlacak}" required="true" requiredMessage="#{msg['iliskiliTarafTO.4']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="iliskiliTarafTO4" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['iliskiliTarafTO.5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="iliskiliTarafTO5" value="#{iliskiliTarafTOBean.instance.uzunVadeliAlacak}" required="true" requiredMessage="#{msg['iliskiliTarafTO.5']}#{msg['common.requiredMessage']}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<p:ajax event="blur" update="iliskiliTarafTO5" />
+							</p:inputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{iliskiliTarafTOBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafTOBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{iliskiliTarafTOBean.save()}" update="iliskiliTarafTOPanel1, iliskiliTarafTOTable1, iliskiliTarafTOToplam, iliskiliTarafTOTable2, iliskiliTarafTOTable3, iliskiliTarafTOTable4"/>
+				<br />
+				<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTarafTOTable1" var="taraf" value="#{iliskiliTarafTOBean.ortakList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTarafTO.tableHeader1']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTarafTOBean.update(taraf)}" update="@([id$=iliskiliTarafTOToplam]),iliskiliTarafTOTable1" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTarafTO.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.orjinalParaBirimi}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.orjinalParaBirimi}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.2']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                	<h:outputText value="#{taraf.vade}">
+			                	</h:outputText>
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.vade}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.3']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizOrani}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizOrani}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.4']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kisaVadeliAlacak}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kisaVadeliAlacak}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.5']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.uzunVadeliAlacak}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.uzunVadeliAlacak}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTarafTOBean.selectedDonem.durum == 0 ? true : false}" >
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTarafTOBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTarafTOBean.remove(taraf)}" immediate="true" value="#{msg['common.remove']}" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTarafTOTable2" var="taraf" value="#{iliskiliTarafTOBean.aileBireyList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTarafTO.tableHeader2']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTarafTOBean.update(taraf)}" update="@([id$=iliskiliTarafTOToplam]),iliskiliTarafTOTable2" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTarafTO.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.orjinalParaBirimi}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.orjinalParaBirimi}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.2']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                	<h:outputText value="#{taraf.vade}">
+			                	</h:outputText>
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.vade}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.3']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizOrani}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizOrani}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.4']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kisaVadeliAlacak}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kisaVadeliAlacak}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.5']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.uzunVadeliAlacak}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.uzunVadeliAlacak}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTarafTOBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTarafTOBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTarafTOBean.remove(taraf)}" value="#{msg['common.remove']}" immediate="true" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTarafTOTable3" var="taraf" value="#{iliskiliTarafTOBean.ustDuzeyYonList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTarafTO.tableHeader3']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTarafTOBean.update(taraf)}" update="@([id$=iliskiliTarafTOToplam]),iliskiliTarafTOTable3" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTarafTO.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.orjinalParaBirimi}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.orjinalParaBirimi}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.2']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                	<h:outputText value="#{taraf.vade}">
+			                	</h:outputText>
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.vade}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.3']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizOrani}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizOrani}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.4']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kisaVadeliAlacak}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kisaVadeliAlacak}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.5']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.uzunVadeliAlacak}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.uzunVadeliAlacak}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTarafTOBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTarafTOBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTarafTOBean.remove(taraf)}" value="#{msg['common.remove']}" immediate="true" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:dataTable id="iliskiliTarafTOTable4" var="taraf" value="#{iliskiliTarafTOBean.digerIliskiliTarafList}" editable="true">
+					<f:facet name="header">
+						<h:outputText value="#{msg['iliskiliTarafTO.tableHeader4']}" />
+					</f:facet>
+					<p:ajax event="rowEdit" listener="#{iliskiliTarafTOBean.update(taraf)}" update="@([id$=iliskiliTarafTOToplam]),iliskiliTarafTOTable4" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage(msg['common.cancelProcess'])}" />
+					<p:column headerText="#{msg['iliskiliTarafTO.0']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.name}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.name}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.1']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.orjinalParaBirimi}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.orjinalParaBirimi}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.2']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                	<h:outputText value="#{taraf.vade}">
+			                	</h:outputText>
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.vade}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.3']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.faizOrani}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.faizOrani}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.4']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.kisaVadeliAlacak}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.kisaVadeliAlacak}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msg['iliskiliTarafTO.5']}">
+						 <p:cellEditor>
+			                <f:facet name="output">
+			                    <h:outputText value="#{taraf.uzunVadeliAlacak}" />
+			                </f:facet>
+			                <f:facet name="input">
+			                    <p:inputText disabled="#{iliskiliTarafTOBean.selectedDonem.durum == 1 ? true : false}"  value="#{taraf.uzunVadeliAlacak}"/>
+			                </f:facet>
+         			   	</p:cellEditor>
+					</p:column>
+					<p:column rendered="#{iliskiliTarafTOBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.update']}" />
+						</f:facet>
+						<p:rowEditor />
+					</p:column>
+					<p:column rendered="#{iliskiliTarafTOBean.selectedDonem.durum == 0 ? true : false}">
+						<f:facet name="header">
+							<h:outputText value="#{msg['common.remove']}" />
+						</f:facet>
+						<p:commandLink action="#{iliskiliTarafTOBean.remove(taraf)}" immediate="true" value="#{msg['common.remove']}" update="@form" />
+					</p:column>
+				</p:dataTable>
+				<br />
+					<p:separator />
+				<br />
+				<p:panelGrid id="iliskiliTarafTOToplam" columns="2">
+		            <p:column>
+		                <h:outputText value="#{msg['iliskiliTarafTO.toplam']} #{msg['iliskiliTarafTO.4']}" />
+		            </p:column>
+		            <p:column >
+		                <h:outputText value="#{iliskiliTarafTOBean.kisaVadeToplam}" />
+		            </p:column>
+		            <p:column>
+		                <h:outputText value="#{msg['iliskiliTarafTO.toplam']} #{msg['iliskiliTarafTO.5']}" />
+		            </p:column>
+		            <p:column>
+		                <h:outputText value="#{iliskiliTarafTOBean.uzunVadeToplam}" />
+		            </p:column>
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

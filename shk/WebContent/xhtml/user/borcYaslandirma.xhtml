@@ -1,0 +1,853 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel style="width:1300px !important;" header="#{msg['borcYaslandirma.pageHeader']}">
+				<p:panelGrid id="sorgulaPanel" columns="2">
+					<h:outputText value="#{msg['company.name']}" />
+					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
+					<p:selectOneMenu rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{borcYaslandirmaBean.instance.company}">
+		        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+		        		<f:converter converterId="entityConverter"/>
+        			</p:selectOneMenu>
+        			<h:outputText value="#{msg['common.donem']}" />
+       				<p:selectOneMenu value="#{borcYaslandirmaBean.selectedDonem}" id="donemCombo">
+       					<f:selectItems value="#{borcYaslandirmaBean.donemList}" var="don" itemValue="#{don}" itemLabel="#{borcYaslandirmaBean.formatDate(don.donem,'dd/MM/yyyy')}"/>
+       					<f:converter converterId="entityConverter"/>
+       					<p:ajax event="change"  update="@form"/>
+       				</p:selectOneMenu>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{borcYaslandirmaBean.sorgula()}" update="@form"/>
+				</p:panelGrid>
+				<br />
+				<p:separator />
+				<br />
+				<p:panelGrid style="width:1200px" styleClass="panel-grid" id="borcYaslandirmaPanel1">
+					<f:facet name="header">
+						<p:row>
+							<p:column colspan="7">
+								<h:outputText value="#{msg['borcYaslandirma.panelHeader']}" />
+							</p:column>
+						</p:row>
+					</f:facet>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.bigHeader1']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yat1']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yat2']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yat3']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yat4']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yat5']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yatToplam1']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma1instance" value="#{borcYaslandirmaBean.instance.akaryakitFirmalarinBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma1instance,borcYaslandirmaToplaminstance,borcYaslandirmaToplam1,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma1instance1" value="#{borcYaslandirmaBean.instance1.akaryakitFirmalarinBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma1instance1,borcYaslandirmaToplaminstance1,borcYaslandirmaToplam1,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma1instance2" value="#{borcYaslandirmaBean.instance2.akaryakitFirmalarinBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma1instance2,borcYaslandirmaToplaminstance2,borcYaslandirmaToplam1,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma1instance3" value="#{borcYaslandirmaBean.instance3.akaryakitFirmalarinBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma1instance3,borcYaslandirmaToplaminstance3,borcYaslandirmaToplam1,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma1instance4" value="#{borcYaslandirmaBean.instance4.akaryakitFirmalarinBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma1instance4,borcYaslandirmaToplaminstance4,borcYaslandirmaToplam1,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam1" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance1.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance2.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance3.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance4.akaryakitFirmalarinBorclar}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.2']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma2instance" value="#{borcYaslandirmaBean.instance.faaliyetKiralamasiBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma2instance,borcYaslandirmaToplaminstance,borcYaslandirmaToplam2,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma2instance1" value="#{borcYaslandirmaBean.instance1.faaliyetKiralamasiBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma2instance1,borcYaslandirmaToplaminstance1,borcYaslandirmaToplam2,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma2instance2" value="#{borcYaslandirmaBean.instance2.faaliyetKiralamasiBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma2instance2,borcYaslandirmaToplaminstance2,borcYaslandirmaToplam2,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma2instance3" value="#{borcYaslandirmaBean.instance3.faaliyetKiralamasiBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma2instance3,borcYaslandirmaToplaminstance3,borcYaslandirmaToplam2,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma2instance4" value="#{borcYaslandirmaBean.instance4.faaliyetKiralamasiBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma2instance4,borcYaslandirmaToplaminstance4,borcYaslandirmaToplam2,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam2" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance1.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance2.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance3.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance4.faaliyetKiralamasiBorclar}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.3']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma3instance" value="#{borcYaslandirmaBean.instance.malzemeBakimOnarimBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma3instance,borcYaslandirmaToplaminstance,borcYaslandirmaToplam3,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma3instance1" value="#{borcYaslandirmaBean.instance1.malzemeBakimOnarimBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma3instance1,borcYaslandirmaToplaminstance1,borcYaslandirmaToplam3,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma3instance2" value="#{borcYaslandirmaBean.instance2.malzemeBakimOnarimBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma3instance2,borcYaslandirmaToplaminstance2,borcYaslandirmaToplam3,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma3instance3" value="#{borcYaslandirmaBean.instance3.malzemeBakimOnarimBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma3instance3,borcYaslandirmaToplaminstance3,borcYaslandirmaToplam3,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma3instance4" value="#{borcYaslandirmaBean.instance4.malzemeBakimOnarimBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma3instance4,borcYaslandirmaToplaminstance4,borcYaslandirmaToplam3,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam3" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance1.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance2.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance3.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance4.malzemeBakimOnarimBorclar}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.4']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma4instance" value="#{borcYaslandirmaBean.instance.konmaHavalimaniBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma4instance,borcYaslandirmaToplaminstance,borcYaslandirmaToplam4,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma4instance1" value="#{borcYaslandirmaBean.instance1.konmaHavalimaniBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma4instance1,borcYaslandirmaToplaminstance1,borcYaslandirmaToplam4,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma4instance2" value="#{borcYaslandirmaBean.instance2.konmaHavalimaniBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma4instance2,borcYaslandirmaToplaminstance2,borcYaslandirmaToplam4,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma4instance3" value="#{borcYaslandirmaBean.instance3.konmaHavalimaniBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma4instance3,borcYaslandirmaToplaminstance3,borcYaslandirmaToplam4,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma4instance4" value="#{borcYaslandirmaBean.instance4.konmaHavalimaniBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma4instance4,borcYaslandirmaToplaminstance4,borcYaslandirmaToplam4,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam4" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.konmaHavalimaniBorclar + borcYaslandirmaBean.instance1.konmaHavalimaniBorclar + borcYaslandirmaBean.instance2.konmaHavalimaniBorclar + borcYaslandirmaBean.instance3.konmaHavalimaniBorclar + borcYaslandirmaBean.instance4.konmaHavalimaniBorclar}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.5']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma5instance" value="#{borcYaslandirmaBean.instance.pazarlamaReklamBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma5instance,borcYaslandirmaToplaminstance,borcYaslandirmaToplam5,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma5instance1" value="#{borcYaslandirmaBean.instance1.pazarlamaReklamBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma5instance1,borcYaslandirmaToplaminstance1,borcYaslandirmaToplam5,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma5instance2" value="#{borcYaslandirmaBean.instance2.pazarlamaReklamBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma5instance2,borcYaslandirmaToplaminstance2,borcYaslandirmaToplam5,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma5instance3" value="#{borcYaslandirmaBean.instance3.pazarlamaReklamBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma5instance3,borcYaslandirmaToplaminstance3,borcYaslandirmaToplam5,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma5instance4" value="#{borcYaslandirmaBean.instance4.pazarlamaReklamBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma5instance4,borcYaslandirmaToplaminstance4,borcYaslandirmaToplam5,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam5" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.pazarlamaReklamBorclar + borcYaslandirmaBean.instance1.pazarlamaReklamBorclar + borcYaslandirmaBean.instance2.pazarlamaReklamBorclar + borcYaslandirmaBean.instance3.pazarlamaReklamBorclar + borcYaslandirmaBean.instance4.pazarlamaReklamBorclar}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.6']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma6instance" value="#{borcYaslandirmaBean.instance.ustGecisBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma6instance,borcYaslandirmaToplaminstance,borcYaslandirmaToplam6,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma6instance1" value="#{borcYaslandirmaBean.instance1.ustGecisBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma6instance1,borcYaslandirmaToplaminstance1,borcYaslandirmaToplam6,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma6instance2" value="#{borcYaslandirmaBean.instance2.ustGecisBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma6instance2,borcYaslandirmaToplaminstance2,borcYaslandirmaToplam6,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma6instance3" value="#{borcYaslandirmaBean.instance3.ustGecisBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma6instance3,borcYaslandirmaToplaminstance3,borcYaslandirmaToplam6,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma6instance4" value="#{borcYaslandirmaBean.instance4.ustGecisBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma6instance4,borcYaslandirmaToplaminstance4,borcYaslandirmaToplam6,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam6" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.ustGecisBorclar + borcYaslandirmaBean.instance1.ustGecisBorclar + borcYaslandirmaBean.instance2.ustGecisBorclar + borcYaslandirmaBean.instance3.ustGecisBorclar + borcYaslandirmaBean.instance4.ustGecisBorclar}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.7']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma7instance" value="#{borcYaslandirmaBean.instance.digerTedarikciBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma7instance,borcYaslandirmaToplaminstance,borcYaslandirmaToplam7,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma7instance1" value="#{borcYaslandirmaBean.instance1.digerTedarikciBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma7instance1,borcYaslandirmaToplaminstance1,borcYaslandirmaToplam7,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma7instance2" value="#{borcYaslandirmaBean.instance2.digerTedarikciBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma7instance2,borcYaslandirmaToplaminstance2,borcYaslandirmaToplam7,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma7instance3" value="#{borcYaslandirmaBean.instance3.digerTedarikciBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma7instance3,borcYaslandirmaToplaminstance3,borcYaslandirmaToplam7,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma7instance4" value="#{borcYaslandirmaBean.instance4.digerTedarikciBorclar}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma7instance4,borcYaslandirmaToplaminstance4,borcYaslandirmaToplam7,borcYaslandirmaToplamToplam" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam7" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.digerTedarikciBorclar + borcYaslandirmaBean.instance1.digerTedarikciBorclar + borcYaslandirmaBean.instance2.digerTedarikciBorclar + borcYaslandirmaBean.instance3.digerTedarikciBorclar + borcYaslandirmaBean.instance4.digerTedarikciBorclar}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.toplam1']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirmaToplaminstance" value="#{borcYaslandirmaBean.instance.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance.konmaHavalimaniBorclar + borcYaslandirmaBean.instance.pazarlamaReklamBorclar + borcYaslandirmaBean.instance.ustGecisBorclar + borcYaslandirmaBean.instance.digerTedarikciBorclar}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirmaToplaminstance1" value="#{borcYaslandirmaBean.instance1.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance1.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance1.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance1.konmaHavalimaniBorclar + borcYaslandirmaBean.instance1.pazarlamaReklamBorclar + borcYaslandirmaBean.instance1.ustGecisBorclar + borcYaslandirmaBean.instance1.digerTedarikciBorclar}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirmaToplaminstance2" value="#{borcYaslandirmaBean.instance2.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance2.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance2.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance2.konmaHavalimaniBorclar + borcYaslandirmaBean.instance2.pazarlamaReklamBorclar + borcYaslandirmaBean.instance2.ustGecisBorclar + borcYaslandirmaBean.instance2.digerTedarikciBorclar}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirmaToplaminstance3" value="#{borcYaslandirmaBean.instance3.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance3.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance3.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance3.konmaHavalimaniBorclar + borcYaslandirmaBean.instance3.pazarlamaReklamBorclar + borcYaslandirmaBean.instance3.ustGecisBorclar + borcYaslandirmaBean.instance3.digerTedarikciBorclar}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirmaToplaminstance4" value="#{borcYaslandirmaBean.instance4.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance4.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance4.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance4.konmaHavalimaniBorclar + borcYaslandirmaBean.instance4.pazarlamaReklamBorclar + borcYaslandirmaBean.instance4.ustGecisBorclar + borcYaslandirmaBean.instance4.digerTedarikciBorclar}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirmaToplamToplam" value="#{borcYaslandirmaBean.instance.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance.konmaHavalimaniBorclar + borcYaslandirmaBean.instance.pazarlamaReklamBorclar + borcYaslandirmaBean.instance.ustGecisBorclar + borcYaslandirmaBean.instance.digerTedarikciBorclar + borcYaslandirmaBean.instance1.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance1.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance1.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance1.konmaHavalimaniBorclar + borcYaslandirmaBean.instance1.pazarlamaReklamBorclar + borcYaslandirmaBean.instance1.ustGecisBorclar + borcYaslandirmaBean.instance1.digerTedarikciBorclar + borcYaslandirmaBean.instance2.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance2.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance2.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance2.konmaHavalimaniBorclar + borcYaslandirmaBean.instance2.pazarlamaReklamBorclar + borcYaslandirmaBean.instance2.ustGecisBorclar + borcYaslandirmaBean.instance2.digerTedarikciBorclar + borcYaslandirmaBean.instance3.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance3.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance3.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance3.konmaHavalimaniBorclar + borcYaslandirmaBean.instance3.pazarlamaReklamBorclar + borcYaslandirmaBean.instance3.ustGecisBorclar + borcYaslandirmaBean.instance3.digerTedarikciBorclar + borcYaslandirmaBean.instance4.akaryakitFirmalarinBorclar + borcYaslandirmaBean.instance4.faaliyetKiralamasiBorclar + borcYaslandirmaBean.instance4.malzemeBakimOnarimBorclar + borcYaslandirmaBean.instance4.konmaHavalimaniBorclar + borcYaslandirmaBean.instance4.pazarlamaReklamBorclar + borcYaslandirmaBean.instance4.ustGecisBorclar + borcYaslandirmaBean.instance4.digerTedarikciBorclar}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid style="width:1200px" styleClass="panel-grid" id="borcYaslandirmaPanel2">
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText styleClass="big-header" value="" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yat6']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yat7']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yat8']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yat9']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yat10']}" />
+						</p:column>
+						<p:column styleClass="column-many">
+							<h:outputText styleClass="big-header" value="#{msg['borcYaslandirma.yatToplam2']}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.8']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirma8instance" value="#{borcYaslandirmaBean.instance.kokpitEkibiBorc + borcYaslandirmaBean.instance.kabinEkibiBorc + borcYaslandirmaBean.instance.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance.digerPersonelBorc}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirma8instance1" value="#{borcYaslandirmaBean.instance1.kokpitEkibiBorc + borcYaslandirmaBean.instance1.kabinEkibiBorc + borcYaslandirmaBean.instance1.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance1.digerPersonelBorc}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirma8instance2" value="#{borcYaslandirmaBean.instance2.kokpitEkibiBorc + borcYaslandirmaBean.instance2.kabinEkibiBorc + borcYaslandirmaBean.instance2.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance2.digerPersonelBorc}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirma8instance3" value="#{borcYaslandirmaBean.instance3.kokpitEkibiBorc + borcYaslandirmaBean.instance3.kabinEkibiBorc + borcYaslandirmaBean.instance3.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance3.digerPersonelBorc}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText styleClass="toplam-output" id="borcYaslandirma8instance4" value="#{borcYaslandirmaBean.instance4.kokpitEkibiBorc + borcYaslandirmaBean.instance4.kabinEkibiBorc + borcYaslandirmaBean.instance4.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance4.digerPersonelBorc}">
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam8" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.kokpitEkibiBorc + borcYaslandirmaBean.instance.kabinEkibiBorc + borcYaslandirmaBean.instance.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance.digerPersonelBorc + borcYaslandirmaBean.instance1.kokpitEkibiBorc + borcYaslandirmaBean.instance1.kabinEkibiBorc + borcYaslandirmaBean.instance1.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance1.digerPersonelBorc + borcYaslandirmaBean.instance2.kokpitEkibiBorc + borcYaslandirmaBean.instance2.kabinEkibiBorc + borcYaslandirmaBean.instance2.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance2.digerPersonelBorc + borcYaslandirmaBean.instance3.kokpitEkibiBorc + borcYaslandirmaBean.instance3.kabinEkibiBorc + borcYaslandirmaBean.instance3.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance3.digerPersonelBorc + borcYaslandirmaBean.instance4.kokpitEkibiBorc + borcYaslandirmaBean.instance4.kabinEkibiBorc + borcYaslandirmaBean.instance4.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance4.digerPersonelBorc}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.9']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma9instance" value="#{borcYaslandirmaBean.instance.kokpitEkibiBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma9instance,borcYaslandirmaToplam9,borcYaslandirma8instance,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma9instance1" value="#{borcYaslandirmaBean.instance1.kokpitEkibiBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma9instance1,borcYaslandirmaToplam9,borcYaslandirma8instance1,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma9instance2" value="#{borcYaslandirmaBean.instance2.kokpitEkibiBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma9instance2,borcYaslandirmaToplam9,borcYaslandirma8instance2,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma9instance3" value="#{borcYaslandirmaBean.instance3.kokpitEkibiBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma9instance3,borcYaslandirmaToplam9,borcYaslandirma8instance3,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma9instance4" value="#{borcYaslandirmaBean.instance4.kokpitEkibiBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma9instance4,borcYaslandirmaToplam9,borcYaslandirma8instance4,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam9" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.kokpitEkibiBorc + borcYaslandirmaBean.instance1.kokpitEkibiBorc + borcYaslandirmaBean.instance2.kokpitEkibiBorc + borcYaslandirmaBean.instance3.kokpitEkibiBorc + borcYaslandirmaBean.instance4.kokpitEkibiBorc}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.10']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma10instance" value="#{borcYaslandirmaBean.instance.kabinEkibiBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma10instance,borcYaslandirmaToplam10,borcYaslandirma8instance,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma10instance1" value="#{borcYaslandirmaBean.instance1.kabinEkibiBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma10instance1,borcYaslandirmaToplam10,borcYaslandirma8instance1,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma10instance2" value="#{borcYaslandirmaBean.instance2.kabinEkibiBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma10instance2,borcYaslandirmaToplam10,borcYaslandirma8instance2,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma10instance3" value="#{borcYaslandirmaBean.instance3.kabinEkibiBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma10instance3,borcYaslandirmaToplam10,borcYaslandirma8instance3,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma10instance4" value="#{borcYaslandirmaBean.instance4.kabinEkibiBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma10instance4,borcYaslandirmaToplam10,borcYaslandirma8instance4,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam10" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.kabinEkibiBorc + borcYaslandirmaBean.instance1.kabinEkibiBorc + borcYaslandirmaBean.instance2.kabinEkibiBorc + borcYaslandirmaBean.instance3.kabinEkibiBorc + borcYaslandirmaBean.instance4.kabinEkibiBorc}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.11']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma11instance" value="#{borcYaslandirmaBean.instance.ucakBakimPersoneliBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma11instance,borcYaslandirmaToplam11,borcYaslandirma8instance,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma11instance1" value="#{borcYaslandirmaBean.instance1.ucakBakimPersoneliBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma11instance1,borcYaslandirmaToplam11,borcYaslandirma8instance1,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma11instance2" value="#{borcYaslandirmaBean.instance2.ucakBakimPersoneliBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma11instance2,borcYaslandirmaToplam11,borcYaslandirma8instance2,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma11instance3" value="#{borcYaslandirmaBean.instance3.ucakBakimPersoneliBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma11instance3,borcYaslandirmaToplam11,borcYaslandirma8instance3,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma11instance4" value="#{borcYaslandirmaBean.instance4.ucakBakimPersoneliBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma11instance4,borcYaslandirmaToplam11,borcYaslandirma8instance4,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam11" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance1.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance2.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance3.ucakBakimPersoneliBorc + borcYaslandirmaBean.instance4.ucakBakimPersoneliBorc}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.12']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma12instance" value="#{borcYaslandirmaBean.instance.digerPersonelBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma12instance,borcYaslandirmaToplam12,borcYaslandirma8instance,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma12instance1" value="#{borcYaslandirmaBean.instance1.digerPersonelBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma12instance1,borcYaslandirmaToplam12,borcYaslandirma8instance1,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma12instance2" value="#{borcYaslandirmaBean.instance2.digerPersonelBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma12instance2,borcYaslandirmaToplam12,borcYaslandirma8instance2,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma12instance3" value="#{borcYaslandirmaBean.instance3.digerPersonelBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma12instance3,borcYaslandirmaToplam12,borcYaslandirma8instance3,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma12instance4" value="#{borcYaslandirmaBean.instance4.digerPersonelBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma12instance4,borcYaslandirmaToplam12,borcYaslandirma8instance4,borcYaslandirmaToplam8" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam12" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.digerPersonelBorc + borcYaslandirmaBean.instance1.digerPersonelBorc + borcYaslandirmaBean.instance2.digerPersonelBorc + borcYaslandirmaBean.instance3.digerPersonelBorc + borcYaslandirmaBean.instance4.digerPersonelBorc}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.13']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma13instance" value="#{borcYaslandirmaBean.instance.odenecekVergiSskBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma13instance,borcYaslandirmaToplam13" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma13instance1" value="#{borcYaslandirmaBean.instance1.odenecekVergiSskBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma13instance1,borcYaslandirmaToplam13" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma13instance2" value="#{borcYaslandirmaBean.instance2.odenecekVergiSskBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma13instance2,borcYaslandirmaToplam13" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma13instance3" value="#{borcYaslandirmaBean.instance3.odenecekVergiSskBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma13instance3,borcYaslandirmaToplam13" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma13instance4" value="#{borcYaslandirmaBean.instance4.odenecekVergiSskBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma13instance4,borcYaslandirmaToplam13" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam13" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.odenecekVergiSskBorc + borcYaslandirmaBean.instance1.odenecekVergiSskBorc + borcYaslandirmaBean.instance2.odenecekVergiSskBorc + borcYaslandirmaBean.instance3.odenecekVergiSskBorc + borcYaslandirmaBean.instance4.odenecekVergiSskBorc}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.14']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma14instance" value="#{borcYaslandirmaBean.instance.gecikenSigortaPrimBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma14instance,borcYaslandirmaToplam14" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma14instance1" value="#{borcYaslandirmaBean.instance1.gecikenSigortaPrimBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma14instance1,borcYaslandirmaToplam14" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma14instance2" value="#{borcYaslandirmaBean.instance2.gecikenSigortaPrimBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma14instance2,borcYaslandirmaToplam14" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma14instance3" value="#{borcYaslandirmaBean.instance3.gecikenSigortaPrimBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma14instance3,borcYaslandirmaToplam14" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma14instance4" value="#{borcYaslandirmaBean.instance4.gecikenSigortaPrimBorc}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma14instance4,borcYaslandirmaToplam14" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam14" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.gecikenSigortaPrimBorc + borcYaslandirmaBean.instance1.gecikenSigortaPrimBorc + borcYaslandirmaBean.instance2.gecikenSigortaPrimBorc + borcYaslandirmaBean.instance3.gecikenSigortaPrimBorc + borcYaslandirmaBean.instance4.gecikenSigortaPrimBorc}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.15']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma15instance" value="#{borcYaslandirmaBean.instance.gecikenFinansalBorcTaksit}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma15instance,borcYaslandirmaToplam15" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma15instance1" value="#{borcYaslandirmaBean.instance1.gecikenFinansalBorcTaksit}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma15instance1,borcYaslandirmaToplam15" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma15instance2" value="#{borcYaslandirmaBean.instance2.gecikenFinansalBorcTaksit}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma15instance2,borcYaslandirmaToplam15" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma15instance3" value="#{borcYaslandirmaBean.instance3.gecikenFinansalBorcTaksit}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma15instance3,borcYaslandirmaToplam15" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma15instance4" value="#{borcYaslandirmaBean.instance4.gecikenFinansalBorcTaksit}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma15instance4,borcYaslandirmaToplam15" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam15" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance1.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance2.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance3.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance4.gecikenFinansalBorcTaksit}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.16']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance" value="#{borcYaslandirmaBean.instance.gecikenFinansalKiraTaksit}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma16instance,borcYaslandirmaToplam16" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance1" value="#{borcYaslandirmaBean.instance1.gecikenFinansalBorcTaksit}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma16instance1,borcYaslandirmaToplam16" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance2" value="#{borcYaslandirmaBean.instance2.gecikenFinansalBorcTaksit}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma16instance2,borcYaslandirmaToplam16" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance3" value="#{borcYaslandirmaBean.instance3.gecikenFinansalBorcTaksit}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma16instance3,borcYaslandirmaToplam16" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance4" value="#{borcYaslandirmaBean.instance4.gecikenFinansalBorcTaksit}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma16instance4,borcYaslandirmaToplam16" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam16" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance1.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance2.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance3.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance4.gecikenFinansalBorcTaksit}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.17']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma17instance" value="#{borcYaslandirmaBean.instance.gecikenFaaliyetTipiKira}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma17instance,borcYaslandirmaToplam17" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma17instance1" value="#{borcYaslandirmaBean.instance1.gecikenFaaliyetTipiKira}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma17instance1,borcYaslandirmaToplam17" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma17instance2" value="#{borcYaslandirmaBean.instance2.gecikenFaaliyetTipiKira}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma17instance2,borcYaslandirmaToplam17" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma17instance3" value="#{borcYaslandirmaBean.instance3.gecikenFaaliyetTipiKira}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma17instance3,borcYaslandirmaToplam17" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma17instance4" value="#{borcYaslandirmaBean.instance4.gecikenFaaliyetTipiKira}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma17instance4,borcYaslandirmaToplam17" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam17" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.gecikenFaaliyetTipiKira + borcYaslandirmaBean.instance1.gecikenFaaliyetTipiKira + borcYaslandirmaBean.instance2.gecikenFaaliyetTipiKira + borcYaslandirmaBean.instance3.gecikenFaaliyetTipiKira + borcYaslandirmaBean.instance4.gecikenFaaliyetTipiKira}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['borcYaslandirma.18']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma18instance" value="#{borcYaslandirmaBean.instance.gecikenBakimRezervOdeme}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma18instance,borcYaslandirmaToplam18" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma18instance1" value="#{borcYaslandirmaBean.instance1.gecikenBakimRezervOdeme}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma18instance1,borcYaslandirmaToplam18" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma18instance2" value="#{borcYaslandirmaBean.instance2.gecikenBakimRezervOdeme}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma18instance2,borcYaslandirmaToplam18" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma18instance3" value="#{borcYaslandirmaBean.instance3.gecikenBakimRezervOdeme}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma18instance3,borcYaslandirmaToplam18" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma18instance4" value="#{borcYaslandirmaBean.instance4.gecikenBakimRezervOdeme}" >
+								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<p:ajax event="blur" update="borcYaslandirma18instance4,borcYaslandirmaToplam18" />
+							</p:inputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText id="borcYaslandirmaToplam18" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.gecikenBakimRezervOdeme + borcYaslandirmaBean.instance1.gecikenBakimRezervOdeme + borcYaslandirmaBean.instance2.gecikenBakimRezervOdeme + borcYaslandirmaBean.instance3.gecikenBakimRezervOdeme + borcYaslandirmaBean.instance4.gecikenBakimRezervOdeme}">
+								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
+							</h:outputText>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<br />
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{borcYaslandirmaBean.instance.dipnot}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{borcYaslandirmaBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{borcYaslandirmaBean.save()}" update="borcYaslandirmaPanel1,borcYaslandirmaPanel2"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{borcYaslandirmaBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{borcYaslandirmaBean.remove()}" immediate="true" process="@this" async="true" update="borcYaslandirmaPanel1,borcYaslandirmaPanel2"/>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

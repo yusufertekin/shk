@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			<p:dataList value="#{infoBean.infoList}" var="info"  itemType="disc">
+				#{info}
+			</p:dataList>
+			<br />
+			<h:outputText value="Bilgilendirme sunumu " />
+			<p:commandButton id="downloadLink" value="indir" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop)" icon="ui-icon-arrowthick-1-s">  
+			    <p:fileDownload value="#{infoBean.file}" />  
+			</p:commandButton>  
+			<br />
+			<p:commandButton value="Geri" action="#{loginBean.back()}"/>
+			<h:outputScript>
+					function start() {  
+					    statusDialog.show();  
+					}  
+					  
+					function stop() {  
+					    statusDialog.hide();  
+					}  
+			</h:outputScript> 
+		</h:form>
+		<p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
+		    <p:graphicImage value="/design/ajaxloadingbar.gif" />  
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+  
+  
+
