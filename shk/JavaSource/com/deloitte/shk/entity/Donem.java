@@ -18,7 +18,7 @@ import com.deloitte.shk.generic.GenericEntity;
  *
  */
 @Entity
-public class Donem implements Serializable{
+public class Donem implements Serializable, Cloneable{
 
 	/**
 	 * 
@@ -62,5 +62,10 @@ public class Donem implements Serializable{
 	public void setDonem(Date donem) {
 		this.donem = donem;
 	}
+	@Override
+	public Donem clone() throws CloneNotSupportedException{
+		Donem ge = (Donem)super.clone();
+    	return ge;
+    }
 
 }

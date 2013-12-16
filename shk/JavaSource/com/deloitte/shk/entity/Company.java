@@ -13,7 +13,7 @@ import javax.persistence.SequenceGenerator;
  *
  */
 @Entity
-public class Company implements Serializable {
+public class Company implements Serializable,Cloneable {
 	
 	/**
 	 * 
