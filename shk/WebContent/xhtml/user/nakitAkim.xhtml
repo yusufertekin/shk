@@ -24,7 +24,7 @@
        					<f:converter converterId="entityConverter"/>
        					<p:ajax event="change" update="@form"/>
        				</p:selectOneMenu>
-        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{nakitAkimBean.sorgula()}" update="nakitAkimPanel1,nakitAkimPanel2,nakitAkimPanel3,nakitAkimPanel4,nakitAkimPanel5,nakitAkimPanel6"/>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{nakitAkimBean.sorgula()}" update="@form"/>
 				</p:panelGrid>
 				<br />
 				<p:separator />
@@ -561,7 +561,7 @@
 				</p:panelGrid>
 				<br />
 				<p:commandButton value="#{msg['common.save']}" rendered="#{nakitAkimBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{nakitAkimBean.save()}" update="nakitAkimPanel1,nakitAkimPanel2,nakitAkimPanel3,nakitAkimPanel4,nakitAkimPanel5,nakitAkimPanel6"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{nakitAkimBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{nakitAkimBean.remove()}" immediate="true" process="@this" async="true" update="nakitAkimPanel1,nakitAkimPanel2,nakitAkimPanel3,nakitAkimPanel4,nakitAkimPanel5,nakitAkimPanel6"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{nakitAkimBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{nakitAkimBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

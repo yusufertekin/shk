@@ -89,6 +89,7 @@ public class IliskiliTarafBakiyeBean extends GenericBean<IliskiliTarafBakiye,Lon
 		// TODO Auto-generated method stub
 		super.remove(instance);
 		getInstance().setTip(0L);
+		loadLists();
 	}
 	
 	public void loadLists()

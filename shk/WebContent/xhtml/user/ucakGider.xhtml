@@ -24,7 +24,7 @@
        					<f:converter converterId="entityConverter"/>
        					<p:ajax event="change" update="@form"/>
        				</p:selectOneMenu>
-        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{ucakGiderBean.sorgula()}" update="genelPanel"/>
+        			<p:commandButton value="#{msg['common.sorgula']}" ajax="false" action="#{ucakGiderBean.sorgula()}" update="@form"/>
 				</p:panelGrid>
 				<br />
 				<p:separator />
@@ -561,7 +561,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{ucakGiderBean.instance.dipnot}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ucakGiderBean.save()}" update="genelPanel"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ucakGiderBean.save()}" update="@form"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

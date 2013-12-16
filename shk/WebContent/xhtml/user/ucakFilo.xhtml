@@ -24,7 +24,7 @@
        					<f:converter converterId="entityConverter"/>
        					<p:ajax event="change" update="@form"/>
        				</p:selectOneMenu>
-        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{ucakFiloBean.sorgula()}" update="ucakFiloPanel1,ucakFiloTable1,ucakFiloGirenToplam,adetPanel"/>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{ucakFiloBean.sorgula()}" update="@form"/>
 				</p:panelGrid>
 				<br />
 				<p:separator />
@@ -157,7 +157,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{ucakFiloBean.instance.dipnot}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ucakFiloBean.save()}" update="ucakFiloPanel1, ucakFiloTable1, ucakFiloGirenToplam, ucakFiloTable2, ucakFiloCikanToplam, ucakFiloToplam"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ucakFiloBean.save()}" update="@form"/>
 				<br />
 				<p:separator />
 				<br />

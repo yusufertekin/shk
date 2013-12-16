@@ -727,31 +727,31 @@
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance1" value="#{borcYaslandirmaBean.instance1.gecikenFinansalBorcTaksit}" >
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance1" value="#{borcYaslandirmaBean.instance1.gecikenFinansalKiraTaksit}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="borcYaslandirma16instance1,borcYaslandirmaToplam16" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance2" value="#{borcYaslandirmaBean.instance2.gecikenFinansalBorcTaksit}" >
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance2" value="#{borcYaslandirmaBean.instance2.gecikenFinansalKiraTaksit}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="borcYaslandirma16instance2,borcYaslandirmaToplam16" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance3" value="#{borcYaslandirmaBean.instance3.gecikenFinansalBorcTaksit}" >
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance3" value="#{borcYaslandirmaBean.instance3.gecikenFinansalKiraTaksit}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="borcYaslandirma16instance3,borcYaslandirmaToplam16" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance4" value="#{borcYaslandirmaBean.instance4.gecikenFinansalBorcTaksit}" >
+							<p:inputText disabled="#{borcYaslandirmaBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="borcYaslandirma16instance4" value="#{borcYaslandirmaBean.instance4.gecikenFinansalKiraTaksit}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="borcYaslandirma16instance4,borcYaslandirmaToplam16" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<h:outputText id="borcYaslandirmaToplam16" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance1.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance2.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance3.gecikenFinansalBorcTaksit + borcYaslandirmaBean.instance4.gecikenFinansalBorcTaksit}">
+							<h:outputText id="borcYaslandirmaToplam16" styleClass="toplam-output" value="#{borcYaslandirmaBean.instance.gecikenFinansalKiraTaksit + borcYaslandirmaBean.instance1.gecikenFinansalKiraTaksit + borcYaslandirmaBean.instance2.gecikenFinansalKiraTaksit + borcYaslandirmaBean.instance3.gecikenFinansalKiraTaksit + borcYaslandirmaBean.instance4.gecikenFinansalKiraTaksit}">
 								<f:convertNumber locale="tr_TR" groupingUsed="true"/>
 							</h:outputText>
 						</p:column>
@@ -845,8 +845,8 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{borcYaslandirmaBean.instance.dipnot}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{borcYaslandirmaBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{borcYaslandirmaBean.save()}" update="borcYaslandirmaPanel1,borcYaslandirmaPanel2"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{borcYaslandirmaBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{borcYaslandirmaBean.remove()}" immediate="true" process="@this" async="true" update="borcYaslandirmaPanel1,borcYaslandirmaPanel2"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{borcYaslandirmaBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{borcYaslandirmaBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{borcYaslandirmaBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{borcYaslandirmaBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

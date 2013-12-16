@@ -24,7 +24,7 @@
        					<f:converter converterId="entityConverter"/>
        					<p:ajax event="change" update="@form"/>
        				</p:selectOneMenu>
-        			<p:commandButton value="#{msg['common.sorgula']}" action="#{ozkaynakBean.sorgula()}" update="ozkaynakPanel1"/>
+        			<p:commandButton value="#{msg['common.sorgula']}" action="#{ozkaynakBean.sorgula()}" update="@form"/>
 				</p:panelGrid>
 				<br />
 				<p:separator />
@@ -1016,8 +1016,8 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{ozkaynakBean.instance.dipnot}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{ozkaynakBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ozkaynakBean.save()}" update="ozkaynakPanel1"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{ozkaynakBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{ozkaynakBean.remove()}" update="ozkaynakPanel1"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ozkaynakBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ozkaynakBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{ozkaynakBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{ozkaynakBean.remove()}" update="@form"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

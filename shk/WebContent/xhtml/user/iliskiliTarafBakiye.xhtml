@@ -160,7 +160,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{iliskiliTarafBakiyeBean.instance.dipnot}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafBakiyeBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{iliskiliTarafBakiyeBean.save()}" update="iliskiliTarafBakiyePanel1, iliskiliTarafBakiyeTable1, iliskiliTarafBakiyeTable2,  iliskiliTarafBakiyeTable3, iliskiliTarafBakiyeTable4, iliskiliTarafBakiyeToplam"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafBakiyeBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{iliskiliTarafBakiyeBean.save()}" update="@form"/>
 				<br />
 				<p:separator />
 				<br />
@@ -438,7 +438,7 @@
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
-						<p:commandLink rendered="#{iliskiliTarafBakiyeBean.selectedDonem.durum == 1 ? true : false}" action="#{iliskiliTarafBakiyeBean.remove(taraf)}" immediate="true" value="#{msg['common.remove']}" update="@form" />
+						<p:commandLink rendered="#{iliskiliTarafBakiyeBean.selectedDonem.durum == 0 ? true : false}" action="#{iliskiliTarafBakiyeBean.remove(taraf)}" immediate="true" value="#{msg['common.remove']}" update="@form" />
 					</p:column>
 				</p:dataTable>
 				<br />
@@ -572,13 +572,13 @@
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
-						<p:rowEditor rendered="#{iliskiliTarafBakiyeBean.selectedDonem.durum == 1 ? true : false}" />
+						<p:rowEditor rendered="#{iliskiliTarafBakiyeBean.selectedDonem.durum == 0 ? true : false}" />
 					</p:column>
 					<p:column rendered="#{iliskiliTarafBakiyeBean.selectedDonem.durum == 0 ? true : false}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
-						<p:commandLink rendered="#{iliskiliTarafBakiyeBean.selectedDonem.durum == 1 ? true : false}" action="#{iliskiliTarafBakiyeBean.remove(taraf)}" immediate="true" value="#{msg['common.remove']}" update="@form" />
+						<p:commandLink rendered="#{iliskiliTarafBakiyeBean.selectedDonem.durum == 0 ? true : false}" action="#{iliskiliTarafBakiyeBean.remove(taraf)}" immediate="true" value="#{msg['common.remove']}" update="@form" />
 					</p:column>
 				</p:dataTable>
 				<br />

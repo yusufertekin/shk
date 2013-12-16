@@ -74,6 +74,7 @@ public class IliskiliTarafTOBean extends GenericBean<IliskiliTarafTO,Long> imple
 		// TODO Auto-generated method stub
 		super.remove(instance);
 		getInstance().setTip(0L);
+		loadLists();
 	}
 	public void loadLists()
 	{

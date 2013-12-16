@@ -24,7 +24,7 @@
        					<f:converter converterId="entityConverter"/>
        					<p:ajax event="change" update="@form"/>
        				</p:selectOneMenu>
-        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{toplamCalisanBean.sorgula()}" update="toplamCalisanPanel1"/>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{toplamCalisanBean.sorgula()}" update="@form"/>
 				</p:panelGrid>
 				<br />
 				<p:separator />
@@ -188,7 +188,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{toplamCalisanBean.instance.dipnot}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{toplamCalisanBean.save()}" update="toplamCalisanPanel1"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{toplamCalisanBean.save()}" update="@form"/>
 				<p:commandButton value="#{msg['common.remove']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{toplamCalisanBean.remove()}" immediate="true" process="@this" async="true" update="toplamCalisanPanel1"/>
 			</p:panel>
 		</h:form>

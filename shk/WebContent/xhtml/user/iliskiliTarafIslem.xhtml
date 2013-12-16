@@ -27,7 +27,7 @@
        					<f:converter converterId="entityConverter"/>
        					<p:ajax event="change"  update="@form"/>
        				</p:selectOneMenu>
-        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{iliskiliTarafIslemBean.sorgula()}" update="iliskiliTarafIslemPanel1,iliskiliTarafIslemTable1,iliskiliTarafIslemTable2,iliskiliTarafIslemTable3,iliskiliTarafIslemTable4,iliskiliTarafIslemToplam"/>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{iliskiliTarafIslemBean.sorgula()}" update="@form"/>
 				</p:panelGrid>
 				<br />
 				<p:separator />
@@ -160,7 +160,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{iliskiliTarafIslemBean.instance.dipnot}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{iliskiliTarafIslemBean.save()}" update="iliskiliTarafIslemPanel1, iliskiliTarafIslemTable1, iliskiliTarafIslemToplam, iliskiliTarafIslemTable2, iliskiliTarafIslemTable3, iliskiliTarafIslemTable4"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{iliskiliTarafIslemBean.save()}" update="@form"/>
 				<br />
 				<p:separator />
 				<br />

@@ -24,7 +24,7 @@
        					<f:converter converterId="entityConverter"/>
        					<p:ajax event="change"  update="@form"/>
        				</p:selectOneMenu>
-        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{kaynakBean.sorgula()}" update="kaynakPanel1,kaynakPanel2,kaynakPanel3,kaynakPanelToplam"/>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{kaynakBean.sorgula()}" update="@form"/>
 				</p:panelGrid>
 				<br />
 				<p:separator />
@@ -484,11 +484,11 @@
 					<f:facet name="header">
 						<h:outputText value="#{msg['common.dipnot']}" />
 					</f:facet>
-					<p:inputTextarea styleClass="dipnot-input" value="#{kaynaklarBean.instance.dipnot}" />
+					<p:inputTextarea styleClass="dipnot-input" value="#{kaynakBean.instance.dipnot}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{kaynakBean.save()}" update="kaynakPanel1,kaynakPanel2,kaynakPanel3,kaynakPanelToplam"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="removeButton" immediate="true" process="@this" async="true" action="#{kaynakBean.remove()}"  update="kaynakPanel1,kaynakPanel2,kaynakPanel3,kaynakPanelToplam"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{kaynakBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="removeButton" immediate="true" process="@this" async="true" action="#{kaynakBean.remove()}"  update="@form"/>
 			</p:panel>
 		</h:form>
 	</ui:define>
