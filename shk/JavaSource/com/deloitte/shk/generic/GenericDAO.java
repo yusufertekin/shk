@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContextType;
 import javax.persistence.Query;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Donem;
 
 /**
@@ -42,6 +43,24 @@ public abstract class GenericDAO<E extends GenericEntity, A> implements Serializ
 		if(list != null && list.size() > 0)
 		{
 			return (E)list.get(0);
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Dipnot findDipnotByDonemAndCompany(Donem donem, Company company, Long sayfaNo)
+	{
+		List list = em.createQuery(getDipnotHql())
+				.setParameter("donem", donem)
+				.setParameter("company", company)
+				.setParameter("sayfaNo", sayfaNo)
+				.getResultList();
+		if(list != null && list.size() > 0)
+		{
+			return (Dipnot)list.get(0);
 		}
 		else
 		{
@@ -86,5 +105,11 @@ public abstract class GenericDAO<E extends GenericEntity, A> implements Serializ
 	{
 		return "from " + cls.getSimpleName() + " t where t.donem = :donem "
 				+ " and t.company = :company";
+	}
+	public String getDipnotHql()
+	{
+		return "from Dipnot t where t.donem = :donem "
+				+ " and t.company = :company"
+				+ " and t.sayfaNo = :sayfaNo";
 	}
 }

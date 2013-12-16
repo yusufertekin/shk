@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.entity.UcakFilo;
 import com.deloitte.shk.generic.GenericBean;
@@ -56,6 +57,15 @@ public class UcakFiloBean extends GenericBean<UcakFilo,Long> implements Serializ
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
+		Dipnot tmp = ucakFiloService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 10L);
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
 		loadLists();
 	}
 	@Override

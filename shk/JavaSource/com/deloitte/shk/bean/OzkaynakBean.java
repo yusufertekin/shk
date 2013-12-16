@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.KarZarar;
 import com.deloitte.shk.entity.Kaynak;
 import com.deloitte.shk.entity.Kullanici;
@@ -78,6 +79,15 @@ public class OzkaynakBean extends GenericBean<Ozkaynak,Long> implements Serializ
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
+		Dipnot tmp = ozkaynakService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 15L);
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
 		Ozkaynak ozkaynak = ozkaynakService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 0L);
 		Ozkaynak ozkaynak1 = ozkaynakService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 1L);
 		Ozkaynak ozkaynak2 = ozkaynakService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 2L);

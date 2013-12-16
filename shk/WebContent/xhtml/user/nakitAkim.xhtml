@@ -553,15 +553,18 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{nakitAkimBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{nakitAkimBean.save()}" update="nakitAkimPanel1,nakitAkimPanel2,nakitAkimPanel3,nakitAkimPanel4,nakitAkimPanel5,nakitAkimPanel6"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{nakitAkimBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{nakitAkimBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
+			</p:panel>
+			<p:panel>
 				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
 					<f:facet name="header">
 						<h:outputText value="#{msg['common.dipnot']}" />
 					</f:facet>
-					<p:inputTextarea styleClass="dipnot-input" value="#{nakitAkimBean.instance.dipnot}" />
+					<p:inputTextarea styleClass="dipnot-input" value="#{nakitAkimBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{nakitAkimBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{nakitAkimBean.save()}" update="nakitAkimPanel1,nakitAkimPanel2,nakitAkimPanel3,nakitAkimPanel4,nakitAkimPanel5,nakitAkimPanel6"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{nakitAkimBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{nakitAkimBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{nakitAkimBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(nakitAkimBean.dipnot, 4, nakitAkimBean.instance.company, nakitAkimBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.entity.ToplamCalisan;
 import com.deloitte.shk.generic.GenericBean;
@@ -46,6 +47,15 @@ public class ToplamCalisanBean extends GenericBean<ToplamCalisan,Long> implement
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
+		Dipnot tmp = toplamCalisanService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 5L);
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
 		ToplamCalisan toplamCalisan = toplamCalisanService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany());
 		if(toplamCalisan != null)
 		{

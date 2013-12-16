@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.KarZarar;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.generic.GenericBean;
@@ -72,6 +73,15 @@ public class KarZararBean extends GenericBean<KarZarar,Long> implements Serializ
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
+		Dipnot tmp = karZararService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 3L);
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
 		KarZarar karZarar = karZararService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany());
 //		Date donem = (Date) getInstance().getDonem().clone();
 //		donem.setMonth(getInstance().getDonem().getMonth() - 3);

@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Donem;
 import com.deloitte.shk.qualifier.DonemList;
 /**
@@ -27,6 +28,7 @@ public abstract class GenericBean<E extends GenericEntity, A> implements Seriali
 	
 	private ResourceBundle msg;
 	private @Inject @DonemList List<Donem> donemList;
+	private Dipnot dipnot;
 	
 
 	
@@ -178,6 +180,7 @@ public abstract class GenericBean<E extends GenericEntity, A> implements Seriali
 	public void init() {
 		loadList();
 		newInstance();
+		dipnot = new Dipnot();
 		setMsg(ResourceBundle.getBundle("com.deloitte.shk.resources.messages"));
 	}
 	
@@ -245,6 +248,14 @@ public abstract class GenericBean<E extends GenericEntity, A> implements Seriali
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public Dipnot getDipnot() {
+		return dipnot;
+	}
+
+	public void setDipnot(Dipnot dipnot) {
+		this.dipnot = dipnot;
 	}
 
 }

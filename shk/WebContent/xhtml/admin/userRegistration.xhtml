@@ -20,8 +20,14 @@
 					<f:selectItem itemValue="0" itemLabel="#{msg['user.active']}"/>
 					<f:selectItem itemValue="1" itemLabel="#{msg['user.passive']}"/>
 				</p:selectOneRadio>
+				<h:outputText value="#{msg['user.adminOrNot']}" />
+				<p:selectOneRadio value="#{kullaniciBean.adminOrNot}" required="true" requiredMessage="#{msg['user.adminOrNot']} #{msg['common.requiredMessage']}">
+					<f:selectItem itemValue="#{true}" itemLabel="#{msg['user.admin']}"/>
+					<f:selectItem itemValue="#{false}" itemLabel="#{msg['user.normal']}"/>
+					<p:ajax event="change" update="sirketAnaCombo"/>
+				</p:selectOneRadio>
 				<h:outputText value="#{msg['user.company']}" />
-				<p:selectOneMenu id="sirketAnaCombo" value="#{kullaniciBean.instance.company}">
+				<p:selectOneMenu disabled="#{kullaniciBean.adminOrNot}" id="sirketAnaCombo" value="#{kullaniciBean.instance.company}">
 	        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
 	        		<f:converter converterId="entityConverter"/>
         		</p:selectOneMenu>

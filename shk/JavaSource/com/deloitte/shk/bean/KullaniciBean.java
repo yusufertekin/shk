@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.resource.spi.AdministeredObject;
 
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.generic.GenericBean;
@@ -27,6 +28,7 @@ public class KullaniciBean extends GenericBean<Kullanici,Long> implements Serial
 	@Inject @CurrentUser Kullanici currentUser;
 	
 	
+	private Boolean adminOrNot;
 	private String password;
 	private String retypePassword;
 
@@ -41,6 +43,10 @@ public class KullaniciBean extends GenericBean<Kullanici,Long> implements Serial
 	public void save() {
 		// TODO Auto-generated method stub
 		try {
+			if(adminOrNot)
+			{
+				getInstance().setCompany(null);
+			}
 			super.save();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -112,6 +118,12 @@ public class KullaniciBean extends GenericBean<Kullanici,Long> implements Serial
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Boolean getAdminOrNot() {
+		return adminOrNot;
+	}
+	public void setAdminOrNot(Boolean adminOrNot) {
+		this.adminOrNot = adminOrNot;
 	}
 
 

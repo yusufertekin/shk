@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.entity.UcakGider;
 import com.deloitte.shk.generic.GenericBean;
@@ -77,6 +78,15 @@ public class UcakGiderBean extends GenericBean<UcakGider,Long> implements Serial
 		}
 		getInstance().setDonem(getSelectedDonem());
 		initToplam();
+		Dipnot tmp = ucakGiderService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 8L);
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
 		ucakList = ucakGiderService.findByDonemAndCompanyList(getInstance().getDonem(), getInstance().getCompany());
 		if(ucakList != null && ucakList.size() > 0)
 		{
@@ -90,6 +100,7 @@ public class UcakGiderBean extends GenericBean<UcakGider,Long> implements Serial
 		{
 			initUcakList();
 		}
+		
 	}
 	public void initToplam()
 	{
@@ -245,7 +256,6 @@ public class UcakGiderBean extends GenericBean<UcakGider,Long> implements Serial
 		ucakList.get(ucakList.indexOf(ucak)).setToplamUculanSaat(0.0);
 		ucakList.get(ucakList.indexOf(ucak)).setUcakKiraGider(0.0);
 		ucakList.get(ucakList.indexOf(ucak)).setUcakKodu(null);
-		ucakList.get(ucakList.indexOf(ucak)).setDipnot(null);
 		ucakList.get(ucakList.indexOf(ucak)).setUcakOrtalamaYas(0.0);
 		ucakList.get(ucakList.indexOf(ucak)).setUcusEkipmanAmortismanGider(0.0);
 		ucakList.get(ucakList.indexOf(ucak)).setUcusEkipmanDegerDusuklugu(0.0);

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Kaynak;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.generic.GenericBean;
@@ -50,6 +51,15 @@ public class KaynakBean extends GenericBean<Kaynak,Long> implements Serializable
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
+		Dipnot tmp = kaynakService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 2L);
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
 		Kaynak kaynak = kaynakService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany());
 		donemNetKarZarar = karZararService.findDonemNetKarZarar(getInstance().getDonem(), getInstance().getCompany());
 		if(kaynak != null)

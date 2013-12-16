@@ -6,6 +6,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Donem;
 /**
  * @author yusufertekin
@@ -18,6 +19,11 @@ public abstract class GenericService<E extends GenericEntity, A> {
 	public E findByDonemAndCompany(Donem donem, Company company)
 	{
 		return getEntityDAO().findByDonemAndCompany(donem, company);
+	}
+	
+	public Dipnot findDipnotByDonemAndCompany(Donem donem, Company company, Long sayfaNo)
+	{
+		return getEntityDAO().findDipnotByDonemAndCompany(donem, company, sayfaNo);
 	}
 	
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)

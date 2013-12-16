@@ -181,15 +181,18 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{toplamCalisanBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{toplamCalisanBean.remove()}" immediate="true" process="@this" async="true" update="toplamCalisanPanel1"/>
+			</p:panel>
+			<p:panel>
 				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
 					<f:facet name="header">
 						<h:outputText value="#{msg['common.dipnot']}" />
 					</f:facet>
-					<p:inputTextarea styleClass="dipnot-input" value="#{toplamCalisanBean.instance.dipnot}" />
+					<p:inputTextarea styleClass="dipnot-input" value="#{toplamCalisanBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{toplamCalisanBean.save()}" update="@form"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{toplamCalisanBean.remove()}" immediate="true" process="@this" async="true" update="toplamCalisanPanel1"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(toplamCalisanBean.dipnot, 5, toplamCalisanBean.instance.company, toplamCalisanBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

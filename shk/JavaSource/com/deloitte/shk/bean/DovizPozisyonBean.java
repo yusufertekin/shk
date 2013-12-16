@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.DovizPozisyon;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.generic.GenericBean;
@@ -49,6 +50,15 @@ public class DovizPozisyonBean extends GenericBean<DovizPozisyon,Long> implement
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
+		Dipnot tmp = dovizPozisyonService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 9L);
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
 		DovizPozisyon dovizPozisyon = dovizPozisyonService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 0L);
 		DovizPozisyon dovizPozisyon1 = dovizPozisyonService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 1L);
 		DovizPozisyon dovizPozisyon2 = dovizPozisyonService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 2L);

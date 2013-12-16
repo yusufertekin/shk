@@ -480,15 +480,18 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{kaynakBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="removeButton" immediate="true" process="@this" async="true" action="#{kaynakBean.remove()}"  update="@form"/>
+			</p:panel>
+			<p:panel>
 				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
 					<f:facet name="header">
 						<h:outputText value="#{msg['common.dipnot']}" />
 					</f:facet>
-					<p:inputTextarea styleClass="dipnot-input" value="#{kaynakBean.instance.dipnot}" />
+					<p:inputTextarea styleClass="dipnot-input" value="#{kaynakBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{kaynakBean.save()}" update="@form"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="removeButton" immediate="true" process="@this" async="true" action="#{kaynakBean.remove()}"  update="@form"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{kaynakBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(kaynakBean.dipnot, 2, kaynakBean.instance.company, kaynakBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

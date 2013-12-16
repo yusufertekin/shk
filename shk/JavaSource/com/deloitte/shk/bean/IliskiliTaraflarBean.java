@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.IliskiliTaraflar;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.generic.GenericBean;
@@ -52,6 +53,15 @@ public class IliskiliTaraflarBean extends GenericBean<IliskiliTaraflar,Long> imp
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
+		Dipnot tmp = iliskiliTaraflarService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 14L);
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
 		loadLists();
 	}
 	public String initPage() {

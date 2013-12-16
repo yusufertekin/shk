@@ -436,14 +436,18 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{varlikBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{varlikBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{varlikBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{varlikBean.remove()}" update="@form" async="true" process="@this" immediate="true"/>
+			</p:panel>
+			<p:panel>
 				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
 					<f:facet name="header">
 						<h:outputText value="#{msg['common.dipnot']}" />
 					</f:facet>
-					<p:inputTextarea styleClass="dipnot-input" value="#{varlikBean.instance.dipnot}" />
+					<p:inputTextarea styleClass="dipnot-input" value="#{varlikBean.dipnot.dipnotText}" />
 				</p:panelGrid>
-				<p:commandButton value="#{msg['common.save']}" rendered="#{varlikBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{varlikBean.save()}" update="@form"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{varlikBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{varlikBean.remove()}" update="@form" async="true" process="@this" immediate="true"/>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{varlikBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel" action="#{dipnotBean.save(varlikBean.dipnot, 1, varlikBean.instance.company, varlikBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.entity.Varlik;
 import com.deloitte.shk.generic.GenericBean;
@@ -44,6 +45,15 @@ public class VarlikBean extends GenericBean<Varlik,Long> implements Serializable
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
+		Dipnot tmp = varlikService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 1L);
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
 		Varlik varlik = varlikService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany());
 		if(varlik != null)
 		{

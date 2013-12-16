@@ -25,7 +25,6 @@ public abstract class GenericEntity implements Cloneable{
 	@JoinColumn(updatable = false)
 	private Donem donem;
 	
-	private String dipnot;
 	
 	public boolean equals(Object obj) {
 		if (null == obj) {
@@ -66,16 +65,6 @@ public abstract class GenericEntity implements Cloneable{
 	public void setDonem(Donem donem) {
 		this.donem = donem;
 	}
-
-	public String getDipnot() {
-		return dipnot;
-	}
-
-	public void setDipnot(String dipnot) {
-		this.dipnot = dipnot;
-	}
-	
-
 
 	
 

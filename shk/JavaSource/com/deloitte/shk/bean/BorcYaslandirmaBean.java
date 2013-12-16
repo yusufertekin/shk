@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import com.deloitte.shk.entity.BorcYaslandirma;
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.generic.GenericBean;
 import com.deloitte.shk.generic.GenericService;
@@ -53,6 +54,15 @@ public class BorcYaslandirmaBean extends GenericBean<BorcYaslandirma,Long> imple
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
+		Dipnot tmp = borcYaslandirmaService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 6L);
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
 		BorcYaslandirma borcYaslandirma = borcYaslandirmaService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 0L);
 		BorcYaslandirma borcYaslandirma1 = borcYaslandirmaService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 1L);
 		BorcYaslandirma borcYaslandirma2 = borcYaslandirmaService.findByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 2L);

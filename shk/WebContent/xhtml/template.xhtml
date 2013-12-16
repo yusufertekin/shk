@@ -31,14 +31,14 @@
 	        		<p:commandLink ajax="false" value="#{msg['common.logout']}" action="#{loginBean.logout()}"/>
 	        		<br />
 		        	<p:menu style="width:186px;" >
-		        		<p:submenu rendered="#{currentUser.userId == 1}" label="#{msg['menu.donemProcesses']}">
+		        		<p:submenu rendered="#{currentUser.company == null}" label="#{msg['menu.donemProcesses']}">
 							<p:menuitem immediate="true"  id="menuItem18" value="#{msg['submenu.donem']}" url="/xhtml/admin/donem.xhtml" />
 						</p:submenu>
 		        		<p:submenu label="#{msg['menu.userProcesses']}">
-							<p:menuitem rendered="#{currentUser.userId == 1}" immediate="true" action="#{kullaniciBean.emptyUser()}" id="menuItem1" value="#{msg['submenu.saveUser']}" />
+							<p:menuitem rendered="#{currentUser.company == null}" immediate="true" action="#{kullaniciBean.emptyUser()}" id="menuItem1" value="#{msg['submenu.saveUser']}" />
 							<p:menuitem id="menuItem2" immediate="true" action="#{kullaniciBean.loadUser()}" value="#{msg['submenu.updateUser']}"/>
 						</p:submenu>
-						<p:submenu rendered="#{currentUser.userId == 1}" label="#{msg['menu.companyProcesses']}">
+						<p:submenu rendered="#{currentUser.company == null}" label="#{msg['menu.companyProcesses']}">
 							<p:menuitem immediate="true"  id="menuItem3" value="#{msg['submenu.saveCompany']}" url="/xhtml/admin/companySave.xhtml" />
 							<p:menuitem immediate="true" id="menuItem4" value="#{msg['submenu.selectCompany']}" url="/xhtml/admin/companySelection.xhtml" />
 							<p:menuitem immediate="true" id="menuItem21" action="#{karneBean.initPage()}" value="#{msg['submenu.karne']}" />

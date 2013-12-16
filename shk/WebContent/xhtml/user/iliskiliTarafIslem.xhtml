@@ -153,13 +153,6 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
-				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
-					<f:facet name="header">
-						<h:outputText value="#{msg['common.dipnot']}" />
-					</f:facet>
-					<p:inputTextarea styleClass="dipnot-input" value="#{iliskiliTarafIslemBean.instance.dipnot}" />
-				</p:panelGrid>
-				<br />
 				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{iliskiliTarafIslemBean.save()}" update="@form"/>
 				<br />
 				<p:separator />
@@ -666,6 +659,16 @@
 		          		<h:outputText value="#{iliskiliTarafIslemBean.toplam8}" />
 		          	</p:column>
 				</p:panelGrid>
+			</p:panel>
+			<p:panel>
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{iliskiliTarafIslemBean.dipnot.dipnotText}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(iliskiliTarafIslemBean.dipnot, 12, iliskiliTarafIslemBean.instance.company, iliskiliTarafIslemBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

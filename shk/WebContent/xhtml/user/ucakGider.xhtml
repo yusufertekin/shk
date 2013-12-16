@@ -554,14 +554,17 @@
 					</p:carousel>
 				</h:panelGrid>
 				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ucakGiderBean.save()}" update="@form"/>
+			</p:panel>
+			<p:panel>
 				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
 					<f:facet name="header">
 						<h:outputText value="#{msg['common.dipnot']}" />
 					</f:facet>
-					<p:inputTextarea styleClass="dipnot-input" value="#{ucakGiderBean.instance.dipnot}" />
+					<p:inputTextarea styleClass="dipnot-input" value="#{ucakGiderBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ucakGiderBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(ucakGiderBean.dipnot, 8, ucakGiderBean.instance.company, ucakGiderBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

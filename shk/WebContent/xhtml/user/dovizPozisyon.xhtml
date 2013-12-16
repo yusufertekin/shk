@@ -1545,13 +1545,6 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
-				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
-					<f:facet name="header">
-						<h:outputText value="#{msg['common.dipnot']}" />
-					</f:facet>
-					<p:inputTextarea styleClass="dipnot-input" value="#{dovizPozisyonBean.instance.dipnot}" />
-				</p:panelGrid>
-				<br />
 				<p:commandButton value="#{msg['common.save']}" rendered="#{dovizPozisyonBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{dovizPozisyonBean.save()}" update="@form"/>
 				<p:commandButton value="#{msg['common.remove']}" rendered="#{dovizPozisyonBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{dovizPozisyonBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
 				<p:panelGrid columns="1">
@@ -1559,6 +1552,16 @@
 					<h:outputText value="#{msg['dovizPozisyon.alt2']}" />
 					<h:outputText value="#{msg['dovizPozisyon.alt3']}" />
 				</p:panelGrid>
+			</p:panel>
+			<p:panel>
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{dovizPozisyonBean.dipnot.dipnotText}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{dovizPozisyonBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(dovizPozisyonBean.dipnot, 9, dovizPozisyonBean.instance.company, dovizPozisyonBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>
