@@ -120,9 +120,24 @@ public class UcakFiloBean extends GenericBean<UcakFilo,Long> implements Serializ
 	@Override
 	public void save() throws Exception {
 		// TODO Auto-generated method stub
-		super.save();
+		try {
+			getEntityService().save(getInstance());
+			instanceAdet.setCompany(getInstance().getCompany());
+			instanceAdet.setDonem(getInstance().getDonem());
+			instanceAdet.setTip(2L);
+			getEntityService().save(instanceAdet);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			addMessage("common.saveError");
+			return;
+		}
+		newInstance();
+		addMessage("common.saveSuccessful");
 		getInstance().setTip(0L);
+		loadLists();
 	}
+	
 	public List<UcakFilo> getFiloyaGirenList() {
 		return filoyaGirenList;
 	}
