@@ -10,6 +10,7 @@ import com.deloitte.shk.entity.Company;
 import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.entity.NakitAkim;
+import com.deloitte.shk.enums.Tablo;
 import com.deloitte.shk.generic.GenericBean;
 import com.deloitte.shk.generic.GenericService;
 import com.deloitte.shk.qualifier.CurrentUser;
@@ -48,7 +49,7 @@ public class NakitAkimBean extends GenericBean<NakitAkim,Long> implements Serial
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
-		Dipnot tmp = nakitAkimService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 4L);
+		Dipnot tmp = nakitAkimService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), Tablo.NAKITAKIM.getValue());
 		if(tmp != null)
 		{
 			setDipnot(tmp);

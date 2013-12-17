@@ -11,6 +11,7 @@ import com.deloitte.shk.entity.Company;
 import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.entity.UcakFilo;
+import com.deloitte.shk.enums.Tablo;
 import com.deloitte.shk.generic.GenericBean;
 import com.deloitte.shk.generic.GenericService;
 import com.deloitte.shk.qualifier.CurrentUser;
@@ -57,7 +58,7 @@ public class UcakFiloBean extends GenericBean<UcakFilo,Long> implements Serializ
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
-		Dipnot tmp = ucakFiloService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 10L);
+		Dipnot tmp = ucakFiloService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), Tablo.UCAKFILO.getValue());
 		if(tmp != null)
 		{
 			setDipnot(tmp);

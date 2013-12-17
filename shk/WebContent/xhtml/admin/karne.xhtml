@@ -11,9 +11,6 @@
 			<p:growl autoUpdate="true"/>
 			
 			<p:panel header="#{msg['karne.pageHeader']}">
-				<f:facet name="footer">
-					<h:outputText value="#{msg['karne.footer']}" styleClass="bold-header" />
-				</f:facet>
 				<p:panelGrid id="sorgulaPanel" columns="2">
 					<h:outputText value="#{msg['company.name']}" />
 					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
@@ -27,7 +24,7 @@
        					<f:converter converterId="entityConverter"/>
        					<p:ajax event="change" update="@form"/>
        				</p:selectOneMenu>
-        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel" action="#{karneBean.sorgula()}" update="karnePanel1"/>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel,dipnotPanel" action="#{karneBean.sorgula()}" update="karnePanel1"/>
 				</p:panelGrid>
 				<br />
 				<p:separator />
@@ -146,6 +143,18 @@
 				</p:panelGrid>
 				<br />
 			</p:panel>
+
+			<p:panel>
+				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
+					<f:facet name="header">
+						<h:outputText value="#{msg['common.dipnot']}" />
+					</f:facet>
+					<p:inputTextarea styleClass="dipnot-input" value="#{karneBean.dipnot.dipnotText}" />
+				</p:panelGrid>
+				<br />
+				<p:commandButton value="#{msg['common.save']}" rendered="#{karneBean.donem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,dipnotPanel" action="#{dipnotBean.save(karneBean.dipnot, Tablo.KARNE.value, karneBean.company, karneBean.donem)}"/>
+			</p:panel>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>

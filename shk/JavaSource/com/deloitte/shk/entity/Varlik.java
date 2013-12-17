@@ -346,5 +346,17 @@ public class Varlik extends GenericEntity implements Serializable{
 			Double iliskiliTaraflarAlacaklarDiger) {
 		this.iliskiliTaraflarAlacaklarDiger = iliskiliTaraflarAlacaklarDiger;
 	}
+	
+	public Double getToplamDonenVarliklar(){
+		return getNakit() + this.getFinansalYatirim() + this.getTicariAlacak() + this.getSupheliAlacakKarsilik() + this.getTeknikMalzemeStok() + this.getUcakAlimOnOdeme() + this.getTurevFinansalAraclar() + this.getIliskiliTaraflardanAlacaklar() + this.getDigerAlacak() + this.getSatisAmaciylaeldeTutulanVarlik();
+	}
+
+	public Double getLikiditeOranPay(){
+		return getNakit() + this.getFinansalYatirim() + this.getTicariAlacak() + this.getIliskiliTaraflardanAlacaklar() + this.getDigerAlacak();
+	}
+
+	public Double getNakitOranPay(){
+		return getNakit() + this.getFinansalYatirim();
+	}
 
 }

@@ -12,6 +12,7 @@ import com.deloitte.shk.entity.Company;
 import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.entity.UcakGider;
+import com.deloitte.shk.enums.Tablo;
 import com.deloitte.shk.generic.GenericBean;
 import com.deloitte.shk.generic.GenericService;
 import com.deloitte.shk.qualifier.CurrentUser;
@@ -78,7 +79,7 @@ public class UcakGiderBean extends GenericBean<UcakGider,Long> implements Serial
 		}
 		getInstance().setDonem(getSelectedDonem());
 		initToplam();
-		Dipnot tmp = ucakGiderService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 8L);
+		Dipnot tmp = ucakGiderService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), Tablo.UCAKGIDER.getValue());
 		if(tmp != null)
 		{
 			setDipnot(tmp);

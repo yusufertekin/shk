@@ -12,6 +12,7 @@ import com.deloitte.shk.entity.KarZarar;
 import com.deloitte.shk.entity.Kaynak;
 import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.entity.Ozkaynak;
+import com.deloitte.shk.enums.Tablo;
 import com.deloitte.shk.generic.GenericBean;
 import com.deloitte.shk.generic.GenericService;
 import com.deloitte.shk.qualifier.CurrentUser;
@@ -79,7 +80,7 @@ public class OzkaynakBean extends GenericBean<Ozkaynak,Long> implements Serializ
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
-		Dipnot tmp = ozkaynakService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 15L);
+		Dipnot tmp = ozkaynakService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), Tablo.OZKAYNAK.getValue());
 		if(tmp != null)
 		{
 			setDipnot(tmp);
@@ -463,7 +464,7 @@ public class OzkaynakBean extends GenericBean<Ozkaynak,Long> implements Serializ
 		{
 			instance8Boolean = false;
 		}
-		if(instance9Toplam != null && kaynak != null && kaynak.getSermaye() != null && instance9Toplam.doubleValue() == karZarar.getAnaOrtaklikNetKar().doubleValue())
+		if(instance9Toplam != null && kaynak != null && kaynak.getSermaye() != null && karZarar != null && karZarar.getAnaOrtaklikNetKar() != null && instance9Toplam.doubleValue() == karZarar.getAnaOrtaklikNetKar().doubleValue())
 		{
 			instance9Boolean = true;
 		}

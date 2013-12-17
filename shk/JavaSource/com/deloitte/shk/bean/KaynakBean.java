@@ -10,6 +10,7 @@ import com.deloitte.shk.entity.Company;
 import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Kaynak;
 import com.deloitte.shk.entity.Kullanici;
+import com.deloitte.shk.enums.Tablo;
 import com.deloitte.shk.generic.GenericBean;
 import com.deloitte.shk.generic.GenericService;
 import com.deloitte.shk.qualifier.CurrentUser;
@@ -51,7 +52,7 @@ public class KaynakBean extends GenericBean<Kaynak,Long> implements Serializable
 			}
 		}
 		getInstance().setDonem(getSelectedDonem());
-		Dipnot tmp = kaynakService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), 2L);
+		Dipnot tmp = kaynakService.findDipnotByDonemAndCompany(getInstance().getDonem(), getInstance().getCompany(), Tablo.KAYNAK.getValue());
 		if(tmp != null)
 		{
 			setDipnot(tmp);

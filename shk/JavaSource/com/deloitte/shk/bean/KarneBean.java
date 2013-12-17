@@ -3,6 +3,7 @@ package com.deloitte.shk.bean;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.enterprise.context.SessionScoped;
@@ -11,8 +12,16 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.deloitte.shk.entity.Company;
+import com.deloitte.shk.entity.Dipnot;
+import com.deloitte.shk.entity.Donem;
+import com.deloitte.shk.entity.Kaynak;
 import com.deloitte.shk.entity.Kullanici;
+import com.deloitte.shk.entity.Varlik;
+import com.deloitte.shk.enums.Tablo;
 import com.deloitte.shk.qualifier.CurrentUser;
+import com.deloitte.shk.qualifier.DonemList;
+import com.deloitte.shk.services.KaynakService;
+import com.deloitte.shk.services.VarlikService;
 /**
  * @author yusufertekin
  *
@@ -23,9 +32,14 @@ public class KarneBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	@Inject @CurrentUser Kullanici currentUser;
+	private @Inject @DonemList List<Donem> donemList;
+	
+	@Inject VarlikService varlikService;
+	@Inject KaynakService kaynakService;
 	
 	private Company company;
-	private Date donem;
+	private Donem donem;
+	private Dipnot dipnot;
 	private Double cariOran;
 	private Double likiditeOran;
 	private Double nakitOran;
@@ -37,7 +51,8 @@ public class KarneBean implements Serializable{
 	private Double toplamBorcVarlik;
 	private Double finansmanGiderKarsilama;
 	private Double borcServisKarsilama;
-	
+	private Varlik varlik;
+	private Kaynak kaynak;
 	
 	public static String formatDate(Date date, String pattern) {
 	    if (date == null) {
@@ -51,15 +66,38 @@ public class KarneBean implements Serializable{
 	    Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
 	    return new SimpleDateFormat(pattern, locale).format(date);
 	}
+
 	public void sorgula()
 	{
+		initValues();
 		if(currentUser.getCompany() != null && currentUser.getCompany().getCompanyId() != null)
 		{
-			
+			try {
+				setCompany((Company)currentUser.getCompany().clone());
+			} catch (CloneNotSupportedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		if (getDonem() == null){
+			setDonem(donemList.get(0));
+		}
+		Dipnot tmp = varlikService.findDipnotByDonemAndCompany(getDonem(), getCompany(), Tablo.KARNE.getValue());
+		if(tmp != null)
+		{
+			setDipnot(tmp);
+		}
+		else
+		{
+			setDipnot(new Dipnot());
+		}
+		varlik = varlikService.findByDonemAndCompany(getDonem(), getCompany());
+		kaynak = kaynakService.findByDonemAndCompany(getDonem(), getCompany());
+		
 	}
 	public void initValues()
 	{
+		
 		 cariOran = new Double(0);
 		 likiditeOran = new Double(0);
 		 nakitOran = new Double(0);
@@ -71,12 +109,13 @@ public class KarneBean implements Serializable{
 		 toplamBorcVarlik = new Double(0);
 		 finansmanGiderKarsilama = new Double(0);
 		 borcServisKarsilama = new Double(0);
-		
+		 setDipnot(new Dipnot());
+//		 varlik = new Varlik();
+//		 kaynak = new Kaynak(); 
 	}
 	public String initPage() {
 		// TODO Auto-generated method stub
 		sorgula();
-		initValues();
 		return "/xhtml/admin/karne.xhtml?faces-redirect=true";
 	}
 	public Kullanici getCurrentUser() {
@@ -86,18 +125,33 @@ public class KarneBean implements Serializable{
 		this.currentUser = currentUser;
 	}
 	public Double getCariOran() {
+		if(varlik != null && kaynak != null){
+			Double toplamDonenVarliklar = varlik.getToplamDonenVarliklar();
+			Double toplamKisaVadeliYukumlulukler = kaynak.getToplamKisaVadeliYukumlulukler();
+			cariOran = toplamDonenVarliklar/toplamKisaVadeliYukumlulukler;
+		}
 		return cariOran;
 	}
 	public void setCariOran(Double cariOran) {
 		this.cariOran = cariOran;
 	}
 	public Double getLikiditeOran() {
+		if(varlik != null && kaynak != null){
+			Double likiditeOranPay = varlik.getLikiditeOranPay();
+			Double toplamKisaVadeliYukumlulukler = kaynak.getToplamKisaVadeliYukumlulukler();
+			likiditeOran = likiditeOranPay/toplamKisaVadeliYukumlulukler;
+		}
 		return likiditeOran;
 	}
 	public void setLikiditeOran(Double likiditeOran) {
 		this.likiditeOran = likiditeOran;
 	}
 	public Double getNakitOran() {
+		if(varlik != null && kaynak != null){
+			Double nakitOranPay = varlik.getNakitOranPay();
+			Double toplamKisaVadeliYukumlulukler = kaynak.getToplamKisaVadeliYukumlulukler();
+			nakitOran = nakitOranPay/toplamKisaVadeliYukumlulukler;
+		}
 		return nakitOran;
 	}
 	public void setNakitOran(Double nakitOran) {
@@ -151,10 +205,10 @@ public class KarneBean implements Serializable{
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	public Date getDonem() {
+	public Donem getDonem() {
 		return donem;
 	}
-	public void setDonem(Date donem) {
+	public void setDonem(Donem donem) {
 		this.donem = donem;
 	}
 	public Double getToplamBorcOzkaynak() {
@@ -162,6 +216,12 @@ public class KarneBean implements Serializable{
 	}
 	public void setToplamBorcOzkaynak(Double toplamBorcOzkaynak) {
 		this.toplamBorcOzkaynak = toplamBorcOzkaynak;
+	}
+	public Dipnot getDipnot() {
+		return dipnot;
+	}
+	public void setDipnot(Dipnot dipnot) {
+		this.dipnot = dipnot;
 	}
 	
 
