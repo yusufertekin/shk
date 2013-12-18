@@ -27,5 +27,9 @@ public enum Tablo {
     public Long getValue(){
     	return this.value;
     }
+
+    public void setValue(Long value){
+    	this.value = value;
+    }
 };  
 

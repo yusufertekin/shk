@@ -626,4 +626,15 @@ public class KarZarar extends GenericEntity implements Serializable{
 		this.kontrolGucuOlmayanNetKar = kontrolGucuOlmayanNetKar;
 	}
 
+	public Double getToplamHasilat(){
+		return this.disHatHasilat + this.icHatHasilat + this.kargoUcaklariKargoGelir + this.bellyKargoGelir +this.yurticiCharter + this.yurtdisiCharter + this.wetleaseGelir + this.digerGelirlerHasilat;
+	}
+
+	public Double getToplamFaailyetGiderleri(){
+		return this.yerEkipmanAmortismanGider + this.yerEkipmanDegerDusukGider + this.ucusIsletmeGider + this.digerGenelIdariGider + this.yolcuKomisyon + this.kargoKomisyon + this.reklamGider + this.personelGider + this.digerSatisReklamGider + this.ucusEkipmanAmortismanGider + this.ucusEkipmanDegerDusukGider + this.ucusEkipmanBakimGider + this.aktiflesenBakimGider + this.ucusEkipmanKiraGider + this.ucakKiraGider + this.koltukKiraGider + this.ucusEkipmanSigortaGider + this.maliMesuliyetSigortaGider + this.kokpitEkipGider + this.kabinEkipGider + this.kokpitEkipEgitimGider + this.havaalaniVergiGuvenlik + this.konmaYerIstasyonGider + this.akaryakitGider + this.ustgecisGider + this.ikramGider;
+	}
+
+	public Double getNetKarZarar(){
+		return this.vergiGiderGelir + this.ertelenmisVergiGiderGelir + this.turevFinansalAracKarZarar + this.kurFarkiKarZarar + this.finansalGider + this.finansalGelir + this.finansalKiralamaFaizGider + this.ozkaynakYontemiyleKarZarar + this.digerGelirler + this.digerGiderler + this.supheliAlacakKarsilikGider + this.sabitKiymetSatisKarZarar + this.yerEkipmanAmortismanGider + this.yerEkipmanDegerDusukGider + this.ucusIsletmeGider + this.digerGenelIdariGider + this.yolcuKomisyon + this.kargoKomisyon + this.reklamGider + this.personelGider + this.digerSatisReklamGider + this.ucusEkipmanAmortismanGider + this.ucusEkipmanDegerDusukGider + this.ucusEkipmanBakimGider + this.aktiflesenBakimGider + this.ucusEkipmanKiraGider + this.ucakKiraGider + this.koltukKiraGider + this.ucusEkipmanSigortaGider + this.maliMesuliyetSigortaGider + this.kokpitEkipGider + this.kabinEkipGider + this.kokpitEkipEgitimGider + this.havaalaniVergiGuvenlik + this.konmaYerIstasyonGider + this.akaryakitGider + this.ustgecisGider + this.ikramGider + this.disHatHasilat + this.icHatHasilat + this.kargoUcaklariKargoGelir + this.bellyKargoGelir +this.yurticiCharter + this.yurtdisiCharter + this.wetleaseGelir + this.digerGelirlerHasilat;
+	}
 }

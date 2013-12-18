@@ -348,15 +348,19 @@ public class Varlik extends GenericEntity implements Serializable{
 	}
 	
 	public Double getToplamDonenVarliklar(){
-		return getNakit() + this.getFinansalYatirim() + this.getTicariAlacak() + this.getSupheliAlacakKarsilik() + this.getTeknikMalzemeStok() + this.getUcakAlimOnOdeme() + this.getTurevFinansalAraclar() + this.getIliskiliTaraflardanAlacaklar() + this.getDigerAlacak() + this.getSatisAmaciylaeldeTutulanVarlik();
+		return this.nakit + this.finansalYatirim + this.ticariAlacak + this.supheliAlacakKarsilik + this.teknikMalzemeStok + this.ucakAlimOnOdeme + this.turevFinansalAraclar + this.iliskiliTaraflardanAlacaklar + this.digerAlacak + this.satisAmaciylaeldeTutulanVarlik;
+	}
+
+	public Double getToplamVarliklar(){
+		return this.turevFinansalAraclarDiger + this.digerDuranVarliklar + this.ertelenmisVergiVarliklar + this.iliskiliTaraflarAlacaklarDiger + this.uzunVadeliDigerAlacaklar + this.yatirimAmacliGayrimenkuller + this.birikmisAmortismanMaddiOlmayan + this.digerMaddiOlmayanDuranVarlik + this.slotHakki + this.serefiye + this.yapilmaktaOlanYatirim +this.ucakAlimOnOdeme + this.arsaArazi + this.birikmisAmortisman + this.yerEkipman + this.digerUcusEkipman + this.ucaklarMotorlar + this.nakit + this.finansalYatirim + this.ticariAlacak + this.supheliAlacakKarsilik + this.teknikMalzemeStok + this.ucakAlimOnOdeme + this.turevFinansalAraclar + this.iliskiliTaraflardanAlacaklar + this.digerAlacak + this.satisAmaciylaeldeTutulanVarlik;
 	}
 
 	public Double getLikiditeOranPay(){
-		return getNakit() + this.getFinansalYatirim() + this.getTicariAlacak() + this.getIliskiliTaraflardanAlacaklar() + this.getDigerAlacak();
+		return this.nakit + this.finansalYatirim + this.ticariAlacak + this.iliskiliTaraflardanAlacaklar + this.digerAlacak;
 	}
 
 	public Double getNakitOranPay(){
-		return getNakit() + this.getFinansalYatirim();
+		return this.nakit + this.finansalYatirim;
 	}
 
 }

@@ -24,7 +24,7 @@
        					<f:converter converterId="entityConverter"/>
        					<p:ajax event="change" update="@form"/>
        				</p:selectOneMenu>
-        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel,dipnotPanel" action="#{karneBean.sorgula()}" update="karnePanel1"/>
+        			<p:commandButton value="#{msg['common.sorgula']}" process="sorgulaPanel,dipnotPanel" action="#{karneBean.sorgula()}" update="karnePanel1,dipnotPanel"/>
 				</p:panelGrid>
 				<br />
 				<p:separator />
@@ -36,7 +36,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne1" value="#{karneBean.cariOran}">
-								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
+								<f:convertNumber locale="tr_TR"  groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -46,7 +46,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne2" value="#{karneBean.likiditeOran}">
-								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -56,7 +56,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne3" value="#{karneBean.nakitOran}">
-								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -66,7 +66,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne4" value="#{karneBean.alacakTahsilSure}">
-								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -76,7 +76,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne5" value="#{karneBean.varlikDevirHizSure}">
-								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -86,7 +86,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne6" value="#{karneBean.ticariBorcOdeme}">
-								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -96,7 +96,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne7" value="#{karneBean.toplamBorcOzkaynak}">
-								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -106,7 +106,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne8" value="#{karneBean.uzunVadeliBorcToplam}">
-								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -116,7 +116,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne9" value="#{karneBean.toplamBorcVarlik}">
-								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -126,7 +126,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne10" value="#{karneBean.finansmanGiderKarsilama}">
-								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -136,7 +136,7 @@
 						</p:column>
 						<p:column styleClass="column-input">
 							<h:outputText  styleClass="input-text" id="karne11" value="#{karneBean.borcServisKarsilama}">
-								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
 							</h:outputText>
 						</p:column>
 					</p:row>
@@ -152,7 +152,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{karneBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{karneBean.donem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,dipnotPanel" action="#{dipnotBean.save(karneBean.dipnot, Tablo.KARNE.value, karneBean.company, karneBean.donem)}"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{karneBean.donem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,dipnotPanel" action="#{dipnotBean.save(karneBean.dipnot, 16, karneBean.company, karneBean.donem)}"/>
 			</p:panel>
 			
 		</h:form>

@@ -376,4 +376,12 @@ public class Kaynak extends GenericEntity implements Serializable{
 		return this.finansalBorclar + this.uzunVadeliKrediKisaKisim + this.finansalKiralama + this.ticariBorc + this.donemKariVergi + this.yolcuUcusYukumluluk +this.faaliyetTipiKiralananUcakBG + this.odenecekPersonelUcreti + this.calisanlaraSaglananDigerF + this.odenecekVergiFonlar + this.turevFinansalAraclar + this.iliskiliTaraflaraBorclar + this.borcKarsiliklari + this.digerKisaVadeliYukumluluk;
 	}
 
+	public Double getToplamUzunVadeliYukumlulukler(){
+		return this.finansalBorcUzun + this.finansalKiralamaUzun + this.ticariBorcUzun + this.iliskiliTaraflaraBorclarUzun + this.calisanlaraSaglananDigerFUzun + this.ertelenmisVergiYukumluluk + this.digerUzunVadeliYukumluluk + this.turevFinansalAraclarUzun;
+	}
+	
+	public Double getAnaOrtakligaAitOzkaynaklarToplamiNetKarZararHaric(){
+		return this.sermaye + this.sermayeDuzeltmeFark + this.hisseSenediIhracPrim + this.kardanAyrilanKisitYedek + this.yabanciParaCevrimFarki + this.finansalRisktenKorunmaFon + this.duranVarlikDegerFonu  +this.finansalVarlikDegerFonu + this.gecmisYillarKarZarar;
+	}
+
 }

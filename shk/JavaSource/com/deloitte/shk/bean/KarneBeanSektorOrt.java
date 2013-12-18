@@ -15,11 +15,9 @@ import com.deloitte.shk.entity.Company;
 import com.deloitte.shk.entity.Dipnot;
 import com.deloitte.shk.entity.Donem;
 import com.deloitte.shk.entity.KarZarar;
+import com.deloitte.shk.entity.Karne;
 import com.deloitte.shk.entity.Kaynak;
-import com.deloitte.shk.entity.Kullanici;
 import com.deloitte.shk.entity.Varlik;
-import com.deloitte.shk.enums.Tablo;
-import com.deloitte.shk.qualifier.CurrentUser;
 import com.deloitte.shk.qualifier.DonemList;
 import com.deloitte.shk.services.KarZararService;
 import com.deloitte.shk.services.KaynakService;
@@ -31,10 +29,9 @@ import com.deloitte.shk.util.FuncUtils;
  */
 @Named
 @SessionScoped
-public class KarneBean implements Serializable{
+public class KarneBeanSektorOrt implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	@Inject @CurrentUser Kullanici currentUser;
 	private @Inject @DonemList List<Donem> donemList;
 	
 	@Inject VarlikService varlikService;
@@ -55,22 +52,12 @@ public class KarneBean implements Serializable{
 	private Double toplamBorcVarlik;
 	private Double finansmanGiderKarsilama;
 	private Double borcServisKarsilama;
-
-	private Double cariOranSO;
-	private Double likiditeOranSO;
-	private Double nakitOranSO;
-	private Double alacakTahsilSureSO;
-	private Double varlikDevirHizSureSO;
-	private Double ticariBorcOdemeSO;
-	private Double toplamBorcOzkaynakSO;
-	private Double uzunVadeliBorcToplamSO;
-	private Double toplamBorcVarlikSO;
-	private Double finansmanGiderKarsilamaSO;
-	private Double borcServisKarsilamaSO;
 	
 	private Varlik varlik;
 	private Kaynak kaynak;
 	private KarZarar karZarar;
+	
+	private Karne karne;
 	
 	public static String formatDate(Date date, String pattern) {
 	    if (date == null) {
@@ -88,31 +75,13 @@ public class KarneBean implements Serializable{
 	public void sorgula()
 	{
 		initValues();
-		if(currentUser.getCompany() != null && currentUser.getCompany().getCompanyId() != null)
-		{
-			try {
-				setCompany((Company)currentUser.getCompany().clone());
-			} catch (CloneNotSupportedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 		if (getDonem() == null){
 			setDonem(donemList.get(0));
-		}
-		Dipnot tmp = varlikService.findDipnotByDonemAndCompany(getDonem(), getCompany(), Tablo.KARNE.getValue());
-		if(tmp != null)
-		{
-			setDipnot(tmp);
-		}
-		else
-		{
-			setDipnot(new Dipnot());
 		}
 		varlik = varlikService.findByDonemAndCompany(getDonem(), getCompany());
 		kaynak = kaynakService.findByDonemAndCompany(getDonem(), getCompany());
 		karZarar = karZararService.findByDonemAndCompany(getDonem(), getCompany());
-		
+
 	}
 	public void initValues()
 	{
@@ -129,19 +98,11 @@ public class KarneBean implements Serializable{
 		 finansmanGiderKarsilama = new Double(0);
 		 borcServisKarsilama = new Double(0);
 		 setDipnot(new Dipnot());
-//		 varlik = new Varlik();
-//		 kaynak = new Kaynak(); 
 	}
 	public String initPage() {
 		// TODO Auto-generated method stub
 		sorgula();
 		return "/xhtml/admin/karne.xhtml?faces-redirect=true";
-	}
-	public Kullanici getCurrentUser() {
-		return currentUser;
-	}
-	public void setCurrentUser(Kullanici currentUser) {
-		this.currentUser = currentUser;
 	}
 
 	public Double getCariOran() {
@@ -152,7 +113,6 @@ public class KarneBean implements Serializable{
 		}
 		return cariOran;
 	}
-	
 	public void setCariOran(Double cariOran) {
 		this.cariOran = cariOran;
 	}
@@ -182,7 +142,7 @@ public class KarneBean implements Serializable{
 		if(varlik != null && karZarar != null){
 			Double ticariAlacak = varlik.getTicariAlacak();
 			Double toplamHasilat = karZarar.getToplamHasilat();
-			alacakTahsilSure = FuncUtils.getYilbasindanBeriGecenGun(getDonem().getDonem())/(toplamHasilat/ticariAlacak);  //TODO Bir önceki yilin ticari alacagi ile ortalama almali
+			alacakTahsilSure = FuncUtils.getYilbasindanBeriGecenGun(getDonem().getDonem())/toplamHasilat/ticariAlacak;  //TODO Bir önceki yilin ticari alacagi ile ortalama almali
 		}
 		return alacakTahsilSure;
 	}
@@ -205,7 +165,7 @@ public class KarneBean implements Serializable{
 		if(kaynak != null && karZarar != null){
 			Double toplamFaaliyetGideri = karZarar.getToplamFaailyetGiderleri();
 			Double ticariBorclar = kaynak.getTicariBorc();
-			ticariBorcOdeme = -1 * (FuncUtils.getYilbasindanBeriGecenGun(getDonem().getDonem()) / (toplamFaaliyetGideri / ticariBorclar));
+			ticariBorcOdeme = -1 * FuncUtils.getYilbasindanBeriGecenGun(getDonem().getDonem()) / toplamFaaliyetGideri / ticariBorclar;
 		}
 		return ticariBorcOdeme;
 	}
@@ -248,7 +208,7 @@ public class KarneBean implements Serializable{
 		if(karZarar != null && kaynak != null){
 			Double gider = karZarar.getFinansalKiralamaFaizGider() + karZarar.getFinansalGider();
 			Double kaynaklar = kaynak.getFinansalBorclar() + kaynak.getUzunVadeliKrediKisaKisim() + kaynak.getFinansalKiralama();
-			borcServisKarsilama = getEbitda() / (gider + kaynaklar);
+			borcServisKarsilama = 2 * getEbitda() / (-1 * (gider + kaynaklar));
 		}
 		return borcServisKarsilama;
 	}
@@ -292,7 +252,7 @@ public class KarneBean implements Serializable{
 													+ karZarar.getFinansalKiralamaFaizGider() + karZarar.getFinansalGelir() + karZarar.getFinansalGider() 
 													+ karZarar.getKurFarkiKarZarar() + karZarar.getTurevFinansalAracKarZarar() + karZarar.getYerEkipmanAmortismanGider() 
 													+ karZarar.getYerEkipmanDegerDusukGider() 
-													+ karZarar.getUcusEkipmanDegerDusukGider()
+													+ karZarar.getUcusEkipmanAmortismanGider() + karZarar.getUcusEkipmanDegerDusukGider() + karZarar.getUcusEkipmanBakimGider()
 													+ karZarar.getAktiflesenBakimGider());
 		}
 		return ebitda;
