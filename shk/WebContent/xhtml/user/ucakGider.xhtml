@@ -336,7 +336,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGiderUcakKodu" value="#{ucak.ucakKodu}">
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGiderUcakKodu" value="#{ucak.ucakKodu}">
 										<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGiderUcakKodu" />
 									</p:inputText>
@@ -351,7 +351,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider1" value="#{ucak.akaryakitGiderler}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider1" value="#{ucak.akaryakitGiderler}" >
 										<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider1,ucakGiderToplam1,ucakGiderToplamGenel,ucakGiderPanel2" />
 									</p:inputText>
@@ -359,7 +359,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider2" value="#{ucak.havaEmniyetGiderler}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider2" value="#{ucak.havaEmniyetGiderler}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider2,ucakGiderToplam1,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -367,7 +367,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider3" value="#{ucak.ustgecisGiderler}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider3" value="#{ucak.ustgecisGiderler}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider3,ucakGiderToplam1,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -375,7 +375,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider4" value="#{ucak.ikramGiderler}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider4" value="#{ucak.ikramGiderler}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider4,ucakGiderToplam1,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -390,7 +390,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider5" value="#{ucak.konmaYerHizmetleriIstasyon}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider5" value="#{ucak.konmaYerHizmetleriIstasyon}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider5,ucakGiderToplam2,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -398,7 +398,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider6" value="#{ucak.havaalaniVergiGuvenlikUcret}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider6" value="#{ucak.havaalaniVergiGuvenlikUcret}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider6,ucakGiderToplam2,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -413,7 +413,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider7" value="#{ucak.kokpitUcretDigerMenfaat}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider7" value="#{ucak.kokpitUcretDigerMenfaat}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider7,ucakGiderToplam3,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -421,7 +421,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider8" value="#{ucak.kabinUcretDigerMenfaat}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider8" value="#{ucak.kabinUcretDigerMenfaat}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider8,ucakGiderToplam3,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -429,7 +429,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider9" value="#{ucak.pilotEgitimGiderler}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider9" value="#{ucak.pilotEgitimGiderler}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider9,ucakGiderToplam3,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -437,7 +437,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider10" value="#{ucak.maliMesuliyetSigartasiGider}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider10" value="#{ucak.maliMesuliyetSigartasiGider}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider10,ucakGiderToplam3,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -452,7 +452,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider11" value="#{ucak.ucusEkipmanAmortismanGider}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider11" value="#{ucak.ucusEkipmanAmortismanGider}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider11,ucakGiderToplam4,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -460,7 +460,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider12" value="#{ucak.ucusEkipmanDegerDusuklugu}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider12" value="#{ucak.ucusEkipmanDegerDusuklugu}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider12,ucakGiderToplam4,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -468,7 +468,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider13" value="#{ucak.ucusEkipmanTeknikBakimGider}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider13" value="#{ucak.ucusEkipmanTeknikBakimGider}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider13,ucakGiderToplam4,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -476,7 +476,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider14" value="#{ucak.ucusEkipmanKiraGider}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider14" value="#{ucak.ucusEkipmanKiraGider}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider14,ucakGiderToplam4,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -484,7 +484,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider15" value="#{ucak.ucakKiraGider}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider15" value="#{ucak.ucakKiraGider}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider15,ucakGiderToplam4,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -492,7 +492,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider16" value="#{ucak.koltukKiraGider}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider16" value="#{ucak.koltukKiraGider}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider16,ucakGiderToplam4,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -500,7 +500,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider17" value="#{ucak.ucusEkipmanSigortaGider}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider17" value="#{ucak.ucusEkipmanSigortaGider}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider17,ucakGiderToplam4,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -515,7 +515,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider18" value="#{ucak.ucakOrtalamaYas}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider18" value="#{ucak.ucakOrtalamaYas}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider18,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -523,7 +523,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider19" value="#{ucak.toplamUculanSaat}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider19" value="#{ucak.toplamUculanSaat}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider19,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -531,7 +531,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider20" value="#{ucak.hizmettekiGunSayisi}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider20" value="#{ucak.hizmettekiGunSayisi}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider20,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -539,7 +539,7 @@
 							</p:row>
 							<p:row>
 								<p:column style="height:22px !important" styleClass="column-input">
-									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakGider21" value="#{ucak.harcananYakitYaglar}" >
+									<p:inputText disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakGider21" value="#{ucak.harcananYakitYaglar}" >
 										<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 										<p:ajax event="blur" update="ucakGider21,ucakGiderToplamGenel" />
 									</p:inputText>
@@ -554,7 +554,7 @@
 					</p:carousel>
 				</h:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ucakGiderBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveButton"  action="#{ucakGiderBean.save()}" update="@form"/>
 			</p:panel>
 			<p:panel>
 				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
@@ -564,7 +564,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{ucakGiderBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(ucakGiderBean.dipnot, 8, ucakGiderBean.instance.company, ucakGiderBean.selectedDonem)}"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(ucakGiderBean.dipnot, 8, ucakGiderBean.instance.company, ucakGiderBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

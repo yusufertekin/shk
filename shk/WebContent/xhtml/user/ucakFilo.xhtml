@@ -34,7 +34,7 @@
 						<h:outputText value="#{msg['ucakFilo.donemBasi']}" />
 					</p:column>
 					<p:column styleClass="column-input">
-						<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" value="#{ucakFiloBean.instanceAdet.adet}" required="true" requiredMessage="#{msg['ucakFilo.donemBasi']}#{msg['common.requiredMessage']}">
+						<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" value="#{ucakFiloBean.instanceAdet.adet}" required="true" requiredMessage="#{msg['ucakFilo.donemBasi']}#{msg['common.requiredMessage']}">
 						</p:inputText>
 					</p:column>
 				</p:panelGrid>
@@ -64,7 +64,7 @@
 							<h:outputText value="#{msg['ucakFilo.1']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakFilo1" value="#{ucakFiloBean.instance.adet}" required="true" requiredMessage="#{msg['ucakFilo.1']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakFilo1" value="#{ucakFiloBean.instance.adet}" required="true" requiredMessage="#{msg['ucakFilo.1']}#{msg['common.requiredMessage']}">
 								<p:ajax event="blur" update="ucakFilo1" />
 							</p:inputText>
 						</p:column>
@@ -92,7 +92,7 @@
 							<h:outputText value="#{msg['ucakFilo.4']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakFilo4" value="#{ucakFiloBean.instance.ucakLisansNo}" required="true" requiredMessage="#{msg['ucakFilo.4']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakFilo4" value="#{ucakFiloBean.instance.ucakLisansNo}" required="true" requiredMessage="#{msg['ucakFilo.4']}#{msg['common.requiredMessage']}">
 								<p:ajax event="blur" update="ucakFilo4" />
 							</p:inputText>
 						</p:column>
@@ -102,7 +102,7 @@
 							<h:outputText value="#{msg['ucakFilo.5']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakFilo5" value="#{ucakFiloBean.instance.ucakTipiModeli}" required="true" requiredMessage="#{msg['ucakFilo.5']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakFilo5" value="#{ucakFiloBean.instance.ucakTipiModeli}" required="true" requiredMessage="#{msg['ucakFilo.5']}#{msg['common.requiredMessage']}">
 								<p:ajax event="blur" update="ucakFilo5" />
 							</p:inputText>
 						</p:column>
@@ -112,7 +112,7 @@
 							<h:outputText value="#{msg['ucakFilo.6']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="ucakFilo6" value="#{ucakFiloBean.instance.maxKapasite}" required="true" requiredMessage="#{msg['ucakFilo.6']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="ucakFilo6" value="#{ucakFiloBean.instance.maxKapasite}" required="true" requiredMessage="#{msg['ucakFilo.6']}#{msg['common.requiredMessage']}">
 								<p:ajax event="blur" update="ucakFilo6" />
 							</p:inputText>
 						</p:column>
@@ -150,7 +150,7 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{ucakFiloBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakFiloBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveButton"  action="#{ucakFiloBean.save()}" update="@form"/>
 				<br />
 				<p:separator />
 				<br />
@@ -174,7 +174,7 @@
 			                    <h:outputText value="#{filo.adet}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.adet}"/>
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{filo.adet}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -196,7 +196,7 @@
 			                    <h:outputText value="#{filo.ucakLisansNo}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.ucakLisansNo}"/>
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{filo.ucakLisansNo}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -206,7 +206,7 @@
 			                    <h:outputText value="#{filo.ucakTipiModeli}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.ucakTipiModeli}"/>
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{filo.ucakTipiModeli}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -216,7 +216,7 @@
 			                    <h:outputText value="#{filo.maxKapasite}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.maxKapasite}"/>
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{filo.maxKapasite}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -236,13 +236,13 @@
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
-					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}">
+					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 and currentUser.company != null}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
 						<p:rowEditor />
 					</p:column>
-					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}">
+					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 and currentUser.company != null}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
@@ -272,7 +272,7 @@
 			                    <h:outputText value="#{filo.adet}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.adet}"/>
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{filo.adet}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -294,7 +294,7 @@
 			                    <h:outputText value="#{filo.ucakLisansNo}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.ucakLisansNo}"/>
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{filo.ucakLisansNo}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -304,7 +304,7 @@
 			                    <h:outputText value="#{filo.ucakTipiModeli}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.ucakTipiModeli}"/>
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{filo.ucakTipiModeli}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -314,7 +314,7 @@
 			                    <h:outputText value="#{filo.maxKapasite}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 ? true : false}"  value="#{filo.maxKapasite}"/>
+			                    <p:inputText disabled="#{ucakFiloBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{filo.maxKapasite}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -335,13 +335,13 @@
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
-					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}">
+					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 and currentUser.company != null}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
 						<p:rowEditor />
 					</p:column>
-					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}">
+					<p:column rendered="#{ucakFiloBean.selectedDonem.durum == 0 and currentUser.company != null}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
@@ -368,7 +368,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{ucakFiloBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakFiloBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(ucakFiloBean.dipnot, 10, ucakFiloBean.instance.company, ucakFiloBean.selectedDonem)}"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakFiloBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(ucakFiloBean.dipnot, 10, ucakFiloBean.instance.company, ucakFiloBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

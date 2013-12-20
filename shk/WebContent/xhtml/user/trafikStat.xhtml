@@ -52,7 +52,7 @@
 							<h:outputText value="#{msg['trafikStat.1']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat1" value="#{trafikStatBean.instance.arzKoltuk}" required="true" requiredMessage="#{msg['trafikStat.1']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat1" value="#{trafikStatBean.instance.arzKoltuk}" required="true" requiredMessage="#{msg['trafikStat.1']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat1" />
 							</p:inputText>
@@ -63,7 +63,7 @@
 							<h:outputText value="#{msg['trafikStat.2']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat2" value="#{trafikStatBean.instance.ucretliYolcu}" required="true" requiredMessage="#{msg['trafikStat.2']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat2" value="#{trafikStatBean.instance.ucretliYolcu}" required="true" requiredMessage="#{msg['trafikStat.2']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat2" />
 							</p:inputText>
@@ -74,7 +74,7 @@
 							<h:outputText value="#{msg['trafikStat.3']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat3" value="#{trafikStatBean.instance.ucretliYolcuKm}" required="true" requiredMessage="#{msg['trafikStat.3']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat3" value="#{trafikStatBean.instance.ucretliYolcuKm}" required="true" requiredMessage="#{msg['trafikStat.3']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat3,trafikStatToplam1" />
 							</p:inputText>
@@ -85,7 +85,7 @@
 							<h:outputText value="#{msg['trafikStat.4']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat4" value="#{trafikStatBean.instance.arzKoltukKm}" required="true" requiredMessage="#{msg['trafikStat.4']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat4" value="#{trafikStatBean.instance.arzKoltukKm}" required="true" requiredMessage="#{msg['trafikStat.4']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat4,trafikStatToplam1" />
 							</p:inputText>
@@ -109,7 +109,7 @@
 							<h:outputText value="#{msg['trafikStat.5']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat5" value="#{trafikStatBean.instance.uculanKm}" required="true" requiredMessage="#{msg['trafikStat.5']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat5" value="#{trafikStatBean.instance.uculanKm}" required="true" requiredMessage="#{msg['trafikStat.5']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat5" />
 							</p:inputText>
@@ -120,7 +120,7 @@
 							<h:outputText value="#{msg['trafikStat.6']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat6" value="#{trafikStatBean.instance.ortalamaMenzil}" required="true" requiredMessage="#{msg['trafikStat.6']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat6" value="#{trafikStatBean.instance.ortalamaMenzil}" required="true" requiredMessage="#{msg['trafikStat.6']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat6" />
 							</p:inputText>
@@ -131,7 +131,7 @@
 							<h:outputText value="#{msg['trafikStat.7']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat7" value="#{trafikStatBean.instance.ucusSaati}" required="true" requiredMessage="#{msg['trafikStat.7']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat7" value="#{trafikStatBean.instance.ucusSaati}" required="true" requiredMessage="#{msg['trafikStat.7']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat7,trafikStatToplam2" />
 							</p:inputText>
@@ -142,7 +142,7 @@
 							<h:outputText value="#{msg['trafikStat.8']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat8" value="#{trafikStatBean.instance.blokSaati}" required="true" requiredMessage="#{msg['trafikStat.8']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat8" value="#{trafikStatBean.instance.blokSaati}" required="true" requiredMessage="#{msg['trafikStat.8']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat8,trafikStatToplam2" />
 							</p:inputText>
@@ -166,7 +166,7 @@
 							<h:outputText value="#{msg['trafikStat.9']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat9" value="#{trafikStatBean.instance.konmaSayisi}" required="true" requiredMessage="#{msg['trafikStat.9']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat9" value="#{trafikStatBean.instance.konmaSayisi}" required="true" requiredMessage="#{msg['trafikStat.9']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat9" />
 							</p:inputText>
@@ -177,7 +177,7 @@
 							<h:outputText value="#{msg['trafikStat.10']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat10" value="#{trafikStatBean.instance.hasilatYaratanUcuslar}" required="true" requiredMessage="#{msg['trafikStat.10']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat10" value="#{trafikStatBean.instance.hasilatYaratanUcuslar}" required="true" requiredMessage="#{msg['trafikStat.10']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat10" />
 							</p:inputText>
@@ -188,7 +188,7 @@
 							<h:outputText value="#{msg['trafikStat.11']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat11" value="#{trafikStatBean.instance.disHatYolcuSayisi}" required="true" requiredMessage="#{msg['trafikStat.11']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat11" value="#{trafikStatBean.instance.disHatYolcuSayisi}" required="true" requiredMessage="#{msg['trafikStat.11']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat11" />
 							</p:inputText>
@@ -199,7 +199,7 @@
 							<h:outputText value="#{msg['trafikStat.12']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat12" value="#{trafikStatBean.instance.transferYolcuSayisi}" required="true" requiredMessage="#{msg['trafikStat.12']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat12" value="#{trafikStatBean.instance.transferYolcuSayisi}" required="true" requiredMessage="#{msg['trafikStat.12']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat12" />
 							</p:inputText>
@@ -210,7 +210,7 @@
 							<h:outputText value="#{msg['trafikStat.13']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat13" value="#{trafikStatBean.instance.transferYolcuSayisiYuzde}" required="true" requiredMessage="#{msg['trafikStat.13']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat13" value="#{trafikStatBean.instance.transferYolcuSayisiYuzde}" required="true" requiredMessage="#{msg['trafikStat.13']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat13" />
 							</p:inputText>
@@ -221,7 +221,7 @@
 							<h:outputText value="#{msg['trafikStat.14']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat14" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemSon}" required="true" requiredMessage="#{msg['trafikStat.14']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat14" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemSon}" required="true" requiredMessage="#{msg['trafikStat.14']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat14" />
 							</p:inputText>
@@ -232,7 +232,7 @@
 							<h:outputText value="#{msg['trafikStat.15']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat15" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemOrt}" required="true" requiredMessage="#{msg['trafikStat.15']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat15" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemOrt}" required="true" requiredMessage="#{msg['trafikStat.15']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat15" />
 							</p:inputText>
@@ -243,7 +243,7 @@
 							<h:outputText value="#{msg['trafikStat.16']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat16" value="#{trafikStatBean.instance.ucakUtilizasyonu}" required="true" requiredMessage="#{msg['trafikStat.16']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat16" value="#{trafikStatBean.instance.ucakUtilizasyonu}" required="true" requiredMessage="#{msg['trafikStat.16']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat16" />
 							</p:inputText>
@@ -262,7 +262,7 @@
 							<h:outputText value="#{msg['trafikStat.17']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat17" value="#{trafikStatBean.instance.arzTon}" required="true" requiredMessage="#{msg['trafikStat.17']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat17" value="#{trafikStatBean.instance.arzTon}" required="true" requiredMessage="#{msg['trafikStat.17']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat17" />
 							</p:inputText>
@@ -273,7 +273,7 @@
 							<h:outputText value="#{msg['trafikStat.18']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat18" value="#{trafikStatBean.instance.ucretliTon}" required="true" requiredMessage="#{msg['trafikStat.18']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat18" value="#{trafikStatBean.instance.ucretliTon}" required="true" requiredMessage="#{msg['trafikStat.18']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat18" />
 							</p:inputText>
@@ -284,7 +284,7 @@
 							<h:outputText value="#{msg['trafikStat.19']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat19" value="#{trafikStatBean.instance.arzKargoTonKm}" required="true" requiredMessage="#{msg['trafikStat.19']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat19" value="#{trafikStatBean.instance.arzKargoTonKm}" required="true" requiredMessage="#{msg['trafikStat.19']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat19,trafikStatToplam3" />
 							</p:inputText>
@@ -295,7 +295,7 @@
 							<h:outputText value="#{msg['trafikStat.20']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat20" value="#{trafikStatBean.instance.ucretliKargoTonKm}" required="true" requiredMessage="#{msg['trafikStat.20']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat20" value="#{trafikStatBean.instance.ucretliKargoTonKm}" required="true" requiredMessage="#{msg['trafikStat.20']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat20,trafikStatToplam3" />
 							</p:inputText>
@@ -324,7 +324,7 @@
 							<h:outputText value="#{msg['trafikStat.21']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat21" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemSonKar}" required="true" requiredMessage="#{msg['trafikStat.21']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat21" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemSonKar}" required="true" requiredMessage="#{msg['trafikStat.21']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat21" />
 							</p:inputText>
@@ -335,7 +335,7 @@
 							<h:outputText value="#{msg['trafikStat.22']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat22" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemOrtKar}" required="true" requiredMessage="#{msg['trafikStat.22']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat22" value="#{trafikStatBean.instance.hizmetteUcakSayiDonemOrtKar}" required="true" requiredMessage="#{msg['trafikStat.22']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat22" />
 							</p:inputText>
@@ -346,7 +346,7 @@
 							<h:outputText value="#{msg['trafikStat.23']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat23" value="#{trafikStatBean.instance.konmaSayisiKar}" required="true" requiredMessage="#{msg['trafikStat.23']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat23" value="#{trafikStatBean.instance.konmaSayisiKar}" required="true" requiredMessage="#{msg['trafikStat.23']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat23" />
 							</p:inputText>
@@ -357,7 +357,7 @@
 							<h:outputText value="#{msg['trafikStat.24']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat24" value="#{trafikStatBean.instance.arzTonKar}" required="true" requiredMessage="#{msg['trafikStat.24']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat24" value="#{trafikStatBean.instance.arzTonKar}" required="true" requiredMessage="#{msg['trafikStat.24']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat24" />
 							</p:inputText>
@@ -368,7 +368,7 @@
 							<h:outputText value="#{msg['trafikStat.25']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat25" value="#{trafikStatBean.instance.ucretliTonKar}" required="true" requiredMessage="#{msg['trafikStat.25']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat25" value="#{trafikStatBean.instance.ucretliTonKar}" required="true" requiredMessage="#{msg['trafikStat.25']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat25" />
 							</p:inputText>
@@ -379,7 +379,7 @@
 							<h:outputText value="#{msg['trafikStat.26']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat26" value="#{trafikStatBean.instance.arzKargoTonKmKar}" required="true" requiredMessage="#{msg['trafikStat.26']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat26" value="#{trafikStatBean.instance.arzKargoTonKmKar}" required="true" requiredMessage="#{msg['trafikStat.26']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat26,trafikStatToplam4" />
 							</p:inputText>
@@ -390,7 +390,7 @@
 							<h:outputText value="#{msg['trafikStat.27']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat27" value="#{trafikStatBean.instance.ucretliKargoTonKmKar}" required="true" requiredMessage="#{msg['trafikStat.27']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat27" value="#{trafikStatBean.instance.ucretliKargoTonKmKar}" required="true" requiredMessage="#{msg['trafikStat.27']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat27,trafikStatToplam4" />
 							</p:inputText>
@@ -411,7 +411,7 @@
 							<h:outputText value="#{msg['trafikStat.28']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat28" value="#{trafikStatBean.instance.ortalamaMenzilKar}" required="true" requiredMessage="#{msg['trafikStat.28']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat28" value="#{trafikStatBean.instance.ortalamaMenzilKar}" required="true" requiredMessage="#{msg['trafikStat.28']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat28" />
 							</p:inputText>
@@ -422,7 +422,7 @@
 							<h:outputText value="#{msg['trafikStat.29']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat29" value="#{trafikStatBean.instance.blokSaatKar}" required="true" requiredMessage="#{msg['trafikStat.29']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat29" value="#{trafikStatBean.instance.blokSaatKar}" required="true" requiredMessage="#{msg['trafikStat.29']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat29" />
 							</p:inputText>
@@ -433,7 +433,7 @@
 							<h:outputText value="#{msg['trafikStat.30']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="trafikStat30" value="#{trafikStatBean.instance.kargoUcakUtilizasyonuKar}" required="true" requiredMessage="#{msg['trafikStat.30']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{trafikStatBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="trafikStat30" value="#{trafikStatBean.instance.kargoUcakUtilizasyonuKar}" required="true" requiredMessage="#{msg['trafikStat.30']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="trafikStat30" />
 							</p:inputText>
@@ -442,8 +442,8 @@
 					
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{trafikStatBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{trafikStatBean.save()}" update="@form"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{trafikStatBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{trafikStatBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{trafikStatBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveButton"  action="#{trafikStatBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{trafikStatBean.selectedDonem.durum == 0 and currentUser.company != null}" id="removeButton"  action="#{trafikStatBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
 			</p:panel>
 			<p:panel>
 				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
@@ -453,7 +453,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{trafikStatBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{trafikStatBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(trafikStatBean.dipnot, 1, trafikStatBean.instance.company, trafikStatBean.selectedDonem)}"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{trafikStatBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(trafikStatBean.dipnot, 1, trafikStatBean.instance.company, trafikStatBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

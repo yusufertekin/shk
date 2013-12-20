@@ -21,6 +21,7 @@ import com.deloitte.shk.entity.Varlik;
 import com.deloitte.shk.enums.Tablo;
 import com.deloitte.shk.qualifier.CurrentUser;
 import com.deloitte.shk.qualifier.DonemList;
+import com.deloitte.shk.services.CompanyService;
 import com.deloitte.shk.services.KarZararService;
 import com.deloitte.shk.services.KaynakService;
 import com.deloitte.shk.services.VarlikService;
@@ -40,8 +41,10 @@ public class KarneBean implements Serializable{
 	@Inject VarlikService varlikService;
 	@Inject KaynakService kaynakService;
 	@Inject KarZararService karZararService;
+	@Inject CompanyService companyService;
 	
 	private Company company;
+	private Company companySO;
 	private Donem donem;
 	private Dipnot dipnot;
 	private Double cariOran;
@@ -72,6 +75,8 @@ public class KarneBean implements Serializable{
 	private Kaynak kaynak;
 	private KarZarar karZarar;
 	
+	private boolean ortSorgula = false;
+	
 	public static String formatDate(Date date, String pattern) {
 	    if (date == null) {
 	        return null;
@@ -87,7 +92,12 @@ public class KarneBean implements Serializable{
 
 	public void sorgula()
 	{
-		initValues();
+		initValuesAll();
+		
+		if(ortSorgula){
+			sorgulaOrt();
+		}
+		
 		if(currentUser.getCompany() != null && currentUser.getCompany().getCompanyId() != null)
 		{
 			try {
@@ -114,6 +124,51 @@ public class KarneBean implements Serializable{
 		karZarar = karZararService.findByDonemAndCompany(getDonem(), getCompany());
 		
 	}
+	
+	public void sorgulaOrt()
+	{
+		int count = 0;
+		initOrtValues();
+		for(Company comp : companyService.list()) {
+			if (getDonem() == null){
+				setDonem(donemList.get(0));
+			}
+			initValues();
+			varlik = varlikService.findByDonemAndCompany(getDonem(), comp);
+			kaynak = kaynakService.findByDonemAndCompany(getDonem(), comp);
+			karZarar = karZararService.findByDonemAndCompany(getDonem(), comp);
+			
+			cariOranSO += getCariOran();
+			likiditeOranSO += getLikiditeOran();
+			nakitOranSO += getNakitOran();
+			alacakTahsilSureSO += getAlacakTahsilSure();
+			varlikDevirHizSureSO += getVarlikDevirHizSure();
+			ticariBorcOdemeSO += getTicariBorcOdeme();
+			toplamBorcOzkaynakSO += getToplamBorcOzkaynak();
+			uzunVadeliBorcToplamSO += getUzunVadeliBorcToplam();
+			toplamBorcVarlikSO += getToplamBorcVarlik();
+			finansmanGiderKarsilamaSO += getFinansmanGiderKarsilama();
+			borcServisKarsilamaSO += getBorcServisKarsilama();
+			
+			count++;
+		}
+
+		cariOranSO = cariOranSO/count;
+		likiditeOranSO = likiditeOranSO/count;
+		nakitOranSO = nakitOranSO/count;
+		alacakTahsilSureSO = alacakTahsilSureSO/count;
+		varlikDevirHizSureSO = varlikDevirHizSureSO/count;
+		ticariBorcOdemeSO = ticariBorcOdemeSO/count;
+		toplamBorcOzkaynakSO = toplamBorcOzkaynakSO/count;
+		uzunVadeliBorcToplamSO = uzunVadeliBorcToplamSO/count;
+		toplamBorcVarlikSO = toplamBorcVarlikSO/count;
+		finansmanGiderKarsilamaSO = finansmanGiderKarsilamaSO/count;
+		borcServisKarsilamaSO = borcServisKarsilamaSO/count;
+
+		ortSorgula = false;
+		
+	}
+	
 	public void initValues()
 	{
 		
@@ -129,11 +184,38 @@ public class KarneBean implements Serializable{
 		 finansmanGiderKarsilama = new Double(0);
 		 borcServisKarsilama = new Double(0);
 		 setDipnot(new Dipnot());
-//		 varlik = new Varlik();
-//		 kaynak = new Kaynak(); 
 	}
+
+	public void initValuesAll()
+	{
+		initValues();
+		setDipnot(new Dipnot());
+	}
+
+	public void initOrtValues()
+	{
+		
+		 cariOranSO = new Double(0);
+		 likiditeOranSO = new Double(0);
+		 nakitOranSO = new Double(0);
+		 alacakTahsilSureSO = new Double(0);
+		 varlikDevirHizSureSO = new Double(0);
+		 ticariBorcOdemeSO = new Double(0);
+		 toplamBorcOzkaynakSO = new Double(0);
+		 uzunVadeliBorcToplamSO = new Double(0);
+		 toplamBorcVarlikSO = new Double(0);
+		 finansmanGiderKarsilamaSO = new Double(0);
+		 borcServisKarsilamaSO = new Double(0);
+	}
+
 	public String initPage() {
-		// TODO Auto-generated method stub
+		boolean initPageOrtSorgula;
+		
+		initPageOrtSorgula = ortSorgula;
+		ortSorgula = false;
+		sorgula();
+		ortSorgula = initPageOrtSorgula;
+		sorgulaOrt();
 		sorgula();
 		return "/xhtml/admin/karne.xhtml?faces-redirect=true";
 	}
@@ -265,6 +347,9 @@ public class KarneBean implements Serializable{
 		return donem;
 	}
 	public void setDonem(Donem donem) {
+		if (donem != null && this.donem != null && donem.getDonem().compareTo(this.donem.getDonem()) != 0) {
+			ortSorgula = true;
+		}
 		this.donem = donem;
 	}
 	public Double getToplamBorcOzkaynak() {
@@ -296,6 +381,102 @@ public class KarneBean implements Serializable{
 													+ karZarar.getAktiflesenBakimGider());
 		}
 		return ebitda;
+	}
+
+	public Company getCompanySO() {
+		return companySO;
+	}
+
+	public void setCompanySO(Company companySO) {
+		this.companySO = companySO;
+	}
+
+	public Double getCariOranSO() {
+		return cariOranSO;
+	}
+
+	public void setCariOranSO(Double cariOranSO) {
+		this.cariOranSO = cariOranSO;
+	}
+
+	public Double getLikiditeOranSO() {
+		return likiditeOranSO;
+	}
+
+	public void setLikiditeOranSO(Double likiditeOranSO) {
+		this.likiditeOranSO = likiditeOranSO;
+	}
+
+	public Double getNakitOranSO() {
+		return nakitOranSO;
+	}
+
+	public void setNakitOranSO(Double nakitOranSO) {
+		this.nakitOranSO = nakitOranSO;
+	}
+
+	public Double getAlacakTahsilSureSO() {
+		return alacakTahsilSureSO;
+	}
+
+	public void setAlacakTahsilSureSO(Double alacakTahsilSureSO) {
+		this.alacakTahsilSureSO = alacakTahsilSureSO;
+	}
+
+	public Double getVarlikDevirHizSureSO() {
+		return varlikDevirHizSureSO;
+	}
+
+	public void setVarlikDevirHizSureSO(Double varlikDevirHizSureSO) {
+		this.varlikDevirHizSureSO = varlikDevirHizSureSO;
+	}
+
+	public Double getTicariBorcOdemeSO() {
+		return ticariBorcOdemeSO;
+	}
+
+	public void setTicariBorcOdemeSO(Double ticariBorcOdemeSO) {
+		this.ticariBorcOdemeSO = ticariBorcOdemeSO;
+	}
+
+	public Double getToplamBorcOzkaynakSO() {
+		return toplamBorcOzkaynakSO;
+	}
+
+	public void setToplamBorcOzkaynakSO(Double toplamBorcOzkaynakSO) {
+		this.toplamBorcOzkaynakSO = toplamBorcOzkaynakSO;
+	}
+
+	public Double getUzunVadeliBorcToplamSO() {
+		return uzunVadeliBorcToplamSO;
+	}
+
+	public void setUzunVadeliBorcToplamSO(Double uzunVadeliBorcToplamSO) {
+		this.uzunVadeliBorcToplamSO = uzunVadeliBorcToplamSO;
+	}
+
+	public Double getToplamBorcVarlikSO() {
+		return toplamBorcVarlikSO;
+	}
+
+	public void setToplamBorcVarlikSO(Double toplamBorcVarlikSO) {
+		this.toplamBorcVarlikSO = toplamBorcVarlikSO;
+	}
+
+	public Double getFinansmanGiderKarsilamaSO() {
+		return finansmanGiderKarsilamaSO;
+	}
+
+	public void setFinansmanGiderKarsilamaSO(Double finansmanGiderKarsilamaSO) {
+		this.finansmanGiderKarsilamaSO = finansmanGiderKarsilamaSO;
+	}
+
+	public Double getBorcServisKarsilamaSO() {
+		return borcServisKarsilamaSO;
+	}
+
+	public void setBorcServisKarsilamaSO(Double borcServisKarsilamaSO) {
+		this.borcServisKarsilamaSO = borcServisKarsilamaSO;
 	}
 
 }

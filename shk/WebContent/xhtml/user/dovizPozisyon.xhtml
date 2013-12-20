@@ -113,31 +113,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon1instance" value="#{dovizPozisyonBean.instance.nakitNakitBenzerleri}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon1instance" value="#{dovizPozisyonBean.instance.nakitNakitBenzerleri}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon1instance,dovizPozisyonToplaminstance,dovizPozisyonToplam3instance,dovizPozisyonToplam1,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon1instance1" value="#{dovizPozisyonBean.instance1.nakitNakitBenzerleri}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon1instance1" value="#{dovizPozisyonBean.instance1.nakitNakitBenzerleri}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon1instance1,dovizPozisyonToplaminstance1,dovizPozisyonToplam3instance1,dovizPozisyonToplam1,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon1instance2" value="#{dovizPozisyonBean.instance2.nakitNakitBenzerleri}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon1instance2" value="#{dovizPozisyonBean.instance2.nakitNakitBenzerleri}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon1instance2,dovizPozisyonToplaminstance2,dovizPozisyonToplam3instance2,dovizPozisyonToplam1,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon1instance3" value="#{dovizPozisyonBean.instance3.nakitNakitBenzerleri}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon1instance3" value="#{dovizPozisyonBean.instance3.nakitNakitBenzerleri}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon1instance3,dovizPozisyonToplaminstance3,dovizPozisyonToplam3instance3,dovizPozisyonToplam1,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon1instance4" value="#{dovizPozisyonBean.instance4.nakitNakitBenzerleri}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon1instance4" value="#{dovizPozisyonBean.instance4.nakitNakitBenzerleri}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon1instance4,dovizPozisyonToplaminstance4,dovizPozisyonToplam3instance4,dovizPozisyonToplam1,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -153,31 +153,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon2instance" value="#{dovizPozisyonBean.instance.finansalYatirimlar}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon2instance" value="#{dovizPozisyonBean.instance.finansalYatirimlar}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon2instance,dovizPozisyonToplaminstance,dovizPozisyonToplam3instance,dovizPozisyonToplam2,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon2instance1" value="#{dovizPozisyonBean.instance1.finansalYatirimlar}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon2instance1" value="#{dovizPozisyonBean.instance1.finansalYatirimlar}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon2instance1,dovizPozisyonToplaminstance1,dovizPozisyonToplam3instance1,dovizPozisyonToplam2,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon2instance2" value="#{dovizPozisyonBean.instance2.finansalYatirimlar}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon2instance2" value="#{dovizPozisyonBean.instance2.finansalYatirimlar}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon2instance2,dovizPozisyonToplaminstance2,dovizPozisyonToplam3instance2,dovizPozisyonToplam2,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon2instance3" value="#{dovizPozisyonBean.instance3.finansalYatirimlar}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon2instance3" value="#{dovizPozisyonBean.instance3.finansalYatirimlar}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon2instance3,dovizPozisyonToplaminstance3,dovizPozisyonToplam3instance3,dovizPozisyonToplam2,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon2instance4" value="#{dovizPozisyonBean.instance4.finansalYatirimlar}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon2instance4" value="#{dovizPozisyonBean.instance4.finansalYatirimlar}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon2instance4,dovizPozisyonToplaminstance4,dovizPozisyonToplam3instance4,dovizPozisyonToplam2,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -193,31 +193,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon3instance" value="#{dovizPozisyonBean.instance.ticariAlacaklar}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon3instance" value="#{dovizPozisyonBean.instance.ticariAlacaklar}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon3instance,dovizPozisyonToplaminstance,dovizPozisyonToplam3instance,dovizPozisyonToplam3,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon3instance1" value="#{dovizPozisyonBean.instance1.ticariAlacaklar}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon3instance1" value="#{dovizPozisyonBean.instance1.ticariAlacaklar}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon3instance1,dovizPozisyonToplaminstance1,dovizPozisyonToplam3instance1,dovizPozisyonToplam3,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon3instance2" value="#{dovizPozisyonBean.instance2.ticariAlacaklar}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon3instance2" value="#{dovizPozisyonBean.instance2.ticariAlacaklar}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon3instance2,dovizPozisyonToplaminstance2,dovizPozisyonToplam3instance2,dovizPozisyonToplam3,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon3instance3" value="#{dovizPozisyonBean.instance3.ticariAlacaklar}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon3instance3" value="#{dovizPozisyonBean.instance3.ticariAlacaklar}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon3instance3,dovizPozisyonToplaminstance3,dovizPozisyonToplam3instance3,dovizPozisyonToplam3,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon3instance4" value="#{dovizPozisyonBean.instance4.ticariAlacaklar}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon3instance4" value="#{dovizPozisyonBean.instance4.ticariAlacaklar}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon3instance4,dovizPozisyonToplaminstance4,dovizPozisyonToplam3instance4,dovizPozisyonToplam3,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -233,31 +233,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon4instance" value="#{dovizPozisyonBean.instance.ucakAlimiOnOdeme}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon4instance" value="#{dovizPozisyonBean.instance.ucakAlimiOnOdeme}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon4instance,dovizPozisyonToplaminstance,dovizPozisyonToplam3instance,dovizPozisyonToplam4,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon4instance1" value="#{dovizPozisyonBean.instance1.ucakAlimiOnOdeme}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon4instance1" value="#{dovizPozisyonBean.instance1.ucakAlimiOnOdeme}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon4instance1,dovizPozisyonToplaminstance1,dovizPozisyonToplam3instance1,dovizPozisyonToplam4,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon4instance2" value="#{dovizPozisyonBean.instance2.ucakAlimiOnOdeme}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon4instance2" value="#{dovizPozisyonBean.instance2.ucakAlimiOnOdeme}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon4instance2,dovizPozisyonToplaminstance2,dovizPozisyonToplam3instance2,dovizPozisyonToplam4,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon4instance3" value="#{dovizPozisyonBean.instance3.ucakAlimiOnOdeme}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon4instance3" value="#{dovizPozisyonBean.instance3.ucakAlimiOnOdeme}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon4instance3,dovizPozisyonToplaminstance3,dovizPozisyonToplam3instance3,dovizPozisyonToplam4,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon4instance4" value="#{dovizPozisyonBean.instance4.ucakAlimiOnOdeme}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon4instance4" value="#{dovizPozisyonBean.instance4.ucakAlimiOnOdeme}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon4instance4,dovizPozisyonToplaminstance4,dovizPozisyonToplam3instance4,dovizPozisyonToplam4,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -273,31 +273,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon5instance" value="#{dovizPozisyonBean.instance.turevFinansalAraclarDonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon5instance" value="#{dovizPozisyonBean.instance.turevFinansalAraclarDonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon5instance,dovizPozisyonToplaminstance,dovizPozisyonToplam3instance,dovizPozisyonToplam5,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon5instance1" value="#{dovizPozisyonBean.instance1.turevFinansalAraclarDonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon5instance1" value="#{dovizPozisyonBean.instance1.turevFinansalAraclarDonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon5instance1,dovizPozisyonToplaminstance1,dovizPozisyonToplam3instance1,dovizPozisyonToplam5,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon5instance2" value="#{dovizPozisyonBean.instance2.turevFinansalAraclarDonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon5instance2" value="#{dovizPozisyonBean.instance2.turevFinansalAraclarDonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon5instance2,dovizPozisyonToplaminstance2,dovizPozisyonToplam3instance2,dovizPozisyonToplam5,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon5instance3" value="#{dovizPozisyonBean.instance3.turevFinansalAraclarDonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon5instance3" value="#{dovizPozisyonBean.instance3.turevFinansalAraclarDonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon5instance3,dovizPozisyonToplaminstance3,dovizPozisyonToplam3instance3,dovizPozisyonToplam5,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon5instance4" value="#{dovizPozisyonBean.instance4.turevFinansalAraclarDonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon5instance4" value="#{dovizPozisyonBean.instance4.turevFinansalAraclarDonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon5instance4,dovizPozisyonToplaminstance4,dovizPozisyonToplam3instance4,dovizPozisyonToplam5,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -313,31 +313,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon6instance" value="#{dovizPozisyonBean.instance.digerAlacaklarDigerDonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon6instance" value="#{dovizPozisyonBean.instance.digerAlacaklarDigerDonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon6instance,dovizPozisyonToplaminstance,dovizPozisyonToplam3instance,dovizPozisyonToplam6,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon6instance1" value="#{dovizPozisyonBean.instance1.digerAlacaklarDigerDonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon6instance1" value="#{dovizPozisyonBean.instance1.digerAlacaklarDigerDonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon6instance1,dovizPozisyonToplaminstance1,dovizPozisyonToplam3instance1,dovizPozisyonToplam6,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon6instance2" value="#{dovizPozisyonBean.instance2.digerAlacaklarDigerDonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon6instance2" value="#{dovizPozisyonBean.instance2.digerAlacaklarDigerDonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon6instance2,dovizPozisyonToplaminstance2,dovizPozisyonToplam3instance2,dovizPozisyonToplam6,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon6instance3" value="#{dovizPozisyonBean.instance3.digerAlacaklarDigerDonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon6instance3" value="#{dovizPozisyonBean.instance3.digerAlacaklarDigerDonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon6instance3,dovizPozisyonToplaminstance3,dovizPozisyonToplam3instance3,dovizPozisyonToplam6,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon6instance4" value="#{dovizPozisyonBean.instance4.digerAlacaklarDigerDonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon6instance4" value="#{dovizPozisyonBean.instance4.digerAlacaklarDigerDonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon6instance4,dovizPozisyonToplaminstance4,dovizPozisyonToplam3instance4,dovizPozisyonToplam6,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -353,31 +353,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon7instance" value="#{dovizPozisyonBean.instance.iliskiliTarafTicariOADonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon7instance" value="#{dovizPozisyonBean.instance.iliskiliTarafTicariOADonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon7instance,dovizPozisyonToplaminstance,dovizPozisyonToplam3instance,dovizPozisyonToplam7,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon7instance1" value="#{dovizPozisyonBean.instance1.iliskiliTarafTicariOADonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon7instance1" value="#{dovizPozisyonBean.instance1.iliskiliTarafTicariOADonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon7instance1,dovizPozisyonToplaminstance1,dovizPozisyonToplam3instance1,dovizPozisyonToplam7,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon7instance2" value="#{dovizPozisyonBean.instance2.iliskiliTarafTicariOADonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon7instance2" value="#{dovizPozisyonBean.instance2.iliskiliTarafTicariOADonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon7instance2,dovizPozisyonToplaminstance2,dovizPozisyonToplam3instance2,dovizPozisyonToplam7,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon7instance3" value="#{dovizPozisyonBean.instance3.iliskiliTarafTicariOADonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon7instance3" value="#{dovizPozisyonBean.instance3.iliskiliTarafTicariOADonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon7instance3,dovizPozisyonToplaminstance3,dovizPozisyonToplam3instance3,dovizPozisyonToplam7,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon7instance4" value="#{dovizPozisyonBean.instance4.iliskiliTarafTicariOADonen}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon7instance4" value="#{dovizPozisyonBean.instance4.iliskiliTarafTicariOADonen}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon7instance4,dovizPozisyonToplaminstance4,dovizPozisyonToplam3instance4,dovizPozisyonToplam7,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -393,31 +393,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon8instance" value="#{dovizPozisyonBean.instance.satisAmaciylaTutulanVarlik}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon8instance" value="#{dovizPozisyonBean.instance.satisAmaciylaTutulanVarlik}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon8instance,dovizPozisyonToplaminstance,dovizPozisyonToplam3instance,dovizPozisyonToplam8,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon8instance1" value="#{dovizPozisyonBean.instance1.satisAmaciylaTutulanVarlik}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon8instance1" value="#{dovizPozisyonBean.instance1.satisAmaciylaTutulanVarlik}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon8instance1,dovizPozisyonToplaminstance1,dovizPozisyonToplam3instance1,dovizPozisyonToplam8,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon8instance2" value="#{dovizPozisyonBean.instance2.satisAmaciylaTutulanVarlik}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon8instance2" value="#{dovizPozisyonBean.instance2.satisAmaciylaTutulanVarlik}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon8instance2,dovizPozisyonToplaminstance2,dovizPozisyonToplam3instance2,dovizPozisyonToplam8,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon8instance3" value="#{dovizPozisyonBean.instance3.satisAmaciylaTutulanVarlik}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon8instance3" value="#{dovizPozisyonBean.instance3.satisAmaciylaTutulanVarlik}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon8instance3,dovizPozisyonToplaminstance3,dovizPozisyonToplam3instance3,dovizPozisyonToplam8,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon8instance4" value="#{dovizPozisyonBean.instance4.satisAmaciylaTutulanVarlik}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon8instance4" value="#{dovizPozisyonBean.instance4.satisAmaciylaTutulanVarlik}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon8instance4,dovizPozisyonToplaminstance4,dovizPozisyonToplam3instance4,dovizPozisyonToplam8,dovizPozisyonToplamToplam,dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -473,31 +473,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon9instance" value="#{dovizPozisyonBean.instance.uzunVadeliDigerAlacak}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon9instance" value="#{dovizPozisyonBean.instance.uzunVadeliDigerAlacak}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon9instance,dovizPozisyonToplam9,dovizPozisyonToplam2instance,dovizPozisyonToplam3instance,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon9instance1" value="#{dovizPozisyonBean.instance1.uzunVadeliDigerAlacak}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon9instance1" value="#{dovizPozisyonBean.instance1.uzunVadeliDigerAlacak}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon9instance1,dovizPozisyonToplam9,dovizPozisyonToplam2instance1, dovizPozisyonToplam3instance1,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon9instance2" value="#{dovizPozisyonBean.instance2.uzunVadeliDigerAlacak}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon9instance2" value="#{dovizPozisyonBean.instance2.uzunVadeliDigerAlacak}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon9instance2,dovizPozisyonToplam9,dovizPozisyonToplam2instance2, dovizPozisyonToplam3instance2,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon9instance3" value="#{dovizPozisyonBean.instance3.uzunVadeliDigerAlacak}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon9instance3" value="#{dovizPozisyonBean.instance3.uzunVadeliDigerAlacak}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon9instance3,dovizPozisyonToplam9,dovizPozisyonToplam2instance3, dovizPozisyonToplam3instance3,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon9instance4" value="#{dovizPozisyonBean.instance4.uzunVadeliDigerAlacak}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon9instance4" value="#{dovizPozisyonBean.instance4.uzunVadeliDigerAlacak}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon9instance4,dovizPozisyonToplam9,dovizPozisyonToplam2instance4, dovizPozisyonToplam3instance4,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -513,31 +513,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon10instance" value="#{dovizPozisyonBean.instance.iliskiTarafAlacakDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon10instance" value="#{dovizPozisyonBean.instance.iliskiTarafAlacakDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon10instance,dovizPozisyonToplam10,dovizPozisyonToplam2instance, dovizPozisyonToplam3instance,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon10instance1" value="#{dovizPozisyonBean.instance1.iliskiTarafAlacakDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon10instance1" value="#{dovizPozisyonBean.instance1.iliskiTarafAlacakDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon10instance1,dovizPozisyonToplam10,dovizPozisyonToplam2instance1, dovizPozisyonToplam3instance1,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon10instance2" value="#{dovizPozisyonBean.instance2.iliskiTarafAlacakDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon10instance2" value="#{dovizPozisyonBean.instance2.iliskiTarafAlacakDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon10instance2,dovizPozisyonToplam10,dovizPozisyonToplam2instance2, dovizPozisyonToplam3instance2,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon10instance3" value="#{dovizPozisyonBean.instance3.iliskiTarafAlacakDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon10instance3" value="#{dovizPozisyonBean.instance3.iliskiTarafAlacakDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon10instance3,dovizPozisyonToplam10,dovizPozisyonToplam2instance3, dovizPozisyonToplam3instance3,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon10instance4" value="#{dovizPozisyonBean.instance4.iliskiTarafAlacakDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon10instance4" value="#{dovizPozisyonBean.instance4.iliskiTarafAlacakDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon10instance4,dovizPozisyonToplam10,dovizPozisyonToplam2instance4, dovizPozisyonToplam3instance4,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -553,31 +553,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon11instance" value="#{dovizPozisyonBean.instance.digerAlacakDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon11instance" value="#{dovizPozisyonBean.instance.digerAlacakDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon11instance,dovizPozisyonToplam11,dovizPozisyonToplam2instance, dovizPozisyonToplam3instance,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon11instance1" value="#{dovizPozisyonBean.instance1.digerAlacakDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon11instance1" value="#{dovizPozisyonBean.instance1.digerAlacakDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon11instance1,dovizPozisyonToplam11,dovizPozisyonToplam2instance1, dovizPozisyonToplam3instance1,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon11instance2" value="#{dovizPozisyonBean.instance2.digerAlacakDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon11instance2" value="#{dovizPozisyonBean.instance2.digerAlacakDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon11instance2,dovizPozisyonToplam11,dovizPozisyonToplam2instance2, dovizPozisyonToplam3instance2,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon11instance3" value="#{dovizPozisyonBean.instance3.digerAlacakDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon11instance3" value="#{dovizPozisyonBean.instance3.digerAlacakDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon11instance3,dovizPozisyonToplam11,dovizPozisyonToplam2instance3, dovizPozisyonToplam3instance3,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon11instance4" value="#{dovizPozisyonBean.instance4.digerAlacakDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon11instance4" value="#{dovizPozisyonBean.instance4.digerAlacakDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon11instance4,dovizPozisyonToplam11,dovizPozisyonToplam2instance4, dovizPozisyonToplam3instance4,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -593,31 +593,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon12instance" value="#{dovizPozisyonBean.instance.digerVarlikDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon12instance" value="#{dovizPozisyonBean.instance.digerVarlikDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon12instance,dovizPozisyonToplam12,dovizPozisyonToplam2instance, dovizPozisyonToplam3instance,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon12instance1" value="#{dovizPozisyonBean.instance1.digerVarlikDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon12instance1" value="#{dovizPozisyonBean.instance1.digerVarlikDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon12instance1,dovizPozisyonToplam12,dovizPozisyonToplam2instance1, dovizPozisyonToplam3instance1,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon12instance2" value="#{dovizPozisyonBean.instance2.digerVarlikDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon12instance2" value="#{dovizPozisyonBean.instance2.digerVarlikDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon12instance2,dovizPozisyonToplam12,dovizPozisyonToplam2instance2, dovizPozisyonToplam3instance2,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon12instance3" value="#{dovizPozisyonBean.instance3.digerVarlikDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon12instance3" value="#{dovizPozisyonBean.instance3.digerVarlikDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon12instance3,dovizPozisyonToplam12,dovizPozisyonToplam2instance3, dovizPozisyonToplam3instance3,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon12instance4" value="#{dovizPozisyonBean.instance4.digerVarlikDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon12instance4" value="#{dovizPozisyonBean.instance4.digerVarlikDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon12instance4,dovizPozisyonToplam12,dovizPozisyonToplam2instance4, dovizPozisyonToplam3instance4,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -633,31 +633,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon13instance" value="#{dovizPozisyonBean.instance.turevFinansalAracDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon13instance" value="#{dovizPozisyonBean.instance.turevFinansalAracDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon13instance,dovizPozisyonToplam13,dovizPozisyonToplam2instance, dovizPozisyonToplam3instance,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon13instance1" value="#{dovizPozisyonBean.instance1.turevFinansalAracDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon13instance1" value="#{dovizPozisyonBean.instance1.turevFinansalAracDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon13instance1,dovizPozisyonToplam13,dovizPozisyonToplam2instance1, dovizPozisyonToplam3instance1,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon13instance2" value="#{dovizPozisyonBean.instance2.turevFinansalAracDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon13instance2" value="#{dovizPozisyonBean.instance2.turevFinansalAracDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon13instance2,dovizPozisyonToplam13,dovizPozisyonToplam2instance2, dovizPozisyonToplam3instance2,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon13instance3" value="#{dovizPozisyonBean.instance3.turevFinansalAracDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon13instance3" value="#{dovizPozisyonBean.instance3.turevFinansalAracDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon13instance3,dovizPozisyonToplam13,dovizPozisyonToplam2instance3, dovizPozisyonToplam3instance3,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon13instance4" value="#{dovizPozisyonBean.instance4.turevFinansalAracDuran}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon13instance4" value="#{dovizPozisyonBean.instance4.turevFinansalAracDuran}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyon13instance4,dovizPozisyonToplam13,dovizPozisyonToplam2instance4, dovizPozisyonToplam3instance4,dovizPozisyonToplam2Toplam, dovizPozisyonToplam3Toplam" />
 							</p:inputText>
@@ -753,31 +753,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon14instance" value="#{dovizPozisyonBean.instance.finansalBorcKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon14instance" value="#{dovizPozisyonBean.instance.finansalBorcKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon14instance,dovizPozisyonToplam14" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon14instance1" value="#{dovizPozisyonBean.instance1.finansalBorcKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon14instance1" value="#{dovizPozisyonBean.instance1.finansalBorcKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon14instance1,dovizPozisyonToplam14" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon14instance2" value="#{dovizPozisyonBean.instance2.finansalBorcKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon14instance2" value="#{dovizPozisyonBean.instance2.finansalBorcKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon14instance2,dovizPozisyonToplam14" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon14instance3" value="#{dovizPozisyonBean.instance3.finansalBorcKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon14instance3" value="#{dovizPozisyonBean.instance3.finansalBorcKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon14instance3,dovizPozisyonToplam14" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon14instance4" value="#{dovizPozisyonBean.instance4.finansalBorcKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon14instance4" value="#{dovizPozisyonBean.instance4.finansalBorcKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon14instance4,dovizPozisyonToplam14" />
 							</p:inputText>
@@ -793,31 +793,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon15instance" value="#{dovizPozisyonBean.instance.uzunVadeliKrediKisaKismi}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon15instance" value="#{dovizPozisyonBean.instance.uzunVadeliKrediKisaKismi}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon15instance,dovizPozisyonToplam15" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon15instance1" value="#{dovizPozisyonBean.instance1.uzunVadeliKrediKisaKismi}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon15instance1" value="#{dovizPozisyonBean.instance1.uzunVadeliKrediKisaKismi}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon15instance1,dovizPozisyonToplam15" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon15instance2" value="#{dovizPozisyonBean.instance2.uzunVadeliKrediKisaKismi}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon15instance2" value="#{dovizPozisyonBean.instance2.uzunVadeliKrediKisaKismi}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon15instance2,dovizPozisyonToplam15" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon15instance3" value="#{dovizPozisyonBean.instance3.uzunVadeliKrediKisaKismi}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon15instance3" value="#{dovizPozisyonBean.instance3.uzunVadeliKrediKisaKismi}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon15instance3,dovizPozisyonToplam15" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon15instance4" value="#{dovizPozisyonBean.instance4.uzunVadeliKrediKisaKismi}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon15instance4" value="#{dovizPozisyonBean.instance4.uzunVadeliKrediKisaKismi}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon15instance4,dovizPozisyonToplam15" />
 							</p:inputText>
@@ -833,31 +833,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon16instance" value="#{dovizPozisyonBean.instance.finansalKiralamaYukumKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon16instance" value="#{dovizPozisyonBean.instance.finansalKiralamaYukumKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon16instance,dovizPozisyonToplam16" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon16instance1" value="#{dovizPozisyonBean.instance1.finansalKiralamaYukumKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon16instance1" value="#{dovizPozisyonBean.instance1.finansalKiralamaYukumKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon16instance1,dovizPozisyonToplam16" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon16instance2" value="#{dovizPozisyonBean.instance2.finansalKiralamaYukumKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon16instance2" value="#{dovizPozisyonBean.instance2.finansalKiralamaYukumKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon16instance2,dovizPozisyonToplam16" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon16instance3" value="#{dovizPozisyonBean.instance3.finansalKiralamaYukumKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon16instance3" value="#{dovizPozisyonBean.instance3.finansalKiralamaYukumKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon16instance3,dovizPozisyonToplam16" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon16instance4" value="#{dovizPozisyonBean.instance4.finansalKiralamaYukumKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon16instance4" value="#{dovizPozisyonBean.instance4.finansalKiralamaYukumKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon16instance4,dovizPozisyonToplam16" />
 							</p:inputText>
@@ -873,31 +873,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon17instance" value="#{dovizPozisyonBean.instance.ticariBorclarKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon17instance" value="#{dovizPozisyonBean.instance.ticariBorclarKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon17instance,dovizPozisyonToplam17" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon17instance1" value="#{dovizPozisyonBean.instance1.ticariBorclarKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon17instance1" value="#{dovizPozisyonBean.instance1.ticariBorclarKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon17instance1,dovizPozisyonToplam17" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon17instance2" value="#{dovizPozisyonBean.instance2.ticariBorclarKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon17instance2" value="#{dovizPozisyonBean.instance2.ticariBorclarKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon17instance2,dovizPozisyonToplam17" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon17instance3" value="#{dovizPozisyonBean.instance3.ticariBorclarKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon17instance3" value="#{dovizPozisyonBean.instance3.ticariBorclarKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon17instance3,dovizPozisyonToplam17" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon17instance4" value="#{dovizPozisyonBean.instance4.ticariBorclarKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon17instance4" value="#{dovizPozisyonBean.instance4.ticariBorclarKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon17instance4,dovizPozisyonToplam17" />
 							</p:inputText>
@@ -913,31 +913,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon18instance" value="#{dovizPozisyonBean.instance.odenecekPersonelUcret}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon18instance" value="#{dovizPozisyonBean.instance.odenecekPersonelUcret}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon18instance,dovizPozisyonToplam18" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon18instance1" value="#{dovizPozisyonBean.instance1.odenecekPersonelUcret}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon18instance1" value="#{dovizPozisyonBean.instance1.odenecekPersonelUcret}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon18instance1,dovizPozisyonToplam18" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon18instance2" value="#{dovizPozisyonBean.instance2.odenecekPersonelUcret}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon18instance2" value="#{dovizPozisyonBean.instance2.odenecekPersonelUcret}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon18instance2,dovizPozisyonToplam18" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon18instance3" value="#{dovizPozisyonBean.instance3.odenecekPersonelUcret}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon18instance3" value="#{dovizPozisyonBean.instance3.odenecekPersonelUcret}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon18instance3,dovizPozisyonToplam18" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon18instance4" value="#{dovizPozisyonBean.instance4.odenecekPersonelUcret}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon18instance4" value="#{dovizPozisyonBean.instance4.odenecekPersonelUcret}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon18instance4,dovizPozisyonToplam18" />
 							</p:inputText>
@@ -953,31 +953,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon19instance" value="#{dovizPozisyonBean.instance.calisanSaglananFaydaKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon19instance" value="#{dovizPozisyonBean.instance.calisanSaglananFaydaKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon19instance,dovizPozisyonToplam19" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon19instance1" value="#{dovizPozisyonBean.instance1.calisanSaglananFaydaKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon19instance1" value="#{dovizPozisyonBean.instance1.calisanSaglananFaydaKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon19instance1,dovizPozisyonToplam19" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon19instance2" value="#{dovizPozisyonBean.instance2.calisanSaglananFaydaKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon19instance2" value="#{dovizPozisyonBean.instance2.calisanSaglananFaydaKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon19instance2,dovizPozisyonToplam19" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon19instance3" value="#{dovizPozisyonBean.instance3.calisanSaglananFaydaKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon19instance3" value="#{dovizPozisyonBean.instance3.calisanSaglananFaydaKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon19instance3,dovizPozisyonToplam19" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon19instance4" value="#{dovizPozisyonBean.instance4.calisanSaglananFaydaKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon19instance4" value="#{dovizPozisyonBean.instance4.calisanSaglananFaydaKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon19instance4,dovizPozisyonToplam19" />
 							</p:inputText>
@@ -993,31 +993,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon20instance" value="#{dovizPozisyonBean.instance.turevFinansalAracKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon20instance" value="#{dovizPozisyonBean.instance.turevFinansalAracKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon20instance,dovizPozisyonToplam20" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon20instance1" value="#{dovizPozisyonBean.instance1.turevFinansalAracKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon20instance1" value="#{dovizPozisyonBean.instance1.turevFinansalAracKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon20instance1,dovizPozisyonToplam20" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon20instance2" value="#{dovizPozisyonBean.instance2.turevFinansalAracKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon20instance2" value="#{dovizPozisyonBean.instance2.turevFinansalAracKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon20instance2,dovizPozisyonToplam20" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon20instance3" value="#{dovizPozisyonBean.instance3.turevFinansalAracKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon20instance3" value="#{dovizPozisyonBean.instance3.turevFinansalAracKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon20instance3,dovizPozisyonToplam20" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon20instance4" value="#{dovizPozisyonBean.instance4.turevFinansalAracKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon20instance4" value="#{dovizPozisyonBean.instance4.turevFinansalAracKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon20instance4,dovizPozisyonToplam20" />
 							</p:inputText>
@@ -1033,31 +1033,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon21instance" value="#{dovizPozisyonBean.instance.iliskiliTarafDigerBorcKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon21instance" value="#{dovizPozisyonBean.instance.iliskiliTarafDigerBorcKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon21instance,dovizPozisyonToplam21" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon21instance1" value="#{dovizPozisyonBean.instance1.iliskiliTarafDigerBorcKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon21instance1" value="#{dovizPozisyonBean.instance1.iliskiliTarafDigerBorcKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon21instance1,dovizPozisyonToplam21" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon21instance2" value="#{dovizPozisyonBean.instance2.iliskiliTarafDigerBorcKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon21instance2" value="#{dovizPozisyonBean.instance2.iliskiliTarafDigerBorcKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon21instance2,dovizPozisyonToplam21" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon21instance3" value="#{dovizPozisyonBean.instance3.iliskiliTarafDigerBorcKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon21instance3" value="#{dovizPozisyonBean.instance3.iliskiliTarafDigerBorcKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon21instance3,dovizPozisyonToplam21" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon21instance4" value="#{dovizPozisyonBean.instance4.iliskiliTarafDigerBorcKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon21instance4" value="#{dovizPozisyonBean.instance4.iliskiliTarafDigerBorcKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon21instance4,dovizPozisyonToplam21" />
 							</p:inputText>
@@ -1073,31 +1073,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon22instance" value="#{dovizPozisyonBean.instance.borcKarsiliklari}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon22instance" value="#{dovizPozisyonBean.instance.borcKarsiliklari}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon22instance,dovizPozisyonToplam22" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon22instance1" value="#{dovizPozisyonBean.instance1.borcKarsiliklari}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon22instance1" value="#{dovizPozisyonBean.instance1.borcKarsiliklari}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon22instance1,dovizPozisyonToplam22" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon22instance2" value="#{dovizPozisyonBean.instance2.borcKarsiliklari}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon22instance2" value="#{dovizPozisyonBean.instance2.borcKarsiliklari}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon22instance2,dovizPozisyonToplam22" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon22instance3" value="#{dovizPozisyonBean.instance3.borcKarsiliklari}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon22instance3" value="#{dovizPozisyonBean.instance3.borcKarsiliklari}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon22instance3,dovizPozisyonToplam22" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon22instance4" value="#{dovizPozisyonBean.instance4.borcKarsiliklari}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon22instance4" value="#{dovizPozisyonBean.instance4.borcKarsiliklari}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon22instance4,dovizPozisyonToplam22" />
 							</p:inputText>
@@ -1113,31 +1113,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon23instance" value="#{dovizPozisyonBean.instance.digerBorcYukumlulukKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon23instance" value="#{dovizPozisyonBean.instance.digerBorcYukumlulukKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon23instance,dovizPozisyonToplam23" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon23instance1" value="#{dovizPozisyonBean.instance1.digerBorcYukumlulukKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon23instance1" value="#{dovizPozisyonBean.instance1.digerBorcYukumlulukKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon23instance1,dovizPozisyonToplam23" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon23instance2" value="#{dovizPozisyonBean.instance2.digerBorcYukumlulukKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon23instance2" value="#{dovizPozisyonBean.instance2.digerBorcYukumlulukKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon23instance2,dovizPozisyonToplam23" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon23instance3" value="#{dovizPozisyonBean.instance3.digerBorcYukumlulukKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon23instance3" value="#{dovizPozisyonBean.instance3.digerBorcYukumlulukKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon23instance3,dovizPozisyonToplam23" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon23instance4" value="#{dovizPozisyonBean.instance4.digerBorcYukumlulukKisa}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon23instance4" value="#{dovizPozisyonBean.instance4.digerBorcYukumlulukKisa}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon23instance4,dovizPozisyonToplam23" />
 							</p:inputText>
@@ -1193,31 +1193,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon24instance" value="#{dovizPozisyonBean.instance.finansalBorcUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon24instance" value="#{dovizPozisyonBean.instance.finansalBorcUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon24instance,dovizPozisyonToplam24" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon24instance1" value="#{dovizPozisyonBean.instance1.finansalBorcUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon24instance1" value="#{dovizPozisyonBean.instance1.finansalBorcUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon24instance1,dovizPozisyonToplam24" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon24instance2" value="#{dovizPozisyonBean.instance2.finansalBorcUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon24instance2" value="#{dovizPozisyonBean.instance2.finansalBorcUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon24instance2,dovizPozisyonToplam24" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon24instance3" value="#{dovizPozisyonBean.instance3.finansalBorcUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon24instance3" value="#{dovizPozisyonBean.instance3.finansalBorcUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon24instance3,dovizPozisyonToplam24" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon24instance4" value="#{dovizPozisyonBean.instance4.finansalBorcUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon24instance4" value="#{dovizPozisyonBean.instance4.finansalBorcUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon24instance4,dovizPozisyonToplam24" />
 							</p:inputText>
@@ -1233,31 +1233,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon25instance" value="#{dovizPozisyonBean.instance.finansalKiralamaYukumUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon25instance" value="#{dovizPozisyonBean.instance.finansalKiralamaYukumUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon25instance,dovizPozisyonToplam25" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon25instance1" value="#{dovizPozisyonBean.instance1.finansalKiralamaYukumUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon25instance1" value="#{dovizPozisyonBean.instance1.finansalKiralamaYukumUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon25instance1,dovizPozisyonToplam25" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon25instance2" value="#{dovizPozisyonBean.instance2.finansalKiralamaYukumUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon25instance2" value="#{dovizPozisyonBean.instance2.finansalKiralamaYukumUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon25instance2,dovizPozisyonToplam25" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon25instance3" value="#{dovizPozisyonBean.instance3.finansalKiralamaYukumUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon25instance3" value="#{dovizPozisyonBean.instance3.finansalKiralamaYukumUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon25instance3,dovizPozisyonToplam25" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon25instance4" value="#{dovizPozisyonBean.instance4.finansalKiralamaYukumUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon25instance4" value="#{dovizPozisyonBean.instance4.finansalKiralamaYukumUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon25instance4,dovizPozisyonToplam25" />
 							</p:inputText>
@@ -1273,31 +1273,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon26instance" value="#{dovizPozisyonBean.instance.ticariBorclarUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon26instance" value="#{dovizPozisyonBean.instance.ticariBorclarUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon26instance,dovizPozisyonToplam26" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon26instance1" value="#{dovizPozisyonBean.instance1.ticariBorclarUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon26instance1" value="#{dovizPozisyonBean.instance1.ticariBorclarUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon26instance1,dovizPozisyonToplam26" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon26instance2" value="#{dovizPozisyonBean.instance2.ticariBorclarUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon26instance2" value="#{dovizPozisyonBean.instance2.ticariBorclarUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon26instance2,dovizPozisyonToplam26" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon26instance3" value="#{dovizPozisyonBean.instance3.ticariBorclarUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon26instance3" value="#{dovizPozisyonBean.instance3.ticariBorclarUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon26instance3,dovizPozisyonToplam26" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon26instance4" value="#{dovizPozisyonBean.instance4.ticariBorclarUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon26instance4" value="#{dovizPozisyonBean.instance4.ticariBorclarUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon26instance4,dovizPozisyonToplam26" />
 							</p:inputText>
@@ -1313,31 +1313,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon27instance" value="#{dovizPozisyonBean.instance.iliskiliTarafDigerBorcUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon27instance" value="#{dovizPozisyonBean.instance.iliskiliTarafDigerBorcUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon27instance,dovizPozisyonToplam27" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon27instance1" value="#{dovizPozisyonBean.instance1.iliskiliTarafDigerBorcUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon27instance1" value="#{dovizPozisyonBean.instance1.iliskiliTarafDigerBorcUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon27instance1,dovizPozisyonToplam27" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon27instance2" value="#{dovizPozisyonBean.instance2.iliskiliTarafDigerBorcUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon27instance2" value="#{dovizPozisyonBean.instance2.iliskiliTarafDigerBorcUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon27instance2,dovizPozisyonToplam27" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon27instance3" value="#{dovizPozisyonBean.instance3.iliskiliTarafDigerBorcUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon27instance3" value="#{dovizPozisyonBean.instance3.iliskiliTarafDigerBorcUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon27instance3,dovizPozisyonToplam27" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon27instance4" value="#{dovizPozisyonBean.instance4.iliskiliTarafDigerBorcUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon27instance4" value="#{dovizPozisyonBean.instance4.iliskiliTarafDigerBorcUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon27instance4,dovizPozisyonToplam27" />
 							</p:inputText>
@@ -1353,31 +1353,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon28instance" value="#{dovizPozisyonBean.instance.calisanSaglananFaydaUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon28instance" value="#{dovizPozisyonBean.instance.calisanSaglananFaydaUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon28instance,dovizPozisyonToplam28" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon28instance1" value="#{dovizPozisyonBean.instance1.calisanSaglananFaydaUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon28instance1" value="#{dovizPozisyonBean.instance1.calisanSaglananFaydaUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon28instance1,dovizPozisyonToplam28" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon28instance2" value="#{dovizPozisyonBean.instance2.calisanSaglananFaydaUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon28instance2" value="#{dovizPozisyonBean.instance2.calisanSaglananFaydaUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon28instance2,dovizPozisyonToplam28" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon28instance3" value="#{dovizPozisyonBean.instance3.calisanSaglananFaydaUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon28instance3" value="#{dovizPozisyonBean.instance3.calisanSaglananFaydaUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon28instance3,dovizPozisyonToplam28" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon28instance4" value="#{dovizPozisyonBean.instance4.calisanSaglananFaydaUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon28instance4" value="#{dovizPozisyonBean.instance4.calisanSaglananFaydaUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon28instance4,dovizPozisyonToplam28" />
 							</p:inputText>
@@ -1393,31 +1393,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon29instance" value="#{dovizPozisyonBean.instance.digerUzunVadeYukumluluk}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon29instance" value="#{dovizPozisyonBean.instance.digerUzunVadeYukumluluk}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon29instance,dovizPozisyonToplam29" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon29instance1" value="#{dovizPozisyonBean.instance1.digerUzunVadeYukumluluk}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon29instance1" value="#{dovizPozisyonBean.instance1.digerUzunVadeYukumluluk}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon29instance1,dovizPozisyonToplam29" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon29instance2" value="#{dovizPozisyonBean.instance2.digerUzunVadeYukumluluk}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon29instance2" value="#{dovizPozisyonBean.instance2.digerUzunVadeYukumluluk}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon29instance2,dovizPozisyonToplam29" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon29instance3" value="#{dovizPozisyonBean.instance3.digerUzunVadeYukumluluk}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon29instance3" value="#{dovizPozisyonBean.instance3.digerUzunVadeYukumluluk}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon29instance3,dovizPozisyonToplam29" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon29instance4" value="#{dovizPozisyonBean.instance4.digerUzunVadeYukumluluk}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon29instance4" value="#{dovizPozisyonBean.instance4.digerUzunVadeYukumluluk}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon29instance4,dovizPozisyonToplam29" />
 							</p:inputText>
@@ -1433,31 +1433,31 @@
 							</h:outputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon30instance" value="#{dovizPozisyonBean.instance.turevFinansalAracUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon30instance" value="#{dovizPozisyonBean.instance.turevFinansalAracUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon30instance,dovizPozisyonToplam30" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon30instance1" value="#{dovizPozisyonBean.instance1.turevFinansalAracUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon30instance1" value="#{dovizPozisyonBean.instance1.turevFinansalAracUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon30instance1,dovizPozisyonToplam30" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon30instance2" value="#{dovizPozisyonBean.instance2.turevFinansalAracUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon30instance2" value="#{dovizPozisyonBean.instance2.turevFinansalAracUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon30instance2,dovizPozisyonToplam30" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon30instance3" value="#{dovizPozisyonBean.instance3.turevFinansalAracUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon30instance3" value="#{dovizPozisyonBean.instance3.turevFinansalAracUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon30instance3,dovizPozisyonToplam30" />
 							</p:inputText>
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="dovizPozisyon30instance4" value="#{dovizPozisyonBean.instance4.turevFinansalAracUzun}" >
+							<p:inputText disabled="#{dovizPozisyonBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="dovizPozisyon30instance4" value="#{dovizPozisyonBean.instance4.turevFinansalAracUzun}" >
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="dovizPozisyonToplam4Toplam, dovizPozisyonToplam4instance, dovizPozisyonToplam4instance1, dovizPozisyonToplam4instance2, dovizPozisyonToplam4instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam5Toplam, dovizPozisyonToplam5instance, dovizPozisyonToplam5instance1, dovizPozisyonToplam5instance2, dovizPozisyonToplam5instance3, dovizPozisyonToplam4instance4, dovizPozisyonToplam6Toplam, dovizPozisyonToplam6instance, dovizPozisyonToplam6instance1, dovizPozisyonToplam6instance2, dovizPozisyonToplam6instance3, dovizPozisyonToplam6instance4, dovizPozisyonToplam7Toplam, dovizPozisyonToplam7instance, dovizPozisyonToplam7instance1, dovizPozisyonToplam7instance2, dovizPozisyonToplam7instance3, dovizPozisyonToplam7instance4,dovizPozisyon30instance4,dovizPozisyonToplam30" />
 							</p:inputText>
@@ -1545,8 +1545,8 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{dovizPozisyonBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{dovizPozisyonBean.save()}" update="@form"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{dovizPozisyonBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{dovizPozisyonBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{dovizPozisyonBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveButton"  action="#{dovizPozisyonBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{dovizPozisyonBean.selectedDonem.durum == 0 and currentUser.company != null}" id="removeButton"  action="#{dovizPozisyonBean.remove()}" immediate="true" process="@this" async="true" update="@form"/>
 				<p:panelGrid columns="1">
 					<h:outputText value="#{msg['dovizPozisyon.alt1']}" />
 					<h:outputText value="#{msg['dovizPozisyon.alt2']}" />
@@ -1561,7 +1561,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{dovizPozisyonBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{dovizPozisyonBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(dovizPozisyonBean.dipnot, 9, dovizPozisyonBean.instance.company, dovizPozisyonBean.selectedDonem)}"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{dovizPozisyonBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(dovizPozisyonBean.dipnot, 9, dovizPozisyonBean.instance.company, dovizPozisyonBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

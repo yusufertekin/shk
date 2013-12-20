@@ -42,7 +42,7 @@
 							<h:outputText value="#{msg['toplamCalisan.1']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan1" value="#{toplamCalisanBean.instance.genelMudurVeYardimcilari}" required="true" requiredMessage="#{msg['toplamCalisan.1']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan1" value="#{toplamCalisanBean.instance.genelMudurVeYardimcilari}" required="true" requiredMessage="#{msg['toplamCalisan.1']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan1,toplamCalisanToplam1" />
 							</p:inputText>
@@ -53,7 +53,7 @@
 							<h:outputText value="#{msg['toplamCalisan.2']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan2" value="#{toplamCalisanBean.instance.pilotVeYardimciPilot}" required="true" requiredMessage="#{msg['toplamCalisan.2']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan2" value="#{toplamCalisanBean.instance.pilotVeYardimciPilot}" required="true" requiredMessage="#{msg['toplamCalisan.2']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan2,toplamCalisanToplam1" />
 							</p:inputText>
@@ -64,7 +64,7 @@
 							<h:outputText value="#{msg['toplamCalisan.3']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan3" value="#{toplamCalisanBean.instance.ucusIsletmePersonel}" required="true" requiredMessage="#{msg['toplamCalisan.3']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan3" value="#{toplamCalisanBean.instance.ucusIsletmePersonel}" required="true" requiredMessage="#{msg['toplamCalisan.3']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan3,toplamCalisanToplam1" />
 							</p:inputText>
@@ -75,7 +75,7 @@
 							<h:outputText value="#{msg['toplamCalisan.4']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan4" value="#{toplamCalisanBean.instance.yolcuHizmetPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.4']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan4" value="#{toplamCalisanBean.instance.yolcuHizmetPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.4']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan4,toplamCalisanToplam1" />
 							</p:inputText>
@@ -86,7 +86,7 @@
 							<h:outputText value="#{msg['toplamCalisan.5']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan5" value="#{toplamCalisanBean.instance.bakimPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.5']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan5" value="#{toplamCalisanBean.instance.bakimPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.5']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan5,toplamCalisanToplam1" />
 							</p:inputText>
@@ -97,7 +97,7 @@
 							<h:outputText value="#{msg['toplamCalisan.6']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan6" value="#{toplamCalisanBean.instance.ucakVeTrafikYonlendirmePers}" required="true" requiredMessage="#{msg['toplamCalisan.6']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan6" value="#{toplamCalisanBean.instance.ucakVeTrafikYonlendirmePers}" required="true" requiredMessage="#{msg['toplamCalisan.6']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan6,toplamCalisanToplam1" />
 							</p:inputText>
@@ -108,7 +108,7 @@
 							<h:outputText value="#{msg['toplamCalisan.7']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan7" value="#{toplamCalisanBean.instance.ucakKontrolPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.7']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan7" value="#{toplamCalisanBean.instance.ucakKontrolPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.7']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan7,toplamCalisanToplam1" />
 							</p:inputText>
@@ -119,7 +119,7 @@
 							<h:outputText value="#{msg['toplamCalisan.8']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan8" value="#{toplamCalisanBean.instance.yolcuHandlingPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.8']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan8" value="#{toplamCalisanBean.instance.yolcuHandlingPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.8']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan8,toplamCalisanToplam1" />
 							</p:inputText>
@@ -130,7 +130,7 @@
 							<h:outputText value="#{msg['toplamCalisan.9']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan9" value="#{toplamCalisanBean.instance.kargoHandlingPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.9']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan9" value="#{toplamCalisanBean.instance.kargoHandlingPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.9']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan9,toplamCalisanToplam1" />
 							</p:inputText>
@@ -141,7 +141,7 @@
 							<h:outputText value="#{msg['toplamCalisan.10']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan10" value="#{toplamCalisanBean.instance.stajyerVeEgitmenler}" required="true" requiredMessage="#{msg['toplamCalisan.10']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan10" value="#{toplamCalisanBean.instance.stajyerVeEgitmenler}" required="true" requiredMessage="#{msg['toplamCalisan.10']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan10,toplamCalisanToplam1" />
 							</p:inputText>
@@ -152,7 +152,7 @@
 							<h:outputText value="#{msg['toplamCalisan.11']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan11" value="#{toplamCalisanBean.instance.istatistikBirimPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.11']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan11" value="#{toplamCalisanBean.instance.istatistikBirimPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.11']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan11,toplamCalisanToplam1" />
 							</p:inputText>
@@ -163,7 +163,7 @@
 							<h:outputText value="#{msg['toplamCalisan.12']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 ? true : false}"  styleClass="input-text" id="toplamCalisan12" value="#{toplamCalisanBean.instance.digerPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.12']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{toplamCalisanBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="toplamCalisan12" value="#{toplamCalisanBean.instance.digerPersonel}" required="true" requiredMessage="#{msg['toplamCalisan.12']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="toplamCalisan12,toplamCalisanToplam1" />
 							</p:inputText>
@@ -181,8 +181,8 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="saveButton"  action="#{toplamCalisanBean.save()}" update="@form"/>
-				<p:commandButton value="#{msg['common.remove']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="removeButton"  action="#{toplamCalisanBean.remove()}" immediate="true" process="@this" async="true" update="toplamCalisanPanel1"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveButton"  action="#{toplamCalisanBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.remove']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 and currentUser.company != null}" id="removeButton"  action="#{toplamCalisanBean.remove()}" immediate="true" process="@this" async="true" update="toplamCalisanPanel1"/>
 			</p:panel>
 			<p:panel>
 				<p:panelGrid id="dipnotPanel" columns="1" styleClass="panel-grid">
@@ -192,7 +192,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{toplamCalisanBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 ? true : false}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(toplamCalisanBean.dipnot, 5, toplamCalisanBean.instance.company, toplamCalisanBean.selectedDonem)}"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{toplamCalisanBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(toplamCalisanBean.dipnot, 5, toplamCalisanBean.instance.company, toplamCalisanBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>
