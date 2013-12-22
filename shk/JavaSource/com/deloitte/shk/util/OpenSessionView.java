@@ -15,7 +15,7 @@ import javax.transaction.UserTransaction;
 /**
  * Servlet Filter implementation class OpenSessionView
  */
-@WebFilter("/xhtml/*")
+/*@WebFilter("/xhtml/*")*/
 public class OpenSessionView implements Filter {
 
     

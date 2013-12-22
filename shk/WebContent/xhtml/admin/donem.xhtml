@@ -19,6 +19,9 @@
 					<f:selectItem itemValue="#{0}" itemLabel="#{msg['donem.active']}"/>
 					<f:selectItem itemValue="#{1}" itemLabel="#{msg['donem.passive']}"/>
 				</p:selectOneRadio>
+				<h:outputText value="#{msg['donem.kapanisTarih']}"/>
+				<p:calendar required="true" id="kapanisTarih" pattern="dd/MM/yyyy" requiredMessage="#{msg['donem.kapanisTarih']} #{msg['common.requiredMessage']}" value="#{donemBean.instance.kapanisTarih}">
+       			</p:calendar>
 			</h:panelGrid>
 			<br />
 			<p:commandButton value="#{msg['common.save']}" id="saveButton"  update="donemList, donemPanel" action="#{donemBean.save()}"/>
@@ -26,7 +29,7 @@
 			<br />			
 			<p:dataTable id="donemList" editable="true" styleClass="data-table" value="#{donemBean.list}" var="don">
 				<p:ajax event="rowEdit" listener="#{donemBean.update(don)}" update="donemList" />
-       			<p:ajax event="rowEditCancel" listener="#{donemBean.addMessage(msg['common.cancelProcess'])}" />
+       			<p:ajax event="rowEditCancel" listener="#{donemBean.addMessage('common.cancelProcess')}" />
 				<p:column headerText="#{msg['common.donem']}">
 					<p:cellEditor>
 		                <f:facet name="output">
@@ -49,6 +52,32 @@
 								<f:selectItem itemValue="#{0}" itemLabel="#{msg['donem.active']}"/>
 								<f:selectItem itemValue="#{1}" itemLabel="#{msg['donem.passive']}"/>
 							</h:selectOneMenu>
+		                </f:facet>
+       				</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['donem.kapanisTarih']}">
+					<p:cellEditor>
+		                <f:facet name="output">
+		                	<h:outputText value="#{don.kapanisTarih}">
+		                		<f:convertDateTime pattern="dd/MM/yyyy"/>
+		                	</h:outputText>
+		                </f:facet>
+		                <f:facet name="input">
+							  <p:calendar styleClass="input-text" pattern="dd/MM/yyyy" value="#{don.kapanisTarih}"/>
+		                </f:facet>
+       				</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msg['company.name']}">
+					<p:cellEditor>
+		                <f:facet name="output">
+		                	<h:outputText value="#{don.company.name}">
+		                	</h:outputText>
+		                </f:facet>
+		                <f:facet name="input">
+							<p:selectOneMenu id="sirketAnaCombo" value="#{don.company}">
+				        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+				        		<f:converter converterId="entityConverter"/>
+		        			</p:selectOneMenu>
 		                </f:facet>
        				</p:cellEditor>
 				</p:column>

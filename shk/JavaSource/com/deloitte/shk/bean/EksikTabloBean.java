@@ -92,38 +92,23 @@ public class EksikTabloBean implements Serializable{
 
 			o = new Object[16];
 			o[0] = varlikService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
-			o[1] = varlikService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
-			o[2] = " ";
-			o[3] = " ";
-			o[4] = " ";
-			o[5] = " ";
-			o[6] = " ";
-			o[7] = " ";
-			o[8] = " ";
-			o[9] = " ";
-			o[10] = " ";
-			o[11] = " ";
-			o[12] = " ";
-			o[13] = " ";
-			o[14] = " ";
+			o[1] = kaynakService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[2] = karZararService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[3] = nakitAkimService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":"";
+			o[4] = toplamCalisanService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[5] = borcYaslandirmaService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[6] = trafikStatService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[7] = ucakGiderService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[8] = dovizPozisyonService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[9] = ucakFiloService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[10] = IliskiliTarafBakiyeService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[11] = IliskiliTarafIslemService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[12] = IliskiliTarafTOService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[13] = IliskiliTaraflarService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
+			o[14] = ozkaynakService.findByDonemAndCompany(getDonem(), comp)!=null?"OK":" ";
 			o[15] = comp.getName();
-/*							, 
-					 		,
-					 		,
-					 		nakitAkimService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		toplamCalisanService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		borcYaslandirmaService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		trafikStatService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		ucakGiderService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		dovizPozisyonService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		ucakFiloService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		IliskiliTarafBakiyeService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		IliskiliTarafIslemService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		IliskiliTaraflarService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		IliskiliTarafTOService.findByDonemAndCompany(getDonem(), comp)!=null,
-					 		ozkaynakService.findByDonemAndCompany(getDonem(), comp)!=null
-					 		};
-*/			list.add(o);
+			
+			list.add(o);
 		}
 	}
 	public void initValues()

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,7 +38,12 @@ public class Donem implements Serializable, Cloneable{
 	@Column
 	private Long durum;
 	
+	@Temporal(TemporalType.DATE)
+	private Date kapanisTarih;
 	
+	@ManyToOne
+	private Company company;
+
 	public Long getDonemId() {
 		return donemId;
 	}
@@ -67,5 +73,23 @@ public class Donem implements Serializable, Cloneable{
 		Donem ge = (Donem)super.clone();
     	return ge;
     }
+
+	public Date getKapanisTarih() {
+		return kapanisTarih;
+	}
+
+	public void setKapanisTarih(Date kapanisTarih) {
+		this.kapanisTarih = kapanisTarih;
+	}
+
+
+	public Company getCompany() {
+		return company;
+	}
+
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 
 }

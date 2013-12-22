@@ -167,7 +167,7 @@
 						<h:outputText value="#{msg['ucakFilo.filoyaGiris']}" />
 					</f:facet>
 					<p:ajax event="rowEdit" listener="#{ucakFiloBean.update(filo)}" update="@([id$=ucakFiloGirenToplam]),@([id$=ucakFiloToplam]),ucakFiloTable1" />
-       				<p:ajax event="rowEditCancel" listener="#{ucakFiloBean.addMessage(msg['common.cancelProcess'])}" />
+       				<p:ajax event="rowEditCancel" listener="#{ucakFiloBean.addMessage('common.cancelProcess')}" />
 					<p:column headerText="#{msg['ucakFilo.1']}">
 						 <p:cellEditor>
 			                <f:facet name="output">
@@ -265,7 +265,7 @@
 						<h:outputText value="#{msg['ucakFilo.filodanCikis']}" />
 					</f:facet>
 					<p:ajax event="rowEdit" listener="#{ucakFiloBean.update(filo)}" update="@([id$=ucakFiloCikanToplam]),@([id$=ucakFiloToplam]),ucakFiloTable2" />
-       				<p:ajax event="rowEditCancel" listener="#{ucakFiloBean.addMessage(msg['common.cancelProcess'])}" />
+       				<p:ajax event="rowEditCancel" listener="#{ucakFiloBean.addMessage('common.cancelProcess')}" />
 					<p:column headerText="#{msg['ucakFilo.1']}">
 						 <p:cellEditor>
 			                <f:facet name="output">

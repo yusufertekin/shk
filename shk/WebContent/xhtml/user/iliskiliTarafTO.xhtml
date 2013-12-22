@@ -129,7 +129,7 @@
 						<h:outputText value="#{msg['iliskiliTarafTO.tableHeader1']}" />
 					</f:facet>
 					<p:ajax event="rowEdit" listener="#{iliskiliTarafTOBean.update(taraf)}" update="@([id$=iliskiliTarafTOToplam]),iliskiliTarafTOTable1" />
-       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage(msg['common.cancelProcess'])}" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage('common.cancelProcess')}" />
 					<p:column headerText="#{msg['iliskiliTarafTO.0']}">
 						 <p:cellEditor>
 			                <f:facet name="output">
@@ -212,7 +212,7 @@
 						<h:outputText value="#{msg['iliskiliTarafTO.tableHeader2']}" />
 					</f:facet>
 					<p:ajax event="rowEdit" listener="#{iliskiliTarafTOBean.update(taraf)}" update="@([id$=iliskiliTarafTOToplam]),iliskiliTarafTOTable2" />
-       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage(msg['common.cancelProcess'])}" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage('common.cancelProcess')}" />
 					<p:column headerText="#{msg['iliskiliTarafTO.0']}">
 						 <p:cellEditor>
 			                <f:facet name="output">
@@ -295,7 +295,7 @@
 						<h:outputText value="#{msg['iliskiliTarafTO.tableHeader3']}" />
 					</f:facet>
 					<p:ajax event="rowEdit" listener="#{iliskiliTarafTOBean.update(taraf)}" update="@([id$=iliskiliTarafTOToplam]),iliskiliTarafTOTable3" />
-       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage(msg['common.cancelProcess'])}" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage('common.cancelProcess')}" />
 					<p:column headerText="#{msg['iliskiliTarafTO.0']}">
 						 <p:cellEditor>
 			                <f:facet name="output">
@@ -378,7 +378,7 @@
 						<h:outputText value="#{msg['iliskiliTarafTO.tableHeader4']}" />
 					</f:facet>
 					<p:ajax event="rowEdit" listener="#{iliskiliTarafTOBean.update(taraf)}" update="@([id$=iliskiliTarafTOToplam]),iliskiliTarafTOTable4" />
-       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage(msg['common.cancelProcess'])}" />
+       				<p:ajax event="rowEditCancel" listener="#{iliskiliTarafTOBean.addMessage('common.cancelProcess')}" />
 					<p:column headerText="#{msg['iliskiliTarafTO.0']}">
 						 <p:cellEditor>
 			                <f:facet name="output">
