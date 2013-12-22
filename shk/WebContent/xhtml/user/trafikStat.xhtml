@@ -453,7 +453,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{trafikStatBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{trafikStatBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(trafikStatBean.dipnot, 1, trafikStatBean.instance.company, trafikStatBean.selectedDonem)}"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{trafikStatBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(trafikStatBean.dipnot, 7, trafikStatBean.instance.company, trafikStatBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>
