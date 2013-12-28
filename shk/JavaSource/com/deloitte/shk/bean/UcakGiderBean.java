@@ -57,6 +57,7 @@ public class UcakGiderBean extends GenericBean<UcakGider,Long> implements Serial
 	private Double toplamBig3;
 	private Double toplamBig4;
 	private Double toplamGenel;
+	private UcakGider selectedInstance;
 	
 	@Override
 	public GenericService<UcakGider,Long> getEntityService() {
@@ -95,12 +96,12 @@ public class UcakGiderBean extends GenericBean<UcakGider,Long> implements Serial
 				toplamHesapla(ucak);
 			}
 			genelToplamHesapla();
-			setInstance(ucakList.get(0));
 		}
 		else
 		{
 			initUcakList();
 		}
+		newInstance();
 		
 	}
 	public void initToplam()
@@ -137,77 +138,24 @@ public class UcakGiderBean extends GenericBean<UcakGider,Long> implements Serial
 		ucakList = new ArrayList<UcakGider>();
 		ucakList.clear();
 		newInstance();
-		UcakGider instance1 = new UcakGider();
-		UcakGider instance2 = new UcakGider();
-		UcakGider instance3 = new UcakGider();
-		UcakGider instance4 = new UcakGider();
-		UcakGider instance5 = new UcakGider();
-		UcakGider instance6 = new UcakGider();
-		UcakGider instance7 = new UcakGider();
-		UcakGider instance8 = new UcakGider();
-		UcakGider instance9 = new UcakGider();
-		UcakGider instance10 = new UcakGider();
-		UcakGider instance11 = new UcakGider();
-		UcakGider instance12 = new UcakGider();
-		UcakGider instance13 = new UcakGider();
-		UcakGider instance14 = new UcakGider();
-		UcakGider instance15 = new UcakGider();
-		UcakGider instance16 = new UcakGider();
-		UcakGider instance17 = new UcakGider();
-		UcakGider instance18 = new UcakGider();
-		UcakGider instance19 = new UcakGider();
-		UcakGider instance20 = new UcakGider();
-		UcakGider instance21 = new UcakGider();
-		UcakGider instance22 = new UcakGider();
-		UcakGider instance23 = new UcakGider();
-		getInstance().setUcakTipi("A300 B4");
-		instance1.setUcakTipi("A300-600");
-		instance2.setUcakTipi("A310");
-		instance3.setUcakTipi("A319-100");
-		instance4.setUcakTipi("A320-200");
-		instance5.setUcakTipi("A320-232");
-		instance6.setUcakTipi("A321-100");
-		instance7.setUcakTipi("A321-200");
-		instance8.setUcakTipi("A330-200");
-		instance9.setUcakTipi("A330-200F");
-		instance23.setUcakTipi("A330-300");
-		instance10.setUcakTipi("A340-300");
-		instance11.setUcakTipi("ATR72");
-		instance12.setUcakTipi("B737-300");
-		instance13.setUcakTipi("B737-400");
-		instance14.setUcakTipi("B737-700");
-		instance15.setUcakTipi("B737-800");
-		instance16.setUcakTipi("B737-900ER");
-		instance17.setUcakTipi("B757-200");
-		instance18.setUcakTipi("B777-300ER");
-		instance19.setUcakTipi("GLOBAL EXPRES");
-		instance20.setUcakTipi("CHALLENGER 600");
-		instance21.setUcakTipi("GLOBAL EXPRES");
-		instance22.setUcakTipi("MD 82-83-88");
-		ucakList.add(getInstance());
-		ucakList.add(instance1);
-		ucakList.add(instance2);
-		ucakList.add(instance3);
-		ucakList.add(instance4);
-		ucakList.add(instance5);
-		ucakList.add(instance6);
-		ucakList.add(instance7);
-		ucakList.add(instance8);
-		ucakList.add(instance9);
-		ucakList.add(instance23);
-		ucakList.add(instance10);
-		ucakList.add(instance11);
-		ucakList.add(instance12);
-		ucakList.add(instance13);
-		ucakList.add(instance14);
-		ucakList.add(instance15);
-		ucakList.add(instance16);
-		ucakList.add(instance17);
-		ucakList.add(instance18);
-		ucakList.add(instance19);
-		ucakList.add(instance20);
-		ucakList.add(instance21);
-		ucakList.add(instance22);
+	}
+	
+	public void selectInstance()
+	{
+		try {
+			if(selectedInstance != null)
+			{
+				setInstance((UcakGider) selectedInstance.clone());
+			}
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void deselectInstance()
+	{
+		newInstance();
 	}
 	
 	public String initPage() {
@@ -221,68 +169,17 @@ public class UcakGiderBean extends GenericBean<UcakGider,Long> implements Serial
 		return "/xhtml/user/ucakGider.xhtml?faces-redirect=true";
 	}
 
-	public void save() throws Exception {
-		try {
-			initToplam();
-			for (UcakGider ucak : ucakList) {
-				ucak.setCompany(getInstance().getCompany());
-				ucak.setDonem(getInstance().getDonem());
-				toplamHesapla(ucak);
-				getEntityService().save(ucak);
-			}
-			genelToplamHesapla();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			addMessage("common.saveError");
-		}
-		addMessage("common.saveSuccessful");
-	}
-	
 	@Override
-	public void remove(UcakGider ucak) {
+	public void save() throws Exception {
 		// TODO Auto-generated method stub
-		ucakList.get(ucakList.indexOf(ucak)).setAkaryakitGiderler(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setHarcananYakitYaglar(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setHavaalaniVergiGuvenlikUcret(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setHavaEmniyetGiderler(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setHizmettekiGunSayisi(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setIkramGiderler(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setKabinUcretDigerMenfaat(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setKoltukKiraGider(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setKokpitUcretDigerMenfaat(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setKonmaYerHizmetleriIstasyon(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setMaliMesuliyetSigartasiGider(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setPilotEgitimGiderler(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setToplamUculanSaat(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setUcakKiraGider(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setUcakKodu(null);
-		ucakList.get(ucakList.indexOf(ucak)).setUcakOrtalamaYas(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setUcusEkipmanAmortismanGider(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setUcusEkipmanDegerDusuklugu(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setUcusEkipmanKiraGider(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setUcusEkipmanSigortaGider(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setUcusEkipmanTeknikBakimGider(0.0);
-		ucakList.get(ucakList.indexOf(ucak)).setUstgecisGiderler(0.0);
-		try {
-			getEntityService().update(ucakList.get(ucakList.indexOf(ucak)));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			addMessage("common.removeError");
-			return;
-		}
-		addMessage("common.removeSuccessful");
-		newInstance();
-		if(ucakList != null && ucakList.size() > 0)
-		{
-			setInstance(ucakList.get(0));
-		}
-		initToplam();
-		for (UcakGider uc : ucakList) {
-			toplamHesapla(uc);
-		}
-		genelToplamHesapla();
+		super.update();
+		sorgula();
+	}
+	@Override
+	public void remove(UcakGider instance) {
+		// TODO Auto-generated method stub
+		super.remove(instance);
+		sorgula();
 	}
 	public void genelToplamHesapla()
 	{
@@ -604,6 +501,16 @@ public class UcakGiderBean extends GenericBean<UcakGider,Long> implements Serial
 
 	public void setToplamGenel(Double toplamGenel) {
 		this.toplamGenel = toplamGenel;
+	}
+
+
+	public UcakGider getSelectedInstance() {
+		return selectedInstance;
+	}
+
+
+	public void setSelectedInstance(UcakGider selectedInstance) {
+		this.selectedInstance = selectedInstance;
 	}
 	
 
