@@ -276,7 +276,7 @@ public class KarneBean implements Serializable{
 		if(varlik != null && karZarar != null){
 			Double ticariAlacak = varlik.getTicariAlacak();
 			Double toplamHasilat = karZarar.getToplamHasilat();
-			alacakTahsilSure = FuncUtils.getYilbasindanBeriGecenGun(getDonem().getDonem())/(toplamHasilat/ticariAlacak);  //TODO Bir önceki yilin ticari alacagi ile ortalama almali
+			alacakTahsilSure = FuncUtils.getYilbasindanBeriGecenGun(getDonem().getDonem())/(toplamHasilat/ticariAlacak);  //TODO Bir ��nceki yilin ticari alacagi ile ortalama almali
 		}
 		return alacakTahsilSure;
 	}
@@ -398,10 +398,20 @@ public class KarneBean implements Serializable{
 	public Double getYilSonuOzKaynakYeterliligi() {
 		if(kaynak != null){
 			Double sermaye = kaynak.getSermaye();
-			Double toplamOzKaynaklar = kaynak.getKontrolGucuOlmayan() + donemNetKarZarar + kaynak.getSermaye() 
+			Double toplamOzKaynaklar = null;
+			if(donemNetKarZarar != null)
+			{
+				toplamOzKaynaklar = kaynak.getKontrolGucuOlmayan() + donemNetKarZarar + kaynak.getSermaye() 
 										+ kaynak.getSermayeDuzeltmeFark() + kaynak.getHisseSenediIhracPrim() + kaynak.getKardanAyrilanKisitYedek() 
 										+ kaynak.getYabanciParaCevrimFarki() + kaynak.getFinansalRisktenKorunmaFon() 
 										+ kaynak.getDuranVarlikDegerFonu() + kaynak.getFinansalVarlikDegerFonu() + kaynak.getGecmisYillarKarZarar();
+			}
+			else
+			{
+				toplamOzKaynaklar = kaynak.getKontrolGucuOlmayan() + kaynak.getSermaye() + kaynak.getSermayeDuzeltmeFark() + kaynak.getHisseSenediIhracPrim() 
+						+ kaynak.getKardanAyrilanKisitYedek() + kaynak.getYabanciParaCevrimFarki() + kaynak.getFinansalRisktenKorunmaFon() + kaynak.getDuranVarlikDegerFonu() 
+						+ kaynak.getFinansalVarlikDegerFonu() + kaynak.getGecmisYillarKarZarar();
+			}
 			if (sermaye > toplamOzKaynaklar){
 				yilSonuOzKaynakYeterliligi = kaynak.getOdenmisSermayeUSDKarsiligi() - (sermaye - toplamOzKaynaklar) * donemList.get(0).getDolarKur();
 			}
