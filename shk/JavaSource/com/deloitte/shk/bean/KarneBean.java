@@ -58,6 +58,9 @@ public class KarneBean implements Serializable{
 	private Double toplamBorcVarlik;
 	private Double finansmanGiderKarsilama;
 	private Double borcServisKarsilama;
+	private Double yilSonuOzKaynakYeterliligi;
+	private Double donemNetKarZarar;
+
 
 	private Double cariOranSO;
 	private Double likiditeOranSO;
@@ -70,6 +73,7 @@ public class KarneBean implements Serializable{
 	private Double toplamBorcVarlikSO;
 	private Double finansmanGiderKarsilamaSO;
 	private Double borcServisKarsilamaSO;
+	private Double yilSonuOzKaynakYeterliligiSO;
 	
 	private Varlik varlik;
 	private Kaynak kaynak;
@@ -122,6 +126,7 @@ public class KarneBean implements Serializable{
 		varlik = varlikService.findByDonemAndCompany(getDonem(), getCompany());
 		kaynak = kaynakService.findByDonemAndCompany(getDonem(), getCompany());
 		karZarar = karZararService.findByDonemAndCompany(getDonem(), getCompany());
+		donemNetKarZarar = karZararService.findDonemNetKarZarar(getDonem(), getCompany());
 		
 	}
 	
@@ -149,6 +154,8 @@ public class KarneBean implements Serializable{
 			toplamBorcVarlikSO += getToplamBorcVarlik();
 			finansmanGiderKarsilamaSO += getFinansmanGiderKarsilama();
 			borcServisKarsilamaSO += getBorcServisKarsilama();
+			yilSonuOzKaynakYeterliligiSO += getYilSonuOzKaynakYeterliligi();
+
 			
 			count++;
 		}
@@ -164,6 +171,7 @@ public class KarneBean implements Serializable{
 		toplamBorcVarlikSO = toplamBorcVarlikSO/count;
 		finansmanGiderKarsilamaSO = finansmanGiderKarsilamaSO/count;
 		borcServisKarsilamaSO = borcServisKarsilamaSO/count;
+		yilSonuOzKaynakYeterliligiSO = yilSonuOzKaynakYeterliligiSO/count;
 
 		ortSorgula = false;
 		
@@ -183,6 +191,9 @@ public class KarneBean implements Serializable{
 		 toplamBorcVarlik = new Double(0);
 		 finansmanGiderKarsilama = new Double(0);
 		 borcServisKarsilama = new Double(0);
+		 borcServisKarsilama = new Double(0);
+		 yilSonuOzKaynakYeterliligi = new Double(0);
+		 
 		 setDipnot(new Dipnot());
 	}
 
@@ -206,6 +217,7 @@ public class KarneBean implements Serializable{
 		 toplamBorcVarlikSO = new Double(0);
 		 finansmanGiderKarsilamaSO = new Double(0);
 		 borcServisKarsilamaSO = new Double(0);
+		 yilSonuOzKaynakYeterliligiSO = new Double(0);
 	}
 
 	public String initPage() {
@@ -383,6 +395,20 @@ public class KarneBean implements Serializable{
 		return ebitda;
 	}
 
+	public Double getYilSonuOzKaynakYeterliligi() {
+		if(kaynak != null){
+			Double sermaye = kaynak.getSermaye();
+			Double toplamOzKaynaklar = kaynak.getKontrolGucuOlmayan() + donemNetKarZarar + kaynak.getSermaye() 
+										+ kaynak.getSermayeDuzeltmeFark() + kaynak.getHisseSenediIhracPrim() + kaynak.getKardanAyrilanKisitYedek() 
+										+ kaynak.getYabanciParaCevrimFarki() + kaynak.getFinansalRisktenKorunmaFon() 
+										+ kaynak.getDuranVarlikDegerFonu() + kaynak.getFinansalVarlikDegerFonu() + kaynak.getGecmisYillarKarZarar();
+			if (sermaye > toplamOzKaynaklar){
+				yilSonuOzKaynakYeterliligi = kaynak.getOdenmisSermayeUSDKarsiligi() - (sermaye - toplamOzKaynaklar) * donemList.get(0).getDolarKur();
+			}
+		}
+		return yilSonuOzKaynakYeterliligi;
+	}
+
 	public Company getCompanySO() {
 		return companySO;
 	}
@@ -477,6 +503,14 @@ public class KarneBean implements Serializable{
 
 	public void setBorcServisKarsilamaSO(Double borcServisKarsilamaSO) {
 		this.borcServisKarsilamaSO = borcServisKarsilamaSO;
+	}
+
+	public Double getYilSonuOzKaynakYeterliligiSO() {
+		return yilSonuOzKaynakYeterliligiSO;
+	}
+
+	public void setYilSonuOzKaynakYeterliligiSO(Double yilSonuOzKaynakYeterliligiSO) {
+		this.yilSonuOzKaynakYeterliligiSO = yilSonuOzKaynakYeterliligiSO;
 	}
 
 }

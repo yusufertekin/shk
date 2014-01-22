@@ -195,6 +195,21 @@
 							</h:outputText>
 						</p:column>
 					</p:row>
+					<p:row>
+						<p:column styleClass="column-definition">
+							<h:outputText value="#{msg['karne.12']}" />
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText  styleClass="input-text" id="karne12" value="#{karneBean.yilSonuOzKaynakYeterliligi}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
+							</h:outputText>
+						</p:column>
+						<p:column styleClass="column-input">
+							<h:outputText  styleClass="input-text" id="karne12SO" value="#{karneBean.yilSonuOzKaynakYeterliligiSO}">
+								<f:convertNumber locale="TR_tr" groupingUsed="true" maxFractionDigits="2" />
+							</h:outputText>
+						</p:column>
+					</p:row>
 				</p:panelGrid>
 				<br />
 			</p:panel>

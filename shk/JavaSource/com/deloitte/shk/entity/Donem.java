@@ -44,6 +44,9 @@ public class Donem implements Serializable, Cloneable{
 	@ManyToOne
 	private Company company;
 
+	@Column
+	private Double dolarKur;
+	
 	public Long getDonemId() {
 		return donemId;
 	}
@@ -90,6 +93,14 @@ public class Donem implements Serializable, Cloneable{
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public Double getDolarKur() {
+		return dolarKur;
+	}
+
+	public void setDolarKur(Double dolarKur) {
+		this.dolarKur = dolarKur;
 	}
 
 }
