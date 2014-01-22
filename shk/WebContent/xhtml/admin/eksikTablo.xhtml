@@ -2,6 +2,7 @@
 	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
 
 	<ui:define name="head">
+	 
 	</ui:define>
 	<ui:define name="metadata">
 	</ui:define>
@@ -21,56 +22,60 @@
 				<br />
 					<p:separator />
 				<br />
-				<p:dataTable id="eksikTabloList" styleClass="data-table" value="#{eksikTabloBean.list}" var="eks">
-					<p:column headerText="#{msg['company.name']}">
-						<h:outputText value="#{eks[15]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.0']}">
-						<h:outputText value="#{eks[0]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.1']}">
-						<h:outputText value="#{eks[1]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.2']}">
-						<h:outputText value="#{eks[2]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.3']}">
-						<h:outputText value="#{eks[3]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.4']}">
-						<h:outputText value="#{eks[4]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.5']}">
-						<h:outputText value="#{eks[5]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.6']}">
-						<h:outputText value="#{eks[6]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.7']}">
-						<h:outputText value="#{eks[7]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.8']}">
-						<h:outputText value="#{eks[8]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.9']}">
-						<h:outputText value="#{eks[9]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.10']}">
-						<h:outputText value="#{eks[10]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.11']}">
-						<h:outputText value="#{eks[11]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.12']}">
-						<h:outputText value="#{eks[12]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.13']}">
-						<h:outputText value="#{eks[13]}" />
-					</p:column>
-					<p:column headerText="#{msg['eksikTablo.14']}">
-						<h:outputText value="#{eks[14]}" />
-					</p:column>
-				</p:dataTable>		
+				<h:panelGrid columns="2">
+					<p:dataTable style="position:relative; top:11px" id="eksikTabloListFirst" value="#{eksikTabloBean.listName}" var="eks">
+						<p:column style="height:20px"  headerText="#{msg['company.name']}">
+							<h:outputText value="#{eks}" />
+						</p:column>
+					</p:dataTable>
+					<p:dataTable scrollable="true" scrollWidth="900" id="eksikTabloList" value="#{eksikTabloBean.list}" var="eks">
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.0']}">
+							<h:outputText value="#{eks[0]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.1']}">
+							<h:outputText value="#{eks[1]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.2']}">
+							<h:outputText value="#{eks[2]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.3']}">
+							<h:outputText value="#{eks[3]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.4']}">
+							<h:outputText value="#{eks[4]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.5']}">
+							<h:outputText value="#{eks[5]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.6']}">
+							<h:outputText value="#{eks[6]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.7']}">
+							<h:outputText value="#{eks[7]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.8']}">
+							<h:outputText value="#{eks[8]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.9']}">
+							<h:outputText value="#{eks[9]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.10']}">
+							<h:outputText value="#{eks[10]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.11']}">
+							<h:outputText value="#{eks[11]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.12']}">
+							<h:outputText value="#{eks[12]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.13']}">
+							<h:outputText value="#{eks[13]}" />
+						</p:column>
+						<p:column style="height:20px"  headerText="#{msg['eksikTablo.14']}">
+							<h:outputText value="#{eks[14]}" />
+						</p:column>
+					</p:dataTable>	
+				</h:panelGrid>	
 		 	</p:panel>	
 		</h:form>
 	</ui:define>

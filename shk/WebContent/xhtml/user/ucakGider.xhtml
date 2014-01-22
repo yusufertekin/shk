@@ -2,6 +2,7 @@
 	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
 
 	<ui:define name="head">
+		
 	</ui:define>
 	<ui:define name="metadata">
 	</ui:define>
@@ -10,7 +11,7 @@
 			<p:messages autoUpdate="true"/>
 			<p:growl autoUpdate="true"/>
 			
-			<p:panel header="#{msg['ucakGider.pageHeader']}">
+			<p:panel id="ucakGiderPanel" header="#{msg['ucakGider.pageHeader']}">
 				<p:panelGrid id="sorgulaPanel" columns="2">
 					<h:outputText value="#{msg['company.name']}" />
 					<h:outputText rendered="#{currentUser.company.companyId != null}" value="#{currentUser.company.name}"/>
@@ -316,14 +317,14 @@
 				<p:separator />
 				<br />
 				<h:outputText styleClass="bold-header" value="#{msg['ucakGider.updateBilgi']}" />
-				<p:dataTable rowKey="#{ucak.ucakGiderId}" selection="#{ucakGiderBean.selectedInstance}" selectionMode="single" style="width:3500px !important" value="#{ucakGiderBean.ucakList}" var="ucak">
+				<p:dataTable scrollable="true" scrollWidth="%100" id="ucakGiderDataTable" rowKey="#{ucak.ucakGiderId}" selection="#{ucakGiderBean.selectedInstance}" selectionMode="single" value="#{ucakGiderBean.ucakList}" var="ucak">
 					<p:ajax listener="#{ucakGiderBean.selectInstance()}" event="rowSelect" update="@form" />
 					<p:ajax listener="#{ucakGiderBean.deselectInstance()}" event="rowUnselect" update="@form" />
-					<p:column headerText="#{msg['ucakGider.ucakTipi']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.ucakTipi']}"  styleClass="column-input">
 						<h:outputText styleClass="input-text" id="ucakGiderUcakTipi" value="#{ucak.ucakTipi}">
 						</h:outputText>
 					</p:column>
-					<p:column style="width:35px !important" headerText="#{msg['ucakGider.panelHeader']}" styleClass="column-input">
+					<p:column  headerText="#{msg['ucakGider.panelHeader']}" styleClass="column-input">
 						<h:outputText styleClass="toplam-output" id="ucakGiderToplamGenel" value="#{ucak.ucusEkipmanAmortismanGider + ucak.ucusEkipmanDegerDusuklugu + ucak.ucusEkipmanTeknikBakimGider + ucak.ucusEkipmanKiraGider + ucak.ucakKiraGider + ucak.koltukKiraGider + ucak.ucusEkipmanSigortaGider + ucak.ikramGiderler + ucak.ustgecisGiderler + ucak.havaEmniyetGiderler + ucak.akaryakitGiderler + ucak.konmaYerHizmetleriIstasyon + ucak.havaalaniVergiGuvenlikUcret + ucak.kokpitUcretDigerMenfaat + ucak.kabinUcretDigerMenfaat + ucak.pilotEgitimGiderler + ucak.maliMesuliyetSigartasiGider}">
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -331,12 +332,12 @@
 							<h:outputText value="#{ucakGiderBean.toplamGenel}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.ucakKodu']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.ucakKodu']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGiderUcakKodu" value="#{ucak.ucakKodu}">
 							<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 						</h:outputText>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.toplam1']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.toplam1']}"  styleClass="column-input">
 						<h:outputText styleClass="toplam-output" id="ucakGiderToplam1" value="#{ucak.ikramGiderler + ucak.ustgecisGiderler + ucak.havaEmniyetGiderler + ucak.akaryakitGiderler}">
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -344,7 +345,7 @@
 							<h:outputText value="#{ucakGiderBean.toplamBig1}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.1']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.1']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider1" value="#{ucak.akaryakitGiderler}" >
 							<f:convertNumber locale="tr_TR"  groupingUsed="true"/>
 						</h:outputText>
@@ -352,7 +353,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam1}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.2']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.2']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider2" value="#{ucak.havaEmniyetGiderler}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -360,7 +361,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam2}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.3']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.3']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider3" value="#{ucak.ustgecisGiderler}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -368,7 +369,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam3}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.4']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.4']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider4" value="#{ucak.ikramGiderler}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -376,7 +377,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam4}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.toplam2']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.toplam2']}"  styleClass="column-input">
 						<h:outputText styleClass="toplam-output" id="ucakGiderToplam2" value="#{ucak.konmaYerHizmetleriIstasyon + ucak.havaalaniVergiGuvenlikUcret}">
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -384,7 +385,7 @@
 							<h:outputText value="#{ucakGiderBean.toplamBig2}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.5']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.5']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider5" value="#{ucak.konmaYerHizmetleriIstasyon}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -392,7 +393,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam5}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.6']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.6']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider6" value="#{ucak.havaalaniVergiGuvenlikUcret}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -400,7 +401,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam6}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.toplam3']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.toplam3']}"  styleClass="column-input">
 						<h:outputText styleClass="toplam-output" id="ucakGiderToplam3" value="#{ucak.kokpitUcretDigerMenfaat + ucak.kabinUcretDigerMenfaat + ucak.pilotEgitimGiderler + ucak.maliMesuliyetSigartasiGider}">
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -408,7 +409,7 @@
 							<h:outputText value="#{ucakGiderBean.toplamBig3}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.7']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.7']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider7" value="#{ucak.kokpitUcretDigerMenfaat}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -416,7 +417,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam7}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.8']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.8']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider8" value="#{ucak.kabinUcretDigerMenfaat}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -424,7 +425,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam8}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.9']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.9']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider9" value="#{ucak.pilotEgitimGiderler}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -432,7 +433,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam9}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.10']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.10']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider10" value="#{ucak.maliMesuliyetSigartasiGider}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -440,7 +441,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam10}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.toplam4']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.toplam4']}"  styleClass="column-input">
 						<h:outputText styleClass="toplam-output" id="ucakGiderToplam4" value="#{ucak.ucusEkipmanAmortismanGider + ucak.ucusEkipmanDegerDusuklugu + ucak.ucusEkipmanTeknikBakimGider + ucak.ucusEkipmanKiraGider + ucak.ucakKiraGider + ucak.koltukKiraGider + ucak.ucusEkipmanSigortaGider}">
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -448,7 +449,7 @@
 							<h:outputText value="#{ucakGiderBean.toplamBig4}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.11']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.11']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider11" value="#{ucak.ucusEkipmanAmortismanGider}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -456,7 +457,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam11}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.12']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.12']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider12" value="#{ucak.ucusEkipmanDegerDusuklugu}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -464,7 +465,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam12}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.13']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.13']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider13" value="#{ucak.ucusEkipmanTeknikBakimGider}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -472,7 +473,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam13}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.14']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.14']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider14" value="#{ucak.ucusEkipmanKiraGider}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -480,7 +481,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam14}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.15']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.15']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider15" value="#{ucak.ucakKiraGider}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -488,7 +489,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam15}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.16']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.16']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider16" value="#{ucak.koltukKiraGider}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -496,7 +497,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam16}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.17']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.17']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider17" value="#{ucak.ucusEkipmanSigortaGider}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -504,12 +505,12 @@
 							<h:outputText value="#{ucakGiderBean.toplam17}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.toplam5']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.toplam5']}"  styleClass="column-input">
 						<h:outputText styleClass="toplam-output" id="ucakGiderToplam5" value="">
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.18']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.18']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider18" value="#{ucak.ucakOrtalamaYas}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -517,7 +518,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam18}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.19']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.19']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider19" value="#{ucak.toplamUculanSaat}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -525,7 +526,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam19}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.20']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.20']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider20" value="#{ucak.hizmettekiGunSayisi}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -533,7 +534,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam20}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['ucakGider.21']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['ucakGider.21']}"  styleClass="column-input">
 						<h:outputText   styleClass="input-text" id="ucakGider21" value="#{ucak.harcananYakitYaglar}" >
 							<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 						</h:outputText>
@@ -541,7 +542,7 @@
 							<h:outputText value="#{ucakGiderBean.toplam21}" />
 						</f:facet>
 					</p:column>
-					<p:column headerText="#{msg['common.remove']}" style="width:35px !important" styleClass="column-input">
+					<p:column headerText="#{msg['common.remove']}"  styleClass="column-input">
 						<p:commandLink styleClass="bold-header" value="#{msg['common.remove']}" action="#{ucakGiderBean.remove(ucak)}" immediate="true" process="@this" async="true" update="@form"/>
 					</p:column>
 				</p:dataTable>

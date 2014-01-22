@@ -47,6 +47,11 @@ public class DipnotBean extends GenericBean<Dipnot,Long> implements Serializable
 		}
 		addMessage("common.saveSuccessful");
 	}
+	@Override
+	public void sorgula() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

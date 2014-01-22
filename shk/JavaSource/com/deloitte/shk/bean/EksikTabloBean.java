@@ -68,6 +68,7 @@ public class EksikTabloBean implements Serializable{
 	@Inject OzkaynakService ozkaynakService;
 	
 	private List<Object[]> list;
+	private List<String> listName;
 	
 	public static String formatDate(Date date, String pattern) {
 	    if (date == null) {
@@ -106,14 +107,14 @@ public class EksikTabloBean implements Serializable{
 			o[12] = IliskiliTarafTOService.findByDonemAndCompany(getDonem(), comp)!=null?"TAMAM":" ";
 			o[13] = IliskiliTaraflarService.findByDonemAndCompany(getDonem(), comp)!=null?"TAMAM":" ";
 			o[14] = ozkaynakService.findByDonemAndCompany(getDonem(), comp)!=null?"TAMAM":" ";
-			o[15] = comp.getName();
-			
+			listName.add(comp.getName());
 			list.add(o);
 		}
 	}
 	public void initValues()
 	{
 		list = new ArrayList<Object[]>();
+		listName = new ArrayList<String>();
 	}
 	public String initPage() {
 		// TODO Auto-generated method stub
@@ -138,6 +139,12 @@ public class EksikTabloBean implements Serializable{
 	}
 	public void setDonem(Donem donem) {
 		this.donem = donem;
+	}
+	public List<String> getListName() {
+		return listName;
+	}
+	public void setListName(List<String> listName) {
+		this.listName = listName;
 	}
 	
 
