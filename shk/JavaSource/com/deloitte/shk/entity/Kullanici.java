@@ -28,6 +28,9 @@ public class Kullanici extends GenericEntity implements Serializable{
 	private String username;
 	
 	@Column(length=300)
+	private String userRealName;
+	
+	@Column(length=300)
 	private String password;
 	
 	@Column(nullable = false)
@@ -76,8 +79,12 @@ public class Kullanici extends GenericEntity implements Serializable{
 		this.durum = durum;
 	}
 
-	
+	public String getUserRealName() {
+		return userRealName;
+	}
 
-
+	public void setUserRealName(String userRealName) {
+		this.userRealName = userRealName;
+	}
 
 }

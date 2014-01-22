@@ -60,7 +60,7 @@
 							<h:outputText value="#{msg['iliskiliTaraflar.0']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 || currentUser.company == null}" styleClass="input-text" id="iliskiliTaraflar0" value="#{iliskiliTaraflarBean.instance.name}" required="true" requiredMessage="#{msg['iliskiliTaraflar.0']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{iliskiliTaraflarBean.disable}" styleClass="input-text" id="iliskiliTaraflar0" value="#{iliskiliTaraflarBean.instance.name}" required="true" requiredMessage="#{msg['iliskiliTaraflar.0']}#{msg['common.requiredMessage']}">
 								<p:ajax event="blur" update="iliskiliTaraflar0" />
 							</p:inputText>
 						</p:column>
@@ -70,14 +70,14 @@
 							<h:outputText value="#{msg['iliskiliTaraflar.1']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputTextarea disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 || currentUser.company == null}" styleClass="input-text" id="iliskiliTaraflar1" value="#{iliskiliTaraflarBean.instance.aciklama}" required="true" requiredMessage="#{msg['iliskiliTaraflar.1']}#{msg['common.requiredMessage']}">
+							<p:inputTextarea disabled="#{iliskiliTaraflarBean.disable}" styleClass="input-text" id="iliskiliTaraflar1" value="#{iliskiliTaraflarBean.instance.aciklama}" required="true" requiredMessage="#{msg['iliskiliTaraflar.1']}#{msg['common.requiredMessage']}">
 								<p:ajax event="blur" update="iliskiliTaraflar1" />
 							</p:inputTextarea>
 						</p:column>
 					</p:row>
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveButton"  action="#{iliskiliTaraflarBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTaraflarBean.updateable}" id="saveButton"  action="#{iliskiliTaraflarBean.save()}" update="@form"/>
 				<br />
 				<p:separator />
 				<br />
@@ -93,7 +93,7 @@
 			                    <h:outputText value="#{taraf.name}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.name}"/>
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.disable}"  value="#{taraf.name}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -103,17 +103,17 @@
 			                    <h:outputText value="#{taraf.aciklama}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.aciklama}"/>
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.disable}"  value="#{taraf.aciklama}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
-					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 and currentUser.company != null}" >
+					<p:column rendered="#{iliskiliTaraflarBean.updateable}" >
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
 						<p:rowEditor />
 					</p:column>
-					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTaraflarBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
@@ -135,7 +135,7 @@
 			                    <h:outputText value="#{taraf.name}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.name}"/>
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.disable}"  value="#{taraf.name}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -145,17 +145,17 @@
 			                    <h:outputText value="#{taraf.aciklama}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.aciklama}"/>
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.disable}"  value="#{taraf.aciklama}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
-					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTaraflarBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
 						<p:rowEditor />
 					</p:column>
-					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTaraflarBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
@@ -177,7 +177,7 @@
 			                    <h:outputText value="#{taraf.name}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.name}"/>
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.disable}"  value="#{taraf.name}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -187,17 +187,17 @@
 			                    <h:outputText value="#{taraf.aciklama}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.aciklama}"/>
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.disable}"  value="#{taraf.aciklama}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
-					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTaraflarBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
 						<p:rowEditor />
 					</p:column>
-					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTaraflarBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
@@ -219,7 +219,7 @@
 			                    <h:outputText value="#{taraf.name}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.name}"/>
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.disable}"  value="#{taraf.name}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -229,17 +229,17 @@
 			                    <h:outputText value="#{taraf.aciklama}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTaraflarBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.aciklama}"/>
+			                    <p:inputText disabled="#{iliskiliTaraflarBean.disable}"  value="#{taraf.aciklama}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
-					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTaraflarBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
 						<p:rowEditor />
 					</p:column>
-					<p:column rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTaraflarBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
@@ -258,7 +258,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{iliskiliTaraflarBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTaraflarBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(iliskiliTaraflarBean.dipnot, 14, iliskiliTaraflarBean.instance.company, iliskiliTaraflarBean.selectedDonem)}"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTaraflarBean.updateable}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(iliskiliTaraflarBean.dipnot, 14, iliskiliTaraflarBean.instance.company, iliskiliTaraflarBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

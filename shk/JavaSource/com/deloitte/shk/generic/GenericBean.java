@@ -48,7 +48,7 @@ public abstract class GenericBean<E extends GenericEntity, A> implements Seriali
 
 	
 	public abstract GenericService<E, A> getEntityService();
-//	public abstract void newInstance();
+	public abstract void sorgula();
 	
 	public void newInstance() {
 		try {
@@ -88,6 +88,7 @@ public abstract class GenericBean<E extends GenericEntity, A> implements Seriali
 		newInstance();
 		loadList();
 		addMessage("common.saveSuccessful");
+		sorgula();
 	}
 	public void remove()
 	{
@@ -224,6 +225,27 @@ public abstract class GenericBean<E extends GenericEntity, A> implements Seriali
 
 	public void setMsg(ResourceBundle msg) {
 		this.msg = msg;
+	}
+
+	public Boolean getUpdateable() {
+		if(company == null)
+			return false;
+		return (selectedDonem.getDurum().intValue() == 0 && selectedDonem.getCompany() == null) 
+				|| (selectedDonem.getDurum().intValue() == 0 && selectedDonem.getCompany() != null && selectedDonem.getCompany().getCompanyId().intValue() == company.getCompanyId().intValue());
+	}
+
+	public void setUpdateable(Boolean a) {
+		
+	}
+
+	public Boolean getDisable() {
+		if(company == null || selectedDonem.getDurum().intValue() == 1)
+			return true;
+		return (selectedDonem.getCompany() != null && selectedDonem.getCompany().getCompanyId().intValue() != company.getCompanyId().intValue());
+	}
+
+	public void setDisable(Boolean a) {
+		
 	}
 
 	public Donem getSelectedDonem() {

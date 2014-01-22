@@ -45,6 +45,7 @@
 							<p:menuitem immediate="true" id="menuItem22" action="#{eksikTabloBean.initPage()}" value="#{msg['submenu.eksikTablo']}" />
 						</p:submenu>
 						<p:submenu label="#{msg['menu.generalProcesses']}">
+							<p:menuitem immediate="true" id="menuItem0" rendered="#{currentUser.company != null}" url="dogrulukBeyani.xhtml"  value="#{msg['submenu.dogrulukBeyani']}" />
 							<p:menuitem immediate="true" id="menuItem5" action="#{varlikBean.initPage()}" value="#{msg['submenu.varliklar']}" />
 							<p:menuitem immediate="true" id="menuItem6" action="#{kaynakBean.initPage()}" value="#{msg['submenu.kaynaklar']}" />
 							<p:menuitem immediate="true" id="menuItem7" action="#{karZararBean.initPage()}" value="#{msg['submenu.karZarar']}" />

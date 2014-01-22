@@ -42,7 +42,7 @@
 							<h:outputText value="#{msg['ucakGider.ucakTipi']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGiderUcakTipi" required="true" requiredMessage="#{msg['ucakGider.ucakTipi']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ucakTipi}"/>
+							<p:inputText id="ucakGiderUcakTipi" required="true" requiredMessage="#{msg['ucakGider.ucakTipi']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ucakTipi}"/>
 						</p:column>
 					</p:row>
 					<p:row>
@@ -50,7 +50,7 @@
 							<h:outputText value="#{msg['ucakGider.ucakKodu']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGiderUcakKodu" required="true" requiredMessage="#{msg['ucakGider.ucakKodu']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ucakKodu}"/>
+							<p:inputText id="ucakGiderUcakKodu" required="true" requiredMessage="#{msg['ucakGider.ucakKodu']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ucakKodu}"/>
 						</p:column>
 					</p:row>
 					<p:row>
@@ -63,7 +63,7 @@
 							<h:outputText value="#{msg['ucakGider.1']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider1" required="true" requiredMessage="#{msg['ucakGider.1']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.akaryakitGiderler}">
+							<p:inputText id="ucakGider1" required="true" requiredMessage="#{msg['ucakGider.1']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.akaryakitGiderler}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider1" />
 							</p:inputText>
@@ -74,7 +74,7 @@
 							<h:outputText value="#{msg['ucakGider.2']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider2" required="true" requiredMessage="#{msg['ucakGider.2']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.havaEmniyetGiderler}">
+							<p:inputText id="ucakGider2" required="true" requiredMessage="#{msg['ucakGider.2']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.havaEmniyetGiderler}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider2" />
 							</p:inputText>
@@ -85,7 +85,7 @@
 							<h:outputText value="#{msg['ucakGider.3']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider3" required="true" requiredMessage="#{msg['ucakGider.3']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ustgecisGiderler}">
+							<p:inputText id="ucakGider3" required="true" requiredMessage="#{msg['ucakGider.3']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ustgecisGiderler}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider3" />
 							</p:inputText>
@@ -96,7 +96,7 @@
 							<h:outputText value="#{msg['ucakGider.4']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider4" required="true" requiredMessage="#{msg['ucakGider.4']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ikramGiderler}">
+							<p:inputText id="ucakGider4" required="true" requiredMessage="#{msg['ucakGider.4']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ikramGiderler}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider4" />
 							</p:inputText>
@@ -112,7 +112,7 @@
 							<h:outputText value="#{msg['ucakGider.5']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider5" required="true" requiredMessage="#{msg['ucakGider.5']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.konmaYerHizmetleriIstasyon}">
+							<p:inputText id="ucakGider5" required="true" requiredMessage="#{msg['ucakGider.5']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.konmaYerHizmetleriIstasyon}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider5" />
 							</p:inputText>
@@ -123,7 +123,7 @@
 							<h:outputText value="#{msg['ucakGider.6']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider6" required="true" requiredMessage="#{msg['ucakGider.6']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.havaalaniVergiGuvenlikUcret}">
+							<p:inputText id="ucakGider6" required="true" requiredMessage="#{msg['ucakGider.6']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.havaalaniVergiGuvenlikUcret}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider6" />
 							</p:inputText>
@@ -139,7 +139,7 @@
 							<h:outputText value="#{msg['ucakGider.7']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider7" required="true" requiredMessage="#{msg['ucakGider.7']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.kokpitUcretDigerMenfaat}">
+							<p:inputText id="ucakGider7" required="true" requiredMessage="#{msg['ucakGider.7']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.kokpitUcretDigerMenfaat}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider7" />
 							</p:inputText>
@@ -150,7 +150,7 @@
 							<h:outputText value="#{msg['ucakGider.8']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider8" required="true" requiredMessage="#{msg['ucakGider.8']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.kabinUcretDigerMenfaat}">
+							<p:inputText id="ucakGider8" required="true" requiredMessage="#{msg['ucakGider.8']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.kabinUcretDigerMenfaat}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider8" />
 							</p:inputText>
@@ -161,7 +161,7 @@
 							<h:outputText value="#{msg['ucakGider.9']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider9" required="true" requiredMessage="#{msg['ucakGider.9']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.pilotEgitimGiderler}">
+							<p:inputText id="ucakGider9" required="true" requiredMessage="#{msg['ucakGider.9']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.pilotEgitimGiderler}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider9" />
 							</p:inputText>
@@ -172,7 +172,7 @@
 							<h:outputText value="#{msg['ucakGider.10']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider10" required="true" requiredMessage="#{msg['ucakGider.10']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.maliMesuliyetSigartasiGider}">
+							<p:inputText id="ucakGider10" required="true" requiredMessage="#{msg['ucakGider.10']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.maliMesuliyetSigartasiGider}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider10" />
 							</p:inputText>
@@ -188,7 +188,7 @@
 							<h:outputText value="#{msg['ucakGider.11']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider11" required="true" requiredMessage="#{msg['ucakGider.11']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ucusEkipmanAmortismanGider}">
+							<p:inputText id="ucakGider11" required="true" requiredMessage="#{msg['ucakGider.11']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ucusEkipmanAmortismanGider}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider11" />
 							</p:inputText>
@@ -199,7 +199,7 @@
 							<h:outputText value="#{msg['ucakGider.12']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider12" required="true" requiredMessage="#{msg['ucakGider.12']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ucusEkipmanDegerDusuklugu}">
+							<p:inputText id="ucakGider12" required="true" requiredMessage="#{msg['ucakGider.12']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ucusEkipmanDegerDusuklugu}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider12" />
 							</p:inputText>
@@ -210,7 +210,7 @@
 							<h:outputText value="#{msg['ucakGider.13']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider13" required="true" requiredMessage="#{msg['ucakGider.13']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ucusEkipmanTeknikBakimGider}">
+							<p:inputText id="ucakGider13" required="true" requiredMessage="#{msg['ucakGider.13']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ucusEkipmanTeknikBakimGider}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider13" />
 							</p:inputText>
@@ -221,7 +221,7 @@
 							<h:outputText value="#{msg['ucakGider.14']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider14" required="true" requiredMessage="#{msg['ucakGider.14']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ucusEkipmanKiraGider}">
+							<p:inputText id="ucakGider14" required="true" requiredMessage="#{msg['ucakGider.14']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ucusEkipmanKiraGider}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider14" />
 							</p:inputText>
@@ -232,7 +232,7 @@
 							<h:outputText value="#{msg['ucakGider.15']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider15" required="true" requiredMessage="#{msg['ucakGider.15']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ucakKiraGider}">
+							<p:inputText id="ucakGider15" required="true" requiredMessage="#{msg['ucakGider.15']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ucakKiraGider}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider15" />
 							</p:inputText>
@@ -243,7 +243,7 @@
 							<h:outputText value="#{msg['ucakGider.16']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider16" required="true" requiredMessage="#{msg['ucakGider.16']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.koltukKiraGider}">
+							<p:inputText id="ucakGider16" required="true" requiredMessage="#{msg['ucakGider.16']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.koltukKiraGider}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider16" />
 							</p:inputText>
@@ -254,7 +254,7 @@
 							<h:outputText value="#{msg['ucakGider.17']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider17" required="true" requiredMessage="#{msg['ucakGider.17']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ucusEkipmanSigortaGider}">
+							<p:inputText id="ucakGider17" required="true" requiredMessage="#{msg['ucakGider.17']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ucusEkipmanSigortaGider}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider17" />
 							</p:inputText>
@@ -270,7 +270,7 @@
 							<h:outputText value="#{msg['ucakGider.18']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider18" required="true" requiredMessage="#{msg['ucakGider.18']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.ucakOrtalamaYas}">
+							<p:inputText id="ucakGider18" required="true" requiredMessage="#{msg['ucakGider.18']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.ucakOrtalamaYas}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider18" />
 							</p:inputText>
@@ -281,7 +281,7 @@
 							<h:outputText value="#{msg['ucakGider.19']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider19" required="true" requiredMessage="#{msg['ucakGider.19']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.toplamUculanSaat}">
+							<p:inputText id="ucakGider19" required="true" requiredMessage="#{msg['ucakGider.19']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.toplamUculanSaat}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider19" />
 							</p:inputText>
@@ -292,7 +292,7 @@
 							<h:outputText value="#{msg['ucakGider.20']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider20" required="true" requiredMessage="#{msg['ucakGider.20']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.hizmettekiGunSayisi}">
+							<p:inputText id="ucakGider20" required="true" requiredMessage="#{msg['ucakGider.20']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.hizmettekiGunSayisi}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider20" />
 							</p:inputText>
@@ -303,7 +303,7 @@
 							<h:outputText value="#{msg['ucakGider.21']}" />
 						</p:column>
 						<p:column style="height:22px !important" styleClass="column-definition">
-							<p:inputText id="ucakGider21" required="true" requiredMessage="#{msg['ucakGider.21']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{ucakGiderBean.instance.harcananYakitYaglar}">
+							<p:inputText id="ucakGider21" required="true" requiredMessage="#{msg['ucakGider.21']}#{msg['common.requiredMessage']}" disabled="#{ucakGiderBean.disable}"  value="#{ucakGiderBean.instance.harcananYakitYaglar}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="ucakGider21" />
 							</p:inputText>
@@ -311,7 +311,7 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveButton"  action="#{ucakGiderBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.updateable}" id="saveButton"  action="#{ucakGiderBean.save()}" update="@form"/>
 				<br />
 				<p:separator />
 				<br />
@@ -554,7 +554,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{ucakGiderBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(ucakGiderBean.dipnot, 8, ucakGiderBean.instance.company, ucakGiderBean.selectedDonem)}"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{ucakGiderBean.updateable}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(ucakGiderBean.dipnot, 8, ucakGiderBean.instance.company, ucakGiderBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

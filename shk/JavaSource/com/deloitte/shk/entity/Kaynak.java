@@ -91,8 +91,8 @@ public class Kaynak extends GenericEntity implements Serializable{
 	private Double gecmisYillarKarZarar;
 	@Column
 	private Double kontrolGucuOlmayan;
-	
-
+	@Column
+	private Double odenmisSermayeUSDKarsiligi;
 	
 
 	@Override
@@ -371,7 +371,16 @@ public class Kaynak extends GenericEntity implements Serializable{
 	public void setKontrolGucuOlmayan(Double kontrolGucuOlmayan) {
 		this.kontrolGucuOlmayan = kontrolGucuOlmayan;
 	}
-	
+
+	public Double getOdenmisSermayeUSDKarsiligi() {
+		return odenmisSermayeUSDKarsiligi;
+	}
+
+	public void setOdenmisSermayeUSDKarsiligi(
+			Double odenmisSermayeUSDKarsiligi) {
+		this.odenmisSermayeUSDKarsiligi = odenmisSermayeUSDKarsiligi;
+	}
+
 	public Double getToplamKisaVadeliYukumlulukler(){
 		return this.finansalBorclar + this.uzunVadeliKrediKisaKisim + this.finansalKiralama + this.ticariBorc + this.donemKariVergi + this.yolcuUcusYukumluluk +this.faaliyetTipiKiralananUcakBG + this.odenecekPersonelUcreti + this.calisanlaraSaglananDigerF + this.odenecekVergiFonlar + this.turevFinansalAraclar + this.iliskiliTaraflaraBorclar + this.borcKarsiliklari + this.digerKisaVadeliYukumluluk;
 	}

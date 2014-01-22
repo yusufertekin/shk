@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core" template="/xhtml/template.xhtml">
+
+	<ui:define name="head">
+	</ui:define>
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:messages autoUpdate="true"/>
+			<p:growl autoUpdate="true"/>
+			
+			<p:panel header="#{msg['submenu.dogrulukBeyani']}">
+					<h:outputText styleClass="big-header" value="T.C. Ulaştırma, Denizcilik ve Haberleşme Bakanlığı" />
+					<br />
+					<h:outputText styleClass="big-header" value="Sivil Havacılık Genel Müdürlüğü" />
+					<br />
+					<br />
+					<h:outputText styleClass="big-header" value="#{currentUser.company.name}" />
+					<br />
+					<h:outputText styleClass="big-header" value="#{donemList.get(0).donem}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>					
+					<h:outputText styleClass="big-header" value=" tarihinde sona eren döneme ait FİNANSAL BİLGİ SETİ" />
+					<br />
+					<br />
+					<h:outputText styleClass="big-header" value="Hesaplardan sorumlu yönetici olarak çalışan ve aşağıda imzası bulunan ben, #{currentUser.userRealName}, bu beyan ile finansal bilgi setinde yeralan tüm bilgilerin benim talimatlarım doğrultusunda hazırlandığını; bu bilgilerin benim tarafımdan dikkatli bir şekilde incelendiğini ve şirketin tüm hesap ve kayıtlarının buradaki bilgilere doğru ve dürüst bir biçimde yansıtıldığını; raporlanan dönemlere ait bilanço, gelir tablosu, nakit akım tablosu, uçak tipi bazında direk faaliyet giderleri,borç yaşlandırma tablosu, döviz pozisyonu,trafik istatistikleri, personel sayısının dağılımı ve ilişkili taraflarla işlemlerin eksiksiz ve doğru olarak açıklandığını; burada raporlanan bilgilerin TFRS'ye ve Sivil Havacılık Genel Müdürlüğü tarafından açıklanan hazırlama kılavuzuna uygun olduğunu beyan ederim." />
+					<br />
+					<br />
+					<h:outputText styleClass="big-header" value="İmza" />
+					<br />
+					<br />
+					<h:outputText styleClass="big-header" value="Adres" />
+					<br />
+					<br />
+					<h:outputText styleClass="big-header" value="Tarih" />
+					
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

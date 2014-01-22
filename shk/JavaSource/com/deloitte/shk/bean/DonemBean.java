@@ -126,6 +126,7 @@ public class DonemBean implements Serializable{
 		donemList = donemService.list();
 		addMessage("common.updateSuccessful");
 	}
+
 	public Donem getInstance() {
 		return instance;
 	}

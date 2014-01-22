@@ -61,7 +61,7 @@
 							<h:outputText value="#{msg['iliskiliTarafIslem.0']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="iliskiliTarafIslem0" value="#{iliskiliTarafIslemBean.instance.name}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.0']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  styleClass="input-text" id="iliskiliTarafIslem0" value="#{iliskiliTarafIslemBean.instance.name}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.0']}#{msg['common.requiredMessage']}">
 								<p:ajax event="blur" update="iliskiliTarafIslem0" />
 							</p:inputText>
 						</p:column>
@@ -71,7 +71,7 @@
 							<h:outputText value="#{msg['iliskiliTarafIslem.1']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="iliskiliTarafIslem1" value="#{iliskiliTarafIslemBean.instance.malHizmetAlim}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.1']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  styleClass="input-text" id="iliskiliTarafIslem1" value="#{iliskiliTarafIslemBean.instance.malHizmetAlim}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.1']}#{msg['common.requiredMessage']}">
 								<p:ajax event="blur" update="iliskiliTarafIslem1" />
 							</p:inputText>
 						</p:column>
@@ -81,7 +81,7 @@
 							<h:outputText value="#{msg['iliskiliTarafIslem.2']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="iliskiliTarafIslem2" value="#{iliskiliTarafIslemBean.instance.malHizmetSatis}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.2']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  styleClass="input-text" id="iliskiliTarafIslem2" value="#{iliskiliTarafIslemBean.instance.malHizmetSatis}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.2']}#{msg['common.requiredMessage']}">
 								<p:ajax event="blur" update="iliskiliTarafIslem2" />
 							</p:inputText>
 						</p:column>
@@ -91,7 +91,7 @@
 							<h:outputText value="#{msg['iliskiliTarafIslem.3']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="iliskiliTarafIslem3" value="#{iliskiliTarafIslemBean.instance.faizGelir}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.3']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  styleClass="input-text" id="iliskiliTarafIslem3" value="#{iliskiliTarafIslemBean.instance.faizGelir}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.3']}#{msg['common.requiredMessage']}">
 								<p:ajax event="blur" update="iliskiliTarafIslem3" />
 							</p:inputText>
 						</p:column>
@@ -101,7 +101,7 @@
 							<h:outputText value="#{msg['iliskiliTarafIslem.4']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="iliskiliTarafIslem4" value="#{iliskiliTarafIslemBean.instance.faizGider}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.4']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  styleClass="input-text" id="iliskiliTarafIslem4" value="#{iliskiliTarafIslemBean.instance.faizGider}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.4']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="iliskiliTarafIslem4" />
 							</p:inputText>
@@ -112,7 +112,7 @@
 							<h:outputText value="#{msg['iliskiliTarafIslem.5']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="iliskiliTarafIslem5" value="#{iliskiliTarafIslemBean.instance.kiraGelir}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.5']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  styleClass="input-text" id="iliskiliTarafIslem5" value="#{iliskiliTarafIslemBean.instance.kiraGelir}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.5']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="iliskiliTarafIslem5" />
 							</p:inputText>
@@ -123,7 +123,7 @@
 							<h:outputText value="#{msg['iliskiliTarafIslem.6']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="iliskiliTarafIslem6" value="#{iliskiliTarafIslemBean.instance.kiraGider}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.6']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  styleClass="input-text" id="iliskiliTarafIslem6" value="#{iliskiliTarafIslemBean.instance.kiraGider}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.6']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="iliskiliTarafIslem6" />
 							</p:inputText>
@@ -134,7 +134,7 @@
 							<h:outputText value="#{msg['iliskiliTarafIslem.7']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="iliskiliTarafIslem7" value="#{iliskiliTarafIslemBean.instance.sabitKiymetSatis}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.7']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  styleClass="input-text" id="iliskiliTarafIslem7" value="#{iliskiliTarafIslemBean.instance.sabitKiymetSatis}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.7']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="iliskiliTarafIslem7" />
 							</p:inputText>
@@ -145,7 +145,7 @@
 							<h:outputText value="#{msg['iliskiliTarafIslem.8']}" />
 						</p:column>
 						<p:column styleClass="column-input">
-							<p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  styleClass="input-text" id="iliskiliTarafIslem8" value="#{iliskiliTarafIslemBean.instance.komisyonGider}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.8']}#{msg['common.requiredMessage']}">
+							<p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  styleClass="input-text" id="iliskiliTarafIslem8" value="#{iliskiliTarafIslemBean.instance.komisyonGider}" required="true" requiredMessage="#{msg['iliskiliTarafIslem.8']}#{msg['common.requiredMessage']}">
 								<f:convertNumber locale="TR_tr" groupingUsed="true"/>
 								<p:ajax event="blur" update="iliskiliTarafIslem8" />
 							</p:inputText>
@@ -153,7 +153,7 @@
 					</p:row>
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveButton"  action="#{iliskiliTarafIslemBean.save()}" update="@form"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafIslemBean.updateable}" id="saveButton"  action="#{iliskiliTarafIslemBean.save()}" update="@form"/>
 				<br />
 				<p:separator />
 				<br />
@@ -169,7 +169,7 @@
 			                    <h:outputText value="#{taraf.name}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.name}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.name}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -179,7 +179,7 @@
 			                    <h:outputText value="#{taraf.malHizmetAlim}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.malHizmetAlim}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.malHizmetAlim}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -190,7 +190,7 @@
 			                	</h:outputText>
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.malHizmetSatis}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.malHizmetSatis}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -200,7 +200,7 @@
 			                    <h:outputText value="#{taraf.faizGelir}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.faizGelir}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.faizGelir}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -210,7 +210,7 @@
 			                    <h:outputText value="#{taraf.faizGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.faizGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.faizGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -220,7 +220,7 @@
 			                    <h:outputText value="#{taraf.kiraGelir}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.kiraGelir}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.kiraGelir}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -230,7 +230,7 @@
 			                    <h:outputText value="#{taraf.kiraGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.kiraGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.kiraGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -240,7 +240,7 @@
 			                    <h:outputText value="#{taraf.sabitKiymetSatis}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.sabitKiymetSatis}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.sabitKiymetSatis}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -250,17 +250,17 @@
 			                    <h:outputText value="#{taraf.komisyonGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.komisyonGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.komisyonGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
-					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 and currentUser.company != null}" >
+					<p:column rendered="#{iliskiliTarafIslemBean.updateable}" >
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
 						<p:rowEditor />
 					</p:column>
-					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTarafIslemBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
@@ -282,7 +282,7 @@
 			                    <h:outputText value="#{taraf.name}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.name}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.name}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -292,7 +292,7 @@
 			                    <h:outputText value="#{taraf.malHizmetAlim}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.malHizmetAlim}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.malHizmetAlim}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -303,7 +303,7 @@
 			                	</h:outputText>
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.malHizmetSatis}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.malHizmetSatis}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -313,7 +313,7 @@
 			                    <h:outputText value="#{taraf.faizGelir}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.faizGelir}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.faizGelir}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -323,7 +323,7 @@
 			                    <h:outputText value="#{taraf.faizGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.faizGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.faizGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -333,7 +333,7 @@
 			                    <h:outputText value="#{taraf.kiraGelir}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.kiraGelir}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.kiraGelir}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -343,7 +343,7 @@
 			                    <h:outputText value="#{taraf.kiraGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.kiraGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.kiraGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -353,7 +353,7 @@
 			                    <h:outputText value="#{taraf.sabitKiymetSatis}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.sabitKiymetSatis}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.sabitKiymetSatis}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -363,17 +363,17 @@
 			                    <h:outputText value="#{taraf.komisyonGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.komisyonGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.komisyonGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
-					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTarafIslemBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
 						<p:rowEditor />
 					</p:column>
-					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTarafIslemBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
@@ -395,7 +395,7 @@
 			                    <h:outputText value="#{taraf.name}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.name}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.name}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -405,7 +405,7 @@
 			                    <h:outputText value="#{taraf.malHizmetAlim}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.malHizmetAlim}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.malHizmetAlim}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -416,7 +416,7 @@
 			                	</h:outputText>
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.malHizmetSatis}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.malHizmetSatis}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -426,7 +426,7 @@
 			                    <h:outputText value="#{taraf.faizGelir}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.faizGelir}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.faizGelir}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -436,7 +436,7 @@
 			                    <h:outputText value="#{taraf.faizGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.faizGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.faizGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -446,7 +446,7 @@
 			                    <h:outputText value="#{taraf.kiraGelir}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.kiraGelir}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.kiraGelir}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -456,7 +456,7 @@
 			                    <h:outputText value="#{taraf.kiraGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.kiraGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.kiraGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -466,7 +466,7 @@
 			                    <h:outputText value="#{taraf.sabitKiymetSatis}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.sabitKiymetSatis}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.sabitKiymetSatis}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -476,17 +476,17 @@
 			                    <h:outputText value="#{taraf.komisyonGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.komisyonGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.komisyonGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
-					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTarafIslemBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
 						<p:rowEditor />
 					</p:column>
-					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTarafIslemBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
@@ -508,7 +508,7 @@
 			                    <h:outputText value="#{taraf.name}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.name}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.name}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -518,7 +518,7 @@
 			                    <h:outputText value="#{taraf.malHizmetAlim}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.malHizmetAlim}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.malHizmetAlim}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -529,7 +529,7 @@
 			                	</h:outputText>
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.malHizmetSatis}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.malHizmetSatis}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -539,7 +539,7 @@
 			                    <h:outputText value="#{taraf.faizGelir}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.faizGelir}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.faizGelir}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -549,7 +549,7 @@
 			                    <h:outputText value="#{taraf.faizGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.faizGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.faizGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -559,7 +559,7 @@
 			                    <h:outputText value="#{taraf.kiraGelir}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.kiraGelir}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.kiraGelir}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -569,7 +569,7 @@
 			                    <h:outputText value="#{taraf.kiraGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.kiraGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.kiraGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -579,7 +579,7 @@
 			                    <h:outputText value="#{taraf.sabitKiymetSatis}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.sabitKiymetSatis}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.sabitKiymetSatis}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
@@ -589,17 +589,17 @@
 			                    <h:outputText value="#{taraf.komisyonGider}" />
 			                </f:facet>
 			                <f:facet name="input">
-			                    <p:inputText disabled="#{iliskiliTarafIslemBean.selectedDonem.durum == 1 || currentUser.company == null}"  value="#{taraf.komisyonGider}"/>
+			                    <p:inputText disabled="#{iliskiliTarafIslemBean.disable}"  value="#{taraf.komisyonGider}"/>
 			                </f:facet>
          			   	</p:cellEditor>
 					</p:column>
-					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTarafIslemBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.update']}" />
 						</f:facet>
 						<p:rowEditor />
 					</p:column>
-					<p:column rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 and currentUser.company != null}">
+					<p:column rendered="#{iliskiliTarafIslemBean.updateable}">
 						<f:facet name="header">
 							<h:outputText value="#{msg['common.remove']}" />
 						</f:facet>
@@ -668,7 +668,7 @@
 					<p:inputTextarea styleClass="dipnot-input" value="#{iliskiliTarafIslemBean.dipnot.dipnotText}" />
 				</p:panelGrid>
 				<br />
-				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafIslemBean.selectedDonem.durum == 0 and currentUser.company != null}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(iliskiliTarafIslemBean.dipnot, 12, iliskiliTarafIslemBean.instance.company, iliskiliTarafIslemBean.selectedDonem)}"/>
+				<p:commandButton value="#{msg['common.save']}" rendered="#{iliskiliTarafIslemBean.updateable}" id="saveDipnotButton" process="@this,sorgulaPanel,dipnotPanel"  action="#{dipnotBean.save(iliskiliTarafIslemBean.dipnot, 12, iliskiliTarafIslemBean.instance.company, iliskiliTarafIslemBean.selectedDonem)}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

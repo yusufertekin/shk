@@ -75,7 +75,8 @@
 		                </f:facet>
 		                <f:facet name="input">
 							<p:selectOneMenu id="sirketAnaCombo" value="#{don.company}">
-				        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
+								<f:selectItem itemLabel="Sadece Bir Şirkete açmak için seçiniz" itemValue="" />				        		
+								<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
 				        		<f:converter converterId="entityConverter"/>
 		        			</p:selectOneMenu>
 		                </f:facet>

@@ -63,6 +63,14 @@ public class KullaniciBean extends GenericBean<Kullanici,Long> implements Serial
 	}
 	@Override
 	public void update() {
+		try {
+			if(!(currentUser.getCompany() == null)){
+				setInstance((Kullanici)currentUser.clone());
+			}
+		} catch (CloneNotSupportedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		if(getPassword() != null || retypePassword != null)
 		{
 			if(kullaniciService.comparePasswords(getPassword(), retypePassword))
@@ -71,6 +79,10 @@ public class KullaniciBean extends GenericBean<Kullanici,Long> implements Serial
 			}
 		}
 		try {
+			if(adminOrNot != null && adminOrNot)
+			{
+				getInstance().setCompany(null);
+			}
 			super.update();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -102,6 +114,12 @@ public class KullaniciBean extends GenericBean<Kullanici,Long> implements Serial
 	public GenericService<Kullanici,Long> getEntityService() {
 		// TODO Auto-generated method stub
 		return kullaniciService;
+	}
+	
+	@Override
+	public void sorgula() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public String getRetypePassword() {

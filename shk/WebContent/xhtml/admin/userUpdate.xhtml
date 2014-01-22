@@ -19,6 +19,8 @@
 			<h:panelGrid id="userPanel" columns="2">
 				<h:outputText value="#{msg['user.name']}"/>
 				<p:inputText value="#{kullaniciBean.instance.username}"/>
+				<h:outputText value="#{msg['user.userRealName']}"/>
+				<p:inputText value="#{kullaniciBean.instance.userRealName}"/>
 				<h:outputText value="#{msg['user.password']}"/>
 				<p:password value="#{kullaniciBean.password}"/>
 				<h:outputText value="#{msg['user.retypePassword']}"/>
@@ -28,8 +30,14 @@
 					<f:selectItem itemValue="0" itemLabel="#{msg['user.active']}"/>
 					<f:selectItem itemValue="1" itemLabel="#{msg['user.passive']}"/>
 				</p:selectOneRadio>
-				<h:outputText value="#{msg['user.company']}" />
-        		<p:selectOneMenu id="sirketAnaCombo" value="#{kullaniciBean.instance.company}">
+				<h:outputText rendered="#{currentUser.company.companyId == null}" value="#{msg['user.adminOrNot']}" />
+				<p:selectOneRadio rendered="#{currentUser.company.companyId == null}" value="#{kullaniciBean.adminOrNot}">
+					<f:selectItem itemValue="#{true}" itemLabel="#{msg['user.admin']}"/>
+					<f:selectItem itemValue="#{false}" itemLabel="#{msg['user.normal']}"/>
+					<p:ajax event="change" update="sirketAnaCombo"/>
+				</p:selectOneRadio>
+				<h:outputText rendered="#{currentUser.company.companyId == null}" value="#{msg['user.company']}" />
+        		<p:selectOneMenu disabled="#{kullaniciBean.adminOrNot}" rendered="#{currentUser.company.companyId == null}" id="sirketAnaCombo" value="#{kullaniciBean.instance.company}">
 	        		<f:selectItems value="#{companyBean.list}" var="com" itemValue="#{com}" itemLabel="#{com.name}"/>
 	        		<f:converter converterId="entityConverter"/>
         		</p:selectOneMenu>

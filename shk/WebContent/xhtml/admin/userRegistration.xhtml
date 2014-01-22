@@ -13,6 +13,8 @@
 			<h:panelGrid id="userPanel" columns="2">
 				<h:outputText value="#{msg['user.name']}"/>
 				<p:inputText value="#{kullaniciBean.instance.username}"/>
+				<h:outputText value="#{msg['user.userRealName']}"/>
+				<p:inputText value="#{kullaniciBean.instance.userRealName}"/>
 				<h:outputText value="#{msg['user.password']}"/>
 				<p:inputText value="#{kullaniciBean.instance.password}" required="true" requiredMessage="#{msg['user.durum']} #{msg['common.requiredMessage']}"/>
 				<h:outputText value="#{msg['user.durum']}" />
@@ -42,6 +44,9 @@
 				</p:column>
 				<p:column headerText="#{msg['user.name']}">
 					<h:outputText value="#{usr.username}" />
+				</p:column>
+				<p:column headerText="#{msg['user.userRealName']}">
+					<h:outputText value="#{usr.userRealName}" />
 				</p:column>
 				<p:column headerText="#{msg['common.remove']}">
 					<p:commandLink value="#{msg['common.remove']}" action="#{kullaniciBean.remove(usr)}" update="@form"/>
